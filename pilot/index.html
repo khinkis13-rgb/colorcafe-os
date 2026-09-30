@@ -58,6 +58,13 @@ td:first-child{font-weight:400}
 .box{width:14px;height:14px;border:1.5px solid var(--taupe);border-radius:4px;flex:0 0 auto;transform:translateY(2px)}
 .price{font-family:var(--serif);font-size:30px;font-weight:600}
 .src{font-size:13px;color:var(--taupe)}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 8px}
+.lk{display:block;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px 18px;text-decoration:none;color:var(--cocoa);transition:border-color .2s,transform .2s}
+.lk:hover{border-color:var(--terra);transform:translateY(-2px)}
+.lk-t{display:block;font-weight:500;font-size:15.5px}
+.lk-t::after{content:" \2192";color:var(--terra)}
+.lk-d{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
+@media (max-width:600px){.links{grid-template-columns:1fr}}
 .author-sign{margin-top:auto;text-align:center;font-size:11px;color:var(--taupe);opacity:.7;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
 .lang-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:1000;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #eadfd9;font:400 12px/1.4 "Poppins",system-ui,sans-serif;color:#523B2E;cursor:pointer}
 .lang-toggle [data-l]{opacity:.5;font-weight:400}
@@ -81,6 +88,13 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     <tr><td data-ru="2. Заменить обслуживание клиентов в Commbox: только ИИ, передача в филиал, когда нужно">2. Replace Commbox customer service: AI only, transfer to the branch when needed</td><td data-ru="ИИ-агент работает на вашем номере WhatsApp; когда нужен человек, чат сразу уходит в нужный филиал с кратким резюме">AI agent live on your WhatsApp number; when a person is needed, the chat goes straight to the right branch with a summary</td><td data-ru="Расширить круг тем, которые агент закрывает сам">Expand the topics the agent handles on its own</td></tr>
     <tr><td data-ru="3. Складская система для импортного бизнеса">3. Warehouse storage system for the importing business</td><td data-ru="Проектирование процесса: как коробки приходят, пересчитываются и уходят в филиалы и B2B-клиентам">Process design: how boxes arrive, get counted and move to branches and B2B customers</td><td data-ru="Построить систему">Build the system</td></tr>
   </table></div>
+  <h2 data-ru="Что уже готово">What's ready to see</h2>
+  <div class="links">
+    <a class="lk" href="../"><span class="lk-t" data-ru="Трекинг от A до Z: концепция и живое демо">Tracking from A to Z: concept and live demo</span><span class="lk-d" data-ru="Путь изделия от приёма до печи и выдачи, глазами команды и гостя">A piece's journey from drop-off to kiln to pickup, as the team and the guest see it</span></a>
+    <a class="lk" href="../#codes"><span class="lk-t" data-ru="Как изделие сохраняет код в печи">How a piece keeps its code through the kiln</span><span class="lk-d" data-ru="Код на донышке, наклейка рядом, три варианта процесса">The code on the bottom, the label alongside, three ways to run it</span></a>
+    <a class="lk" href="../agent/"><span class="lk-t" data-ru="Замена Commbox на AI: прототип">Replacing Commbox with AI: prototype</span><span class="lk-d" data-ru="Пять реальных вопросов гостей: как сейчас и как с AI-агентом">Five real guest questions, today vs. with the AI agent</span></a>
+    <a class="lk" href="../agent/#complaint"><span class="lk-t" data-ru="Как AI передаёт разговор в филиал">How the AI hands a chat to the branch</span><span class="lk-d" data-ru="Жалоба гостя: мгновенная передача с кратким резюме для команды">A guest complaint: instant handover with a short summary for the team</span></a>
+  </div>
 
   <h2 data-ru="Почему этот месяц">Why this month</h2>
   <p data-ru="На встрече 30 сентября мы договорились о двух главных проблемах:">At our meeting on 30 September we agreed on the two biggest pains:</p>
@@ -175,7 +189,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
   </ul>
 
   <h2 data-ru="Цена и следующие шаги">Price and next steps</h2>
-  <p data-ru="Цену и формат нашей работы после пилота пришлю отдельно.">I will send pricing and the format of our work after the pilot separately.</p>
+  <p data-ru="До конца этой недели вернусь с детальной проработкой и предложением по цене и формату работы.">I will come back to you with a detailed proposal, including pricing and how we work together, by the end of this week.</p>
 
   <h2 data-ru="Что нашлось по ходу">Found along the way</h2>
   <ul>
