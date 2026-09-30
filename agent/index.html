@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Color Café · WhatsApp Agent Prototype</title>
+<title data-ru="Color Café · прототип WhatsApp-агента">Color Café · WhatsApp Agent Prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -209,13 +209,29 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
 .fine{font-size:12.5px;color:var(--taupe);max-width:80ch}
 .author-sign{margin-top:auto;padding-block:20px 22px;text-align:center;font-size:11px;color:var(--taupe);letter-spacing:.04em;user-select:none;pointer-events:none}
 
+/* language */
+.lang-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:1000;display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #eadfd9;font:400 12px/1.4 var(--sans);color:#523B2E;box-shadow:0 6px 16px -12px rgba(82,59,46,.5)}
+.lang-toggle span{opacity:.5}
+html:not([data-lang=ru]) .lang-toggle [data-l=en],html[data-lang=ru] .lang-toggle [data-l=ru]{opacity:1;font-weight:600}
+.ru-gloss{display:block;font:italic 11.5px/1.4 var(--sans);font-weight:300;color:var(--wa-meta);white-space:pre-line;margin-top:3px;text-align:left}
+html:not([data-lang=ru]) .ru-gloss{display:none}
+.out .b .ru-gloss{text-align:right}
+.in .b .ru-gloss{text-align:left}
+.b .ru-gloss{padding-top:3px;border-top:1px dashed rgba(17,27,33,.12)}
+.b.pic .ru-gloss{margin-inline:5px}
+.pick .ru-gloss{text-align:right;color:var(--taupe);font-size:11.5px}
+.pick[aria-selected="true"] .ru-gloss{color:var(--blush);opacity:.85}
+.sheet li .ru-gloss{margin-top:1px}
+.handover dd .ru-gloss{color:var(--taupe)}
+.sh-head .ru-gloss{font-weight:300;text-align:center;margin-top:0}
+
 @media (max-width:1100px){
   .stage{grid-template-columns:1fr 1fr}
   .panel{grid-column:1/-1;padding-top:0}
   .picker{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:760px){
-  main{padding-block:36px 28px;gap:34px}
+  main{padding-block:56px 28px;gap:34px}
   .stage{grid-template-columns:1fr}
   .picker{grid-template-columns:1fr 1fr}
   .rules{grid-template-columns:1fr;gap:20px}
@@ -233,30 +249,31 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
 </style>
 </head>
 <body>
+<button class="lang-toggle" type="button" aria-label="Language" data-ru-aria-label="Язык"><span data-l="en">EN</span> · <span data-l="ru">RU</span></button>
 <main class="wrap">
   <header class="hero">
-    <span class="eyebrow">Color Café · WhatsApp agent prototype</span>
-    <h1>Guests just write. The agent answers like <em>your best team member.</em></h1>
-    <p class="lead">Same WhatsApp number, same warm tone. No menus to tap through: guests ask in their own words and get a real answer, or a person who already knows the story.</p>
+    <span class="eyebrow" data-ru="Color Café · прототип WhatsApp-агента">Color Café · WhatsApp agent prototype</span>
+    <h1 data-ru="Гости просто пишут. Агент отвечает как <em>лучший сотрудник вашей команды.</em>">Guests just write. The agent answers like <em>your best team member.</em></h1>
+    <p class="lead" data-ru="Тот же номер WhatsApp, тот же тёплый тон. Никаких меню, по которым надо прокликиваться: гости спрашивают своими словами и получают настоящий ответ или человека, который уже знает всю историю.">Same WhatsApp number, same warm tone. No menus to tap through: guests ask in their own words and get a real answer, or a person who already knows the story.</p>
   </header>
 
-  <section aria-label="Scenarios" class="picker" role="tablist" id="picker"></section>
+  <section aria-label="Scenarios" data-ru-aria-label="Сценарии" class="picker" role="tablist" id="picker"></section>
 
   <section class="stage" aria-live="off">
     <div class="col">
-      <div class="col-head"><span class="col-label">Today: menu bot</span><span class="taps">Taps <b id="tapsL">0</b></span></div>
-      <div class="phone" aria-label="Current menu bot">
+      <div class="col-head"><span class="col-label" data-ru="Сейчас: бот с меню">Today: menu bot</span><span class="taps"><span data-ru="Нажатия">Taps</span> <b id="tapsL">0</b></span></div>
+      <div class="phone" aria-label="Current menu bot" data-ru-aria-label="Текущий бот с меню">
         <div class="screen">
           <div class="island"></div>
           <div class="sbar"><span>12:51</span><i>●●● ◔ ▮</i></div>
-          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo"></span><span class="who"><b>Color Cafe Customer Support</b><small>business account</small></span></div>
+          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo" data-ru-aria-label="Логотип Color Café"></span><span class="who"><b>Color Cafe Customer Support</b><small data-ru="бизнес-аккаунт">business account</small></span></div>
           <div class="chat" id="chatL"></div>
           <div class="composer"><span class="plus">+</span><span class="field"></span><span class="mic"><svg viewBox="0 0 12 16" fill="#fff"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="5.3" y="12" width="1.4" height="4"/></svg></span></div>
           <div class="sheet-wrap" id="sheetL">
             <div class="sheet">
-              <div class="sh-head"><span class="x">✕</span><span dir="rtl">הגיבו</span></div>
+              <div class="sh-head"><span class="x">✕</span><span dir="rtl">הגיבו</span><span class="ru-gloss" dir="ltr">Ответить</span></div>
               <ul id="sheetList"></ul>
-              <p class="sh-foot">Tap an item to select it</p>
+              <p class="sh-foot" data-ru="Нажмите на пункт, чтобы выбрать">Tap an item to select it</p>
             </div>
           </div>
         </div>
@@ -264,12 +281,12 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
     </div>
 
     <div class="col">
-      <div class="col-head"><span class="col-label on">With the agent</span><span class="taps">Taps <b id="tapsR">0</b></span></div>
-      <div class="phone" aria-label="AI agent">
+      <div class="col-head"><span class="col-label on" data-ru="С агентом">With the agent</span><span class="taps"><span data-ru="Нажатия">Taps</span> <b id="tapsR">0</b></span></div>
+      <div class="phone" aria-label="AI agent" data-ru-aria-label="ИИ-агент">
         <div class="screen">
           <div class="island"></div>
           <div class="sbar"><span>12:51</span><i>●●● ◔ ▮</i></div>
-          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo"></span><span class="who"><b>Color Cafe Customer Support</b><small id="statusR">online</small></span></div>
+          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo" data-ru-aria-label="Логотип Color Café"></span><span class="who"><b>Color Cafe Customer Support</b><small id="statusR">online</small></span></div>
           <div class="chat" id="chatR"></div>
           <div class="composer"><span class="plus">+</span><span class="field"></span><span class="mic"><svg viewBox="0 0 12 16" fill="#fff"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="5.3" y="12" width="1.4" height="4"/></svg></span></div>
         </div>
@@ -278,20 +295,20 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
 
     <aside class="panel">
       <div class="controls">
-        <button class="btn" id="replay" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4"/><path d="M2 1.8v3.6h3.6"/></svg>Replay</button>
+        <button class="btn" id="replay" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4"/><path d="M2 1.8v3.6h3.6"/></svg><span data-ru="Повторить">Replay</span></button>
         <div class="seg" id="variant" hidden>
-          <button type="button" id="vKiln" aria-pressed="true">Still in the kiln</button>
-          <button type="button" id="vReady" aria-pressed="false">Ready to collect</button>
+          <button type="button" id="vKiln" aria-pressed="true" data-ru="Ещё в печи">Still in the kiln</button>
+          <button type="button" id="vReady" aria-pressed="false" data-ru="Готово к выдаче">Ready to collect</button>
         </div>
       </div>
       <h2 id="sTitle"></h2>
       <p class="why" id="sWhy"></p>
       <div class="stats">
-        <div class="stat"><span class="k">Menu taps</span><div class="v"><s id="stTapsA"></s><em>→</em><strong>0</strong></div><span class="sub">today → with the agent</span><p class="note" id="stTapsNote"></p></div>
-        <div class="stat"><span class="k">Staff involved</span><div class="v"><s id="stStaffA"></s><em>→</em><strong id="stStaffB"></strong></div><span class="sub">today → with the agent</span><p class="note" id="stStaffNote"></p></div>
+        <div class="stat"><span class="k" data-ru="Нажатий в меню">Menu taps</span><div class="v"><s id="stTapsA"></s><em>→</em><strong>0</strong></div><span class="sub" data-ru="сейчас → с агентом">today → with the agent</span><p class="note" id="stTapsNote"></p></div>
+        <div class="stat"><span class="k" data-ru="Нужен сотрудник">Staff involved</span><div class="v"><s id="stStaffA"></s><em>→</em><strong id="stStaffB"></strong></div><span class="sub" data-ru="сейчас → с агентом">today → with the agent</span><p class="note" id="stStaffNote"></p></div>
       </div>
       <div class="inbox">
-        <span class="k">Team inbox</span>
+        <span class="k" data-ru="Входящие команды">Team inbox</span>
         <div id="inbox"></div>
       </div>
     </aside>
@@ -299,27 +316,28 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
 
   <section class="rules" aria-labelledby="rulesH">
     <div class="intro">
-      <span class="eyebrow">Handover rules</span>
-      <h2 id="rulesH">When a person takes over</h2>
-      <p>The agent answers what the studio has already decided: hours, addresses, booking, piece status, event basics. Anything that needs judgement goes to the team, with a summary, so the guest never has to repeat the story.</p>
+      <span class="eyebrow" data-ru="Правила передачи">Handover rules</span>
+      <h2 id="rulesH" data-ru="Когда подключается человек">When a person takes over</h2>
+      <p data-ru="Агент отвечает на то, что студия уже решила: часы работы, адреса, бронирование, статус изделия, основное о мероприятиях. Всё, что требует чьего-то решения, уходит команде вместе с кратким пересказом, чтобы гостю не пришлось рассказывать историю заново.">The agent answers what the studio has already decided: hours, addresses, booking, piece status, event basics. Anything that needs judgement goes to the team, with a summary, so the guest never has to repeat the story.</p>
     </div>
     <ul class="rlist">
-      <li><b>Complaints</b><span>Handed over at once, with the guest's words and order details.</span></li>
-      <li><b>Refunds and payment disputes</b><span>The agent never promises money back or a discount.</span></li>
-      <li><b>Changes a link can't handle</b><span>Moving a group, splitting a bill, special requests on a booking.</span></li>
-      <li><b>A photo of a damaged piece</b><span>Cracks, chips or glaze problems go straight to the team with the photo.</span></li>
-      <li><b>Large corporate events</b><span>The agent collects the basics; the team sends the quote.</span></li>
-      <li><b>The guest asks for a person</b><span>"אפשר לדבר עם נציג?" is honoured on the first ask.</span></li>
-      <li><b>Two unclear messages in a row</b><span>After two misses, the agent stops guessing and hands over.</span></li>
+      <li><b data-ru="Жалобы">Complaints</b><span data-ru="Передаются сразу, со словами гостя и данными заказа.">Handed over at once, with the guest's words and order details.</span></li>
+      <li><b data-ru="Возвраты и споры об оплате">Refunds and payment disputes</b><span data-ru="Агент никогда не обещает вернуть деньги или сделать скидку.">The agent never promises money back or a discount.</span></li>
+      <li><b data-ru="Изменения, с которыми не справится ссылка">Changes a link can't handle</b><span data-ru="Перенести группу, разделить счёт, особые пожелания к брони.">Moving a group, splitting a bill, special requests on a booking.</span></li>
+      <li><b data-ru="Фото повреждённого изделия">A photo of a damaged piece</b><span data-ru="Трещины, сколы и проблемы с глазурью сразу уходят команде вместе с фото.">Cracks, chips or glaze problems go straight to the team with the photo.</span></li>
+      <li><b data-ru="Крупные корпоративные мероприятия">Large corporate events</b><span data-ru="Агент собирает основные данные, команда присылает расчёт стоимости.">The agent collects the basics; the team sends the quote.</span></li>
+      <li><b data-ru="Гость просит позвать человека">The guest asks for a person</b><span data-ru="Просьбу «<bdi dir=&quot;rtl&quot;>אפשר לדבר עם נציג?</bdi>» (можно поговорить с представителем?) выполняют с первого раза.">"<bdi dir="rtl">אפשר לדבר עם נציג?</bdi>" is honoured on the first ask.</span></li>
+      <li><b data-ru="Два непонятных сообщения подряд">Two unclear messages in a row</b><span data-ru="После двух промахов агент перестаёт угадывать и передаёт разговор команде.">After two misses, the agent stops guessing and hands over.</span></li>
       <li class="offhours">
-        <div><b>Outside opening hours and on Shabbat</b><p>The agent still answers the simple questions. For everything else it collects the request and promises a reply at the next opening hour.</p></div>
+        <div><b data-ru="В нерабочее время и в шабат">Outside opening hours and on Shabbat</b><p data-ru="Агент всё равно отвечает на простые вопросы. Для всего остального он записывает запрос и обещает ответ в ближайшее рабочее время.">The agent still answers the simple questions. For everything else it collects the request and promises a reply at the next opening hour.</p></div>
         <div class="mini"><div class="row in"><div class="b" dir="rtl"><div class="tx">קיבלנו, תודה 🙏
-הצוות שלנו בחופשת שבת. רשמתי את כל הפרטים, ונחזור אליכם ביום ראשון ב־10:00, מיד כשנפתח 🥰</div><div class="meta">21:14</div></div></div></div>
+הצוות שלנו בחופשת שבת. רשמתי את כל הפרטים, ונחזור אליכם ביום ראשון ב־10:00, מיד כשנפתח 🥰</div><div class="ru-gloss" dir="ltr">Получили, спасибо 🙏
+У нашей команды выходной на шабат. Я записала все детали, и мы ответим вам в воскресенье в 10:00, сразу как откроемся 🥰</div><div class="meta">21:14</div></div></div></div>
       </li>
     </ul>
   </section>
 
-  <p class="fine">Prototype. Conversations are illustrative; real answers come from Color Café's own rules and prices. Opening hours, dates, order codes and reply times shown here are placeholders. The "today" replies reconstruct the current menu flow for comparison.</p>
+  <p class="fine" data-ru="Прототип. Переписки приведены для примера; настоящие ответы строятся на правилах и ценах самого Color Café. Часы работы, даты, коды заказов и сроки ответа здесь условные. Ответы в колонке «сейчас» воспроизводят нынешний бот с меню для сравнения.">Prototype. Conversations are illustrative; real answers come from Color Café's own rules and prices. Opening hours, dates, order codes and reply times shown here are placeholders. The "today" replies reconstruct the current menu flow for comparison.</p>
 </main>
 <footer class="author-sign">Made by Dmitry Khinkis</footer>
 
@@ -328,8 +346,25 @@ main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = id => document.getElementById(id);
 
-const MENU = ["נעים להכיר","להזמנת מקום","מעבר לנציג","הזמנת ערכות צביעה","שינוי / ביטול הזמנה","אירוע פרטי / חברה","סטטוס כלים מוכנים","שעות פעילות ודרכי הגעה"];
+/* ---------- language ---------- */
+const LANGS = ["en", "ru"];
+const t = (en, ru) => document.documentElement.dataset.lang === "ru" ? ru : en;
+const isRu = () => document.documentElement.dataset.lang === "ru";
+
+/* Hebrew stays Hebrew in both modes; `ru` is the gloss shown under it in RU mode */
+const MENU = [
+  ["נעים להכיר", "Давайте знакомиться"],
+  ["להזמנת מקום", "Забронировать место"],
+  ["מעבר לנציג", "Перейти к представителю"],
+  ["הזמנת ערכות צביעה", "Заказать наборы для росписи"],
+  ["שינוי / ביטול הזמנה", "Изменить / отменить заказ"],
+  ["אירוע פרטי / חברה", "Частное / корпоративное мероприятие"],
+  ["סטטוס כלים מוכנים", "Статус готовых изделий"],
+  ["שעות פעילות ודרכי הגעה", "Часы работы и как добраться"]
+];
+const MENU_RU = Object.fromEntries(MENU);
 const GREETING = "היי 👋\nכאן הנציגה הדיגיטלית של Color Café - סטודיו לצביעת כלי קרמיקה.\nתודה שפנית אלינו 🥰";
+const GREETING_RU = "Привет 👋\nЭто цифровая помощница Color Café, студии росписи керамики.\nСпасибо, что обратились к нам 🥰";
 
 const ICON = {
   list:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.3" cy="4" r=".6" fill="currentColor"/><circle cx="2.3" cy="8" r=".6" fill="currentColor"/><circle cx="2.3" cy="12" r=".6" fill="currentColor"/></svg>',
@@ -396,115 +431,150 @@ const ART = {
 /* ---------- scenarios ---------- */
 /* step kinds: g = guest, a = agent (typing), b = menu bot (instant), sheet = list pick, sys = system chip, ho = handover */
 const S = [
- { id:"hours", tab:"Hours & directions", q:"אתם פתוחים בשישי בבן יהודה?",
+ { id:"hours", tab:"Hours & directions", q:"אתם פתוחים בשישי בבן יהודה?", qRu:"Вы открыты в пятницу на Бен-Йехуда?",
    title:"Hours & directions",
    why:"The guest asked about one branch on one day. Today they get every branch's hours and have to find the answer themselves. The agent answers the actual question and adds the map pin.",
    taps:2, tapsNote:"Open the menu, pick a topic. The reply is the same for every guest.",
    staff:["No","No"], staffNote:"Neither needs the team. The agent's answer is simply specific.",
+   ru:{ tab:"Часы и как добраться", title:"Часы работы и как добраться",
+     why:"Гость спросил про один филиал и один день. Сейчас он получает часы работы всех филиалов и ищет ответ сам. Агент отвечает именно на заданный вопрос и добавляет точку на карте.",
+     tapsNote:"Открыть меню, выбрать тему. Ответ одинаковый для всех гостей.",
+     staff:["Нет","Нет"], staffNote:"Команда не нужна ни там, ни там. Просто агент отвечает по существу." },
    left:[
-     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?"},
-     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?", ru:"Привет, вы открыты в пятницу на Бен-Йехуда?"},
+     {k:"b", t:"12:51", text:GREETING, ru:GREETING_RU, menu:true},
      {k:"sheet", item:"שעות פעילות ודרכי הגעה", t:"12:52"},
-     {k:"b", t:"12:52", text:"שעות הפעילות שלנו:\n\nירמיהו 46, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nבן יהודה 215, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nסוקולוב 40, הוד השרון\nא׳–ה׳ 10:00–21:00\nו׳ 9:00–14:00 · ש׳ 10:00–20:00\n\nלפרטים נוספים: www.colorcafe.shop"}
+     {k:"b", t:"12:52", text:"שעות הפעילות שלנו:\n\nירמיהו 46, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nבן יהודה 215, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nסוקולוב 40, הוד השרון\nא׳–ה׳ 10:00–21:00\nו׳ 9:00–14:00 · ש׳ 10:00–20:00\n\nלפרטים נוספים: www.colorcafe.shop",
+      ru:"Наши часы работы:\n\nИрмеяху 46, Тель-Авив\nвс-чт 10:00-22:00\nпт 9:00-15:00 · сб 10:00-20:00\n\nБен-Йехуда 215, Тель-Авив\nвс-чт 10:00-22:00\nпт 9:00-15:00 · сб 10:00-20:00\n\nСоколов 40, Ход-ха-Шарон\nвс-чт 10:00-21:00\nпт 9:00-14:00 · сб 10:00-20:00\n\nПодробнее: www.colorcafe.shop"}
    ],
    right:[
-     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?"},
-     {k:"a", t:"12:51", text:"היי 👋 כן! ביום שישי אנחנו פתוחים בבן יהודה 215 מ־9:00 עד 15:00.\nמומלץ להגיע עד 13:30, כדי שיישאר מספיק זמן לצבוע בנחת 🎨"},
+     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?", ru:"Привет, вы открыты в пятницу на Бен-Йехуда?"},
+     {k:"a", t:"12:51", text:"היי 👋 כן! ביום שישי אנחנו פתוחים בבן יהודה 215 מ־9:00 עד 15:00.\nמומלץ להגיע עד 13:30, כדי שיישאר מספיק זמן לצבוע בנחת 🎨",
+      ru:"Привет 👋 Да! В пятницу мы открыты на Бен-Йехуда 215 с 9:00 до 15:00.\nЛучше прийти до 13:30, чтобы хватило времени спокойно порисовать 🎨"},
      {k:"a", t:"12:51", rich:"map"},
-     {k:"g", t:"12:52", text:"מעולה, תודה!"},
-     {k:"a", t:"12:52", text:"בכיף! נתראה בשישי 🥰"}
+     {k:"g", t:"12:52", text:"מעולה, תודה!", ru:"Отлично, спасибо!"},
+     {k:"a", t:"12:52", text:"בכיף! נתראה בשישי 🥰", ru:"С удовольствием! До встречи в пятницу 🥰"}
    ]},
- { id:"book", tab:"Booking a table", q:"מקום ל־4 מחר ב־17:00 בהוד השרון?",
+ { id:"book", tab:"Booking a table", q:"מקום ל־4 מחר ב־17:00 בהוד השרון?", qRu:"Место на четверых завтра в 17:00 в Ход-ха-Шароне?",
    title:"Booking a table",
    why:"The guest already said who, when and where. Today the bot sends a bare link and they type it all again in Ontopo. The agent checks the details back and sends a link with everything filled in.",
    taps:6, tapsNote:"2 in the chat, then branch, date, time and party size again inside Ontopo.",
    staff:["No","No"], staffNote:"Booking stays self-service in both cases. Only the effort changes.",
+   ru:{ tab:"Бронирование столика", title:"Бронирование столика",
+     why:"Гость уже написал, сколько человек, когда и где. Сейчас бот присылает голую ссылку, и в Ontopo всё приходится вводить заново. Агент сверяет детали с гостем и присылает ссылку, где всё уже заполнено.",
+     tapsNote:"2 в чате, потом ещё раз филиал, дата, время и число гостей в Ontopo.",
+     staff:["Нет","Нет"], staffNote:"В обоих случаях гость бронирует сам. Меняется только то, сколько ему приходится делать." },
    left:[
-     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?"},
-     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?", ru:"Привет, можно забронировать место на 4 человек завтра в 17:00 в Ход-ха-Шароне?"},
+     {k:"b", t:"12:51", text:GREETING, ru:GREETING_RU, menu:true},
      {k:"sheet", item:"להזמנת מקום", t:"12:52"},
      {k:"b", t:"12:52", rich:"ontopoGeneric"}
    ],
    right:[
-     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?"},
-     {k:"a", t:"12:51", text:"היי 👋 בשמחה! רק מוודאת שהבנתי נכון:\n📍 סוקולוב 40, הוד השרון\n📅 מחר, יום חמישי, ב־17:00\n👥 4 אנשים\nהכול נכון?"},
-     {k:"g", t:"12:52", text:"כן, מושלם"},
+     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?", ru:"Привет, можно забронировать место на 4 человек завтра в 17:00 в Ход-ха-Шароне?"},
+     {k:"a", t:"12:51", text:"היי 👋 בשמחה! רק מוודאת שהבנתי נכון:\n📍 סוקולוב 40, הוד השרון\n📅 מחר, יום חמישי, ב־17:00\n👥 4 אנשים\nהכול נכון?",
+      ru:"Привет 👋 С радостью! Только уточню, правильно ли я поняла:\n📍 Соколов 40, Ход-ха-Шарон\n📅 завтра, в четверг, в 17:00\n👥 4 человека\nВсё верно?"},
+     {k:"g", t:"12:52", text:"כן, מושלם", ru:"Да, идеально"},
      {k:"a", t:"12:52", rich:"ontopoFilled"},
-     {k:"a", t:"12:52", text:"אם יהיה שינוי, פשוט כתבו לי כאן 🙂"}
+     {k:"a", t:"12:52", text:"אם יהיה שינוי, פשוט כתבו לי כאן 🙂", ru:"Если что-то изменится, просто напишите мне здесь 🙂"}
    ]},
- { id:"piece", tab:"Is my piece ready?", q:"הספל שצבענו כבר מוכן?",
+ { id:"piece", tab:"Is my piece ready?", q:"הספל שצבענו כבר מוכן?", qRu:"Кружка, которую мы расписали, уже готова?",
    title:"Is my piece ready?",
    why:"The most common question after a visit. Today it ends with \"pass to a representative\", and someone at the studio goes to look. The agent finds the piece by phone or code and answers on the spot.",
    taps:4, tapsNote:"Menu, status topic, then the menu again to reach a representative.",
    staff:["Yes","No"], staffNote:"Today someone checks the shelf by hand. The agent reads the status the team already logs.",
+   ru:{ tab:"Готово ли моё изделие?", title:"Готово ли моё изделие?",
+     why:"Самый частый вопрос после визита. Сейчас всё заканчивается «переходом к представителю», и кто-то в студии идёт проверять. Агент находит изделие по телефону или коду и отвечает сразу.",
+     tapsNote:"Меню, тема статуса, потом снова меню, чтобы выйти на представителя.",
+     staff:["Да","Нет"], staffNote:"Сейчас кто-то проверяет полку вручную. Агент читает статус, который команда и так отмечает." },
    variant:true,
    left:[
-     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן"},
-     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן", ru:"Привет, хотела узнать, готова ли уже кружка, которую мы расписали"},
+     {k:"b", t:"12:51", text:GREETING, ru:GREETING_RU, menu:true},
      {k:"sheet", item:"סטטוס כלים מוכנים", t:"12:52"},
-     {k:"b", t:"12:52", text:"הכלים מוכנים לאיסוף כשבועיים אחרי הצביעה ✨\nלבירור לגבי כלי מסוים, בחרו \"מעבר לנציג\" בתפריט.", menu:true},
+     {k:"b", t:"12:52", text:"הכלים מוכנים לאיסוף כשבועיים אחרי הצביעה ✨\nלבירור לגבי כלי מסוים, בחרו \"מעבר לנציג\" בתפריט.", menu:true,
+      ru:"Изделия готовы к выдаче примерно через две недели после росписи ✨\nЧтобы узнать о конкретном изделии, выберите в меню «Перейти к представителю»."},
      {k:"sheet", item:"מעבר לנציג", t:"12:52"},
-     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏"}
+     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏", ru:"Обращение передано представителю, мы скоро с вами свяжемся 🙏"}
    ],
    right:[
-     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן"},
-     {k:"a", t:"12:51", text:"היי 👋 בשמחה אבדוק! מה מספר הטלפון שאיתו הזמנתם, או הקוד שמופיע על הפתק?"},
+     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן", ru:"Привет, хотела узнать, готова ли уже кружка, которую мы расписали"},
+     {k:"a", t:"12:51", text:"היי 👋 בשמחה אבדוק! מה מספר הטלפון שאיתו הזמנתם, או הקוד שמופיע על הפתק?",
+      ru:"Привет 👋 С радостью проверю! Какой номер телефона вы указывали при заказе или какой код написан на талончике?"},
      {k:"g", t:"12:52", text:"Y-4832-2"},
      {k:"variant"}
    ],
    kiln:[
      {k:"a", t:"12:52", rich:"statusKiln"},
-     {k:"a", t:"12:52", text:"אשלח לכם הודעה כאן ברגע שהוא יוצא מהתנור 🥰"}
+     {k:"a", t:"12:52", text:"אשלח לכם הודעה כאן ברגע שהוא יוצא מהתנור 🥰", ru:"Я напишу вам здесь, как только она выйдет из печи 🥰"}
    ],
    ready:[
      {k:"a", t:"12:52", rich:"statusReady"},
      {k:"a", t:"12:52", rich:"photoMug"},
-     {k:"a", t:"12:52", text:"אפשר לאסוף בשעות הפעילות, פשוט אמרו את השם בקופה 🙂"}
+     {k:"a", t:"12:52", text:"אפשר לאסוף בשעות הפעילות, פשוט אמרו את השם בקופה 🙂", ru:"Забрать можно в часы работы, просто назовите имя на кассе 🙂"}
    ]},
- { id:"party", tab:"Kids' birthday", q:"יום הולדת עם 12 ילדים, אפשר?",
+ { id:"party", tab:"Kids' birthday", q:"יום הולדת עם 12 ילדים, אפשר?", qRu:"День рождения на 12 детей, можно?",
    title:"Birthday for 12 kids",
    why:"Events need a person for the quote, but not for the questions. The agent gathers date, branch, age and head count in a few friendly turns, then hands the team a request that is ready to price.",
    taps:2, tapsNote:"Then the guest types a free-form message and waits.",
    staff:["Yes","Yes"], staffNote:"Today the team starts from a raw message and calls back to ask. With the agent they start from a complete request.",
+   ru:{ tab:"Детский день рождения", title:"День рождения на 12 детей",
+     why:"Чтобы посчитать стоимость мероприятия, нужен человек, а чтобы задать вопросы, не нужен. Агент за пару дружелюбных сообщений собирает дату, филиал, возраст и число гостей и передаёт команде заявку, которую можно сразу оценить.",
+     tapsNote:"Дальше гость пишет сообщение в свободной форме и ждёт.",
+     staff:["Да","Да"], staffNote:"Сейчас команда получает сырое сообщение и перезванивает с вопросами. С агентом она начинает с готовой заявки.",
+     handover:{prio:["normal","Новое мероприятие"], title:"Детский день рождения, 8 лет",
+       rows:[["Дата","пт, 16 октября, около 10:00"],["Филиал","Соколов 40, Ход-ха-Шарон"],["Гости","12 детей"],["Контакт","WhatsApp · +972 54-318-2270"],["Слова гостя",'<span class="he" dir="rtl">"רוצה לחגוג לבת שלי יום הולדת בסטודיו"</span><span class="ru-gloss" dir="ltr">«Хочу отпраздновать день рождения дочки в студии»</span>'],["Следующий шаг","Отправить расчёт и придержать время"]],
+       reply:"до завтра, 12:00"} },
    left:[
-     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?"},
-     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?", ru:"Привет! Хочу отпраздновать день рождения дочки в студии, будет 12 детей. Можно?"},
+     {k:"b", t:"12:51", text:GREETING, ru:GREETING_RU, menu:true},
      {k:"sheet", item:"אירוע פרטי / חברה", t:"12:52"},
-     {k:"b", t:"12:52", text:"נשמח לארח אתכם! 🎉\nלתיאום אירוע, כתבו לנו שם, טלפון, תאריך ומספר משתתפים, ונציג יחזור אליכם."},
-     {k:"g", t:"12:53", text:"יום הולדת 8, 12 ילדים, שישי 16.10 בבוקר, הוד השרון"},
-     {k:"b", t:"12:53", text:"תודה! נציג יחזור אליכם בהקדם 🙏"}
+     {k:"b", t:"12:52", text:"נשמח לארח אתכם! 🎉\nלתיאום אירוע, כתבו לנו שם, טלפון, תאריך ומספר משתתפים, ונציג יחזור אליכם.",
+      ru:"Будем рады вас принять! 🎉\nЧтобы согласовать мероприятие, напишите нам имя, телефон, дату и число участников, и представитель с вами свяжется."},
+     {k:"g", t:"12:53", text:"יום הולדת 8, 12 ילדים, שישי 16.10 בבוקר, הוד השרון", ru:"День рождения, 8 лет, 12 детей, пятница 16.10 утром, Ход-ха-Шарон"},
+     {k:"b", t:"12:53", text:"תודה! נציג יחזור אליכם בהקדם 🙏", ru:"Спасибо! Представитель скоро с вами свяжется 🙏"}
    ],
    right:[
-     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?"},
-     {k:"a", t:"12:51", text:"איזה כיף, מזל טוב מראש! 🎉\nבשמחה נארח אתכם. כמה פרטים קטנים, ואעביר לצוות האירועים בקשה מסודרת.\nבאיזה תאריך חשבתם, ובאיזה סניף?"},
-     {k:"g", t:"12:52", text:"יום שישי, 16.10, בהוד השרון"},
-     {k:"a", t:"12:52", text:"מעולה! בת כמה היא חוגגת, ובאיזו שעה נוח לכם להגיע?"},
-     {k:"g", t:"12:53", text:"בת 8, בסביבות 10:00"},
-     {k:"a", t:"12:53", text:"רשמתי הכול ✍️\n🎂 יום הולדת 8\n📅 שישי, 16.10, ב־10:00\n📍 סוקולוב 40, הוד השרון\n👥 12 ילדים\n\nהעברתי את הבקשה לצוות האירועים. הם יחזרו אליכם עם הצעה מסודרת עד מחר ב־12:00 🥰"},
-     {k:"sys", text:"Request sent to the Color Café team"},
+     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?", ru:"Привет! Хочу отпраздновать день рождения дочки в студии, будет 12 детей. Можно?"},
+     {k:"a", t:"12:51", text:"איזה כיף, מזל טוב מראש! 🎉\nבשמחה נארח אתכם. כמה פרטים קטנים, ואעביר לצוות האירועים בקשה מסודרת.\nבאיזה תאריך חשבתם, ובאיזה סניף?",
+      ru:"Как здорово, заранее поздравляем! 🎉\nС радостью вас примем. Уточню пару деталей и передам команде мероприятий оформленную заявку.\nНа какую дату вы думали и в каком филиале?"},
+     {k:"g", t:"12:52", text:"יום שישי, 16.10, בהוד השרון", ru:"В пятницу, 16.10, в Ход-ха-Шароне"},
+     {k:"a", t:"12:52", text:"מעולה! בת כמה היא חוגגת, ובאיזו שעה נוח לכם להגיע?", ru:"Отлично! Сколько ей исполняется и в какое время вам удобно прийти?"},
+     {k:"g", t:"12:53", text:"בת 8, בסביבות 10:00", ru:"8 лет, примерно к 10:00"},
+     {k:"a", t:"12:53", text:"רשמתי הכול ✍️\n🎂 יום הולדת 8\n📅 שישי, 16.10, ב־10:00\n📍 סוקולוב 40, הוד השרון\n👥 12 ילדים\n\nהעברתי את הבקשה לצוות האירועים. הם יחזרו אליכם עם הצעה מסודרת עד מחר ב־12:00 🥰",
+      ru:"Всё записала ✍️\n🎂 день рождения, 8 лет\n📅 пятница, 16.10, в 10:00\n📍 Соколов 40, Ход-ха-Шарон\n👥 12 детей\n\nЯ передала заявку команде мероприятий. Они свяжутся с вами с подробным предложением до завтра, 12:00 🥰"},
+     {k:"sys", text:"Request sent to the Color Café team", ru:"Заявка отправлена команде Color Café"},
      {k:"ho"}
    ],
    handover:{prio:["normal","New event"], title:"Kids' birthday, age 8",
      rows:[["Date","Fri 16 Oct, around 10:00"],["Branch","Sokolov 40, Hod HaSharon"],["Guests","12 kids"],["Contact","WhatsApp · +972 54-318-2270"],["Guest's words",'<span class="he" dir="rtl">"רוצה לחגוג לבת שלי יום הולדת בסטודיו"</span>'],["Next step","Send a quote and hold the slot"]],
      reply:"by tomorrow 12:00"}
  },
- { id:"complaint", tab:"Complaint", q:"הקערה יצאה סדוקה 😞",
+ { id:"complaint", tab:"Complaint", q:"הקערה יצאה סדוקה 😞", qRu:"Миска вышла с трещиной 😞",
    title:"A cracked piece",
    why:"This is exactly where a person should step in. The agent does not argue or promise anything. It apologises, hands over at once and tells the guest when they will hear back.",
    taps:2, tapsNote:"Menu, then \"pass to a representative\". No reply time is given.",
    staff:["Yes","Yes"], staffNote:"The team replies either way. With the agent they get the photo, the order and a promised time.",
+   ru:{ tab:"Жалоба", title:"Треснувшее изделие",
+     why:"Именно здесь должен подключиться человек. Агент не спорит и ничего не обещает. Он извиняется, сразу передаёт разговор команде и говорит гостю, когда ему ответят.",
+     tapsNote:"Меню, потом «Перейти к представителю». Срок ответа не называется.",
+     staff:["Да","Да"], staffNote:"Команда отвечает в любом случае. С агентом она сразу получает фото, заказ и обещанное время ответа.",
+     handover:{prio:["urgent","Срочно"], title:"Повреждённое изделие: треснувшая миска",
+       rows:[["Филиал","Бен-Йехуда 215, Тель-Авив"],["Заказ","Найден по телефону · забран вчера"],["Вложения","1 фото трещины"],["Настроение гостя","Расстроен"],["Контакт","WhatsApp · +972 52-488-1190"],["Агент не стал","Предлагать возврат денег или переделку. Это решает команда."]],
+       reply:"сегодня до 14:00"} },
    left:[
-     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞"},
-     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞", ru:"Привет, вчера забрали миску на Бен-Йехуда, а она вся в трещинах 😞"},
+     {k:"b", t:"12:51", text:GREETING, ru:GREETING_RU, menu:true},
      {k:"sheet", item:"מעבר לנציג", t:"12:52"},
-     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏"},
+     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏", ru:"Обращение передано представителю, мы скоро с вами свяжемся 🙏"},
      {k:"g", t:"12:52", rich:"photoBowl"}
    ],
    right:[
-     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞"},
+     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞", ru:"Привет, вчера забрали миску на Бен-Йехуда, а она вся в трещинах 😞"},
      {k:"g", t:"12:51", rich:"photoBowl"},
-     {k:"a", t:"12:51", text:"אוי, ממש מצטערת לשמוע 😔\nאני מעבירה עכשיו את הפנייה לצוות שלנו, יחד עם התמונה וכל הפרטים, כדי שלא תצטרכו להסביר הכול מחדש.\nהם יחזרו אליכם היום עד 14:00."},
-     {k:"sys", text:"Handed over to the Color Café team"},
+     {k:"a", t:"12:51", text:"אוי, ממש מצטערת לשמוע 😔\nאני מעבירה עכשיו את הפנייה לצוות שלנו, יחד עם התמונה וכל הפרטים, כדי שלא תצטרכו להסביר הכול מחדש.\nהם יחזרו אליכם היום עד 14:00.",
+      ru:"Ой, мне очень жаль это слышать 😔\nЯ прямо сейчас передаю обращение нашей команде вместе с фото и всеми деталями, чтобы вам не пришлось объяснять всё заново.\nОни свяжутся с вами сегодня до 14:00."},
+     {k:"sys", text:"Handed over to the Color Café team", ru:"Разговор передан команде Color Café"},
      {k:"ho"}
    ],
    handover:{prio:["urgent","Urgent"], title:"Damaged piece: cracked bowl",
@@ -512,6 +582,18 @@ const S = [
      reply:"today by 14:00"}
  }
 ];
+/* localized view of a scenario's English UI fields */
+const L = sc => isRu() && sc.ru ? Object.assign({}, sc, sc.ru) : sc;
+
+/* RU glosses for rich (card) bubbles */
+const RICH_RU = {
+  map:"Color Café · Бен-Йехуда 215, Тель-Авив\nКнопка: «Открыть в картах»",
+  ontopoGeneric:"Чтобы забронировать место в студии, перейдите по ссылке и выберите филиал, дату, время и число участников 👇\nКнопка: «Забронировать»",
+  ontopoFilled:"Я подготовила для вас ссылку на бронирование, все данные уже заполнены. Осталось только подтвердить 👇\nColor Café Ход-ха-Шарон · 4 человека · завтра · 17:00\nКнопка: «Завершить бронирование»",
+  statusKiln:"Нашла 🙂 Кружка, которую вы расписали 24.9 на Ирмеяху 46, сейчас в печи 🔥\nЭтапы: расписана · в печи · готова к выдаче\nОжидаемая готовность: четверг, 22.10",
+  statusReady:"Хорошие новости! Ваша кружка готова и ждёт вас на Ирмеяху 46 ✨\nЭтапы: расписана · обожжена в печи · готова к выдаче",
+  photoMug:"Вот такой она вышла из печи 😍"
+};
 
 /* ---------- rich content ---------- */
 function rich(name){
@@ -557,6 +639,8 @@ function addBubble(chat, step, dirOut){
   } else {
     const tx = document.createElement("div"); tx.className = "tx"; tx.textContent = step.text; b.appendChild(tx);
   }
+  const ru = step.ru || (step.rich && RICH_RU[step.rich]);
+  if(ru) b.appendChild(gloss(ru));
   const meta = document.createElement("div"); meta.className = "meta";
   meta.innerHTML = step.t + (dirOut ? ICON.ticks : "");
   b.appendChild(meta);
@@ -567,13 +651,14 @@ function addBubble(chat, step, dirOut){
   row.appendChild(b); chat.appendChild(row); scrollDown(chat);
   return b;
 }
+function gloss(text){ const g = document.createElement("div"); g.className = "ru-gloss"; g.dir = "ltr"; g.textContent = text; return g; }
 function addSys(chat, text){ const d = document.createElement("div"); d.className = "sys"; d.textContent = text; chat.appendChild(d); scrollDown(chat); }
 function addTyping(chat){
   const row = document.createElement("div"); row.className = "row in";
   row.innerHTML = '<div class="b typing" aria-label="typing"><i></i><i></i><i></i></div>';
   chat.appendChild(row); scrollDown(chat); return row;
 }
-function dayChip(chat){ const d = document.createElement("div"); d.className = "day"; d.textContent = "Today"; chat.appendChild(d); }
+function dayChip(chat){ const d = document.createElement("div"); d.className = "day"; d.textContent = t("Today", "Сегодня"); chat.appendChild(d); }
 
 /* ---------- runner ---------- */
 let run = 0, current = 0, variant = "kiln", tapsL = 0;
@@ -592,16 +677,16 @@ async function runLeft(sc, id){
       if(btn){ btn.classList.remove("tap"); void btn.offsetWidth; btn.classList.add("tap"); }
       setTaps(tapsL + 1);
       await wait(250, id);
-      list.innerHTML = MENU.map(m => `<li dir="rtl">${m}</li>`).join("");
+      list.innerHTML = MENU.map(m => `<li dir="rtl" data-item="${m[0]}">${m[0]}<span class="ru-gloss" dir="ltr">${m[1]}</span></li>`).join("");
       sheet.classList.add("on");
       await wait(1100, id);
-      const li = [...list.children].find(x => x.textContent === st.item);
+      const li = [...list.children].find(x => x.dataset.item === st.item);
       if(li) li.classList.add("hit");
       setTaps(tapsL + 1);
       await wait(450, id);
       sheet.classList.remove("on");
       await wait(250, id);
-      addBubble(chat, {text:st.item, t:st.t}, true);
+      addBubble(chat, {text:st.item, ru:MENU_RU[st.item], t:st.t}, true);
     }
   }
 }
@@ -615,28 +700,29 @@ async function runRight(sc, id){
     if(st.k === "g"){ await wait(750, id); addBubble(chat, st, true); }
     else if(st.k === "a"){
       await wait(450, id);
-      const typing = addTyping(chat); status.textContent = "typing…"; status.classList.add("typing");
+      const typing = addTyping(chat); status.textContent = t("typing…", "печатает…"); status.classList.add("typing");
       const len = st.text ? st.text.length : 90;
       try { await wait(Math.min(1900, 700 + len * 9), id); }
-      finally { typing.remove(); status.textContent = "online"; status.classList.remove("typing"); }
+      finally { typing.remove(); status.textContent = t("online", "в сети"); status.classList.remove("typing"); }
       addBubble(chat, st, false);
     }
-    else if(st.k === "sys"){ await wait(500, id); addSys(chat, st.text); }
+    else if(st.k === "sys"){ await wait(500, id); addSys(chat, t(st.text, st.ru || st.text)); }
     else if(st.k === "ho"){ await wait(300, id); showHandover(sc); }
   }
 }
 
 function showHandover(sc){
-  const h = sc.handover;
+  const h = L(sc).handover;
   $("inbox").innerHTML = `<article class="handover">
-    <header><span>Handover card · visible to staff only</span><span class="prio ${h.prio[0]}">${h.prio[1]}</span></header>
+    <header><span>${t("Handover card · visible to staff only", "Карточка передачи · видна только сотрудникам")}</span><span class="prio ${h.prio[0]}">${h.prio[1]}</span></header>
     <h4>${h.title}</h4>
     <dl>${h.rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>
-    <footer><span>Promised to the guest</span><b>Reply ${h.reply}</b></footer>
+    <footer><span>${t("Promised to the guest", "Обещано гостю")}</span><b>${t("Reply", "Ответ")} ${h.reply}</b></footer>
   </article>`;
 }
 
-function renderPanel(sc){
+function renderPanel(scRaw){
+  const sc = L(scRaw);
   $("sTitle").textContent = sc.title;
   $("sWhy").textContent = sc.why;
   $("stTapsA").textContent = sc.taps;
@@ -646,8 +732,8 @@ function renderPanel(sc){
   $("stStaffNote").textContent = sc.staffNote;
   $("variant").hidden = !sc.variant;
   $("inbox").innerHTML = sc.handover
-    ? '<p class="empty">The handover card appears here the moment the agent passes the conversation on.</p>'
-    : '<p class="empty">No handover needed. The agent answered from the studio\'s own information.</p>';
+    ? `<p class="empty">${t("The handover card appears here the moment the agent passes the conversation on.", "Карточка передачи появится здесь, как только агент передаст разговор команде.")}</p>`
+    : `<p class="empty">${t("No handover needed. The agent answered from the studio's own information.", "Передавать никому не нужно. Агент ответил по данным самой студии.")}</p>`;
 }
 
 function play(){
@@ -656,7 +742,7 @@ function play(){
   dayChip($("chatL")); dayChip($("chatR"));
   $("sheetL").classList.remove("on");
   tapsL = 0; $("tapsL").textContent = "0";
-  $("statusR").textContent = "online"; $("statusR").classList.remove("typing");
+  $("statusR").textContent = t("online", "в сети"); $("statusR").classList.remove("typing");
   renderPanel(sc);
   runLeft(sc, id).catch(() => {});
   runRight(sc, id).catch(() => {});
@@ -668,7 +754,7 @@ S.forEach((sc, i) => {
   const b = document.createElement("button");
   b.type = "button"; b.className = "pick"; b.id = "tab-" + sc.id; b.setAttribute("role", "tab");
   b.setAttribute("aria-selected", i === 0 ? "true" : "false");
-  b.innerHTML = `<b>${sc.tab}</b><span dir="rtl">${sc.q}</span>`;
+  b.dataset.i = i;
   b.addEventListener("click", () => select(i));
   b.addEventListener("keydown", e => {
     if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
@@ -678,6 +764,9 @@ S.forEach((sc, i) => {
   });
   picker.appendChild(b);
 });
+function renderPicker(){
+  [...picker.children].forEach((b, i) => { const sc = S[i]; b.innerHTML = `<b>${L(sc).tab}</b><span dir="rtl">${sc.q}</span><div class="ru-gloss" dir="ltr">${sc.qRu}</div>`; });
+}
 function select(i){
   current = i;
   [...picker.children].forEach((b, j) => b.setAttribute("aria-selected", j === i ? "true" : "false"));
@@ -687,6 +776,41 @@ $("replay").addEventListener("click", play);
 function setVariant(v){ variant = v; $("vKiln").setAttribute("aria-pressed", v === "kiln"); $("vReady").setAttribute("aria-pressed", v === "ready"); play(); }
 $("vKiln").addEventListener("click", () => setVariant("kiln"));
 $("vReady").addEventListener("click", () => setVariant("ready"));
+
+/* ---------- language switch ---------- */
+function initialLang(){
+  const q = new URLSearchParams(location.search).get("lang");
+  if(LANGS.includes(q)) return q;
+  try { const s = localStorage.getItem("cc-lang"); if(LANGS.includes(s)) return s; } catch(e){}
+  return "en";
+}
+function applyLang(l){
+  const root = document.documentElement;
+  root.lang = l; root.dataset.lang = l;
+  document.querySelectorAll("[data-ru]").forEach(el => {
+    if(el.dataset.en === undefined) el.dataset.en = el.innerHTML;
+    el.innerHTML = l === "ru" ? el.dataset.ru : el.dataset.en;
+  });
+  document.querySelectorAll("*").forEach(el => {
+    for(const a of [...el.attributes]){
+      if(!a.name.startsWith("data-ru-")) continue;
+      const name = a.name.slice(8), store = "data-en-" + name;
+      if(!el.hasAttribute(store)) el.setAttribute(store, el.getAttribute(name) || "");
+      el.setAttribute(name, l === "ru" ? a.value : el.getAttribute(store));
+    }
+  });
+}
+function setLang(l){
+  applyLang(l);
+  try { localStorage.setItem("cc-lang", l); } catch(e){}
+  const u = new URL(location.href);
+  if(u.searchParams.has("lang")){ u.searchParams.set("lang", l); history.replaceState(null, "", u); }
+  document.dispatchEvent(new CustomEvent("langchange", {detail:{lang:l}}));
+}
+document.querySelector(".lang-toggle").addEventListener("click", () => setLang(isRu() ? "en" : "ru"));
+document.addEventListener("langchange", () => { renderPicker(); play(); });
+applyLang(initialLang());
+renderPicker();
 
 const h = location.hash.slice(1).split("-");
 const hi = S.findIndex(x => x.id === h[0]);

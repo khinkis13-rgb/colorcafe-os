@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://khinkis13-rgb.github.io/colorcafe-os/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --milk:#FAF7F5; --cocoa:#523B2E; --terra:#B77A5C; --rose:#CCA3A3; --blush:#E3D1CF;
@@ -59,128 +59,169 @@ td:first-child{font-weight:400}
 .price{font-family:var(--serif);font-size:30px;font-weight:600}
 .src{font-size:13px;color:var(--taupe)}
 .author-sign{margin-top:auto;text-align:center;font-size:11px;color:var(--taupe);opacity:.7;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.lang-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:1000;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #eadfd9;font:400 12px/1.4 "Poppins",system-ui,sans-serif;color:#523B2E;cursor:pointer}
+.lang-toggle [data-l]{opacity:.5;font-weight:400}
+html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggle [data-l="ru"]{opacity:1;font-weight:600}
 @media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
 @media (max-width:460px){.tl{grid-template-columns:1fr}.checks li{flex-wrap:wrap}.checks .by{margin-left:26px}}
 </style>
 </head>
 <body>
+<button class="lang-toggle" type="button" aria-label="Language"><span data-l="en">EN</span> · <span data-l="ru">RU</span></button>
 <main>
-  <div class="eyebrow">Color Café · Pilot month</div>
-  <h1>One month to take the load off WhatsApp and put every piece on the map</h1>
-  <div class="meta">Prepared by Dmitry Khinkis · 30 September 2026</div>
-  <p class="lead">5 to 30 October 2026. We fix the two pains that hurt most today, measure the result, and then decide together how to work after that.</p>
+  <div class="eyebrow" data-ru="Color Café · Пилотный месяц">Color Café · Pilot month</div>
+  <h1 data-ru="Один месяц, чтобы снять нагрузку с WhatsApp и видеть, где каждое изделие">One month to take the load off WhatsApp and put every piece on the map</h1>
+  <div class="meta" data-ru="Подготовил Дмитрий Хинкис · 30 сентября 2026">Prepared by Dmitry Khinkis · 30 September 2026</div>
+  <p class="lead" data-ru="5-30 октября 2026. Закрываем две самые острые на сегодня проблемы, измеряем результат, а потом вместе решаем, как работать дальше.">5 to 30 October 2026. We fix the two pains that hurt most today, measure the result, and then decide together how to work after that.</p>
 
-  <h2>Your three goals</h2>
+  <h2 data-ru="Ваши три цели">Your three goals</h2>
   <div class="tw"><table>
-    <tr><th>Goal</th><th>This month</th><th>Next</th></tr>
-    <tr><td>1. Tracking system for Color Café from A to Z</td><td>The full piece journey (drop-off, kiln, ready, pickup) running in one branch, with the labeling method tested in your kiln</td><td>Roll out to all branches, add the management dashboard</td></tr>
-    <tr><td>2. Replace Commbox customer service: AI only, transfer to the branch when needed</td><td>AI agent live on your WhatsApp number; when a person is needed, the chat goes straight to the right branch with a summary</td><td>Expand the topics the agent handles on its own</td></tr>
-    <tr><td>3. Warehouse storage system for the importing business</td><td>Process design: how boxes arrive, get counted and move to branches and B2B customers</td><td>Build the system</td></tr>
+    <tr><th data-ru="Цель">Goal</th><th data-ru="В этом месяце">This month</th><th data-ru="Дальше">Next</th></tr>
+    <tr><td data-ru="1. Система учёта для Color Café от А до Я">1. Tracking system for Color Café from A to Z</td><td data-ru="Весь путь изделия (приём, печь, готово, выдача) работает в одном филиале, а способ маркировки проверен в вашей печи">The full piece journey (drop-off, kiln, ready, pickup) running in one branch, with the labeling method tested in your kiln</td><td data-ru="Запуск во всех филиалах, панель для руководства">Roll out to all branches, add the management dashboard</td></tr>
+    <tr><td data-ru="2. Заменить обслуживание клиентов в Commbox: только ИИ, передача в филиал, когда нужно">2. Replace Commbox customer service: AI only, transfer to the branch when needed</td><td data-ru="ИИ-агент работает на вашем номере WhatsApp; когда нужен человек, чат сразу уходит в нужный филиал с кратким резюме">AI agent live on your WhatsApp number; when a person is needed, the chat goes straight to the right branch with a summary</td><td data-ru="Расширить круг тем, которые агент закрывает сам">Expand the topics the agent handles on its own</td></tr>
+    <tr><td data-ru="3. Складская система для импортного бизнеса">3. Warehouse storage system for the importing business</td><td data-ru="Проектирование процесса: как коробки приходят, пересчитываются и уходят в филиалы и B2B-клиентам">Process design: how boxes arrive, get counted and move to branches and B2B customers</td><td data-ru="Построить систему">Build the system</td></tr>
   </table></div>
 
-  <h2>Why this month</h2>
-  <p>At our meeting on 30 September we agreed on the two biggest pains:</p>
+  <h2 data-ru="Почему этот месяц">Why this month</h2>
+  <p data-ru="На встрече 30 сентября мы договорились о двух главных проблемах:">At our meeting on 30 September we agreed on the two biggest pains:</p>
   <ol>
-    <li><b>WhatsApp and phone.</b> About 200 messages come in, and two team members answer non-stop. Most questions repeat: hours, directions, booking, home kits, "is my piece ready?". The current menu bot makes guests tap through 8 options, and most give up and wait for a person.</li>
-    <li><b>Pieces and stock.</b> A piece waits 4 to 6 weeks between painting and pickup, and nobody can see where it is. Big bisque shipments arrive in boxes with no inventory control. Management has no single view of what is where.</li>
+    <li data-ru="<b>WhatsApp и телефон.</b> Приходит около 200 сообщений, и два сотрудника отвечают без перерыва. Большинство вопросов повторяются: часы работы, как добраться, бронирование, наборы для дома, «готово ли моё изделие?». Нынешний бот с меню заставляет гостей перебирать 8 пунктов, и большинство сдаются и ждут живого человека."><b>WhatsApp and phone.</b> About 200 messages come in, and two team members answer non-stop. Most questions repeat: hours, directions, booking, home kits, "is my piece ready?". The current menu bot makes guests tap through 8 options, and most give up and wait for a person.</li>
+    <li data-ru="<b>Изделия и склад.</b> Между росписью и выдачей изделие ждёт 4-6 недель, и никто не видит, где оно. Крупные поставки бисквита приходят в коробках без складского учёта. У руководства нет единой картины, что где находится."><b>Pieces and stock.</b> A piece waits 4 to 6 weeks between painting and pickup, and nobody can see where it is. Big bisque shipments arrive in boxes with no inventory control. Management has no single view of what is where.</li>
   </ol>
-  <p>I checked your three nearby competitors (<a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>). None of them tracks pieces or tells guests where their piece is. Clay Play's FAQ even has "what if I didn't get the pickup message?". Getting this right makes Color Café the studio that always knows where your piece is.</p>
+  <p data-ru='Я изучил трёх ваших ближайших конкурентов (<a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>). Никто из них не отслеживает изделия и не сообщает гостям, где их изделие. В FAQ у Clay Play даже есть вопрос «что делать, если я не получил сообщение о выдаче?». Если сделать это хорошо, Color Café станет студией, которая всегда знает, где ваше изделие.'>I checked your three nearby competitors (<a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>). None of them tracks pieces or tells guests where their piece is. Clay Play's FAQ even has "what if I didn't get the pickup message?". Getting this right makes Color Café the studio that always knows where your piece is.</p>
 
-  <h2>What you get by 30 October</h2>
+  <h2 data-ru="Что вы получите к 30 октября">What you get by 30 October</h2>
   <div class="tw"><table>
-    <tr><th>Outcome</th><th>How we measure it</th></tr>
-    <tr><td>An AI agent answers on your WhatsApp number in Hebrew, English and Russian</td><td>At least 50% of conversations on the agreed topics are solved without staff and without a repeat question within 72 hours, over 5 working days. Zero critical mistakes: wrong price, wrong address, a promise you can't keep</td></tr>
-    <tr><td>Staff work in one shared inbox and get only the conversations that need a person</td><td>Every handover arrives with a short summary, so the guest never repeats themselves</td></tr>
-    <tr><td>Piece tracking runs in one branch: drop-off, kiln, ready</td><td>The current shelf queue is in the system; guests get a "your piece is ready" WhatsApp with a photo; the agent answers "is it ready?" from real data</td></tr>
-    <tr><td>The labeling method is tested in your own kiln</td><td>20 real pieces through a full firing; the code must be readable on 100% of them</td></tr>
-    <tr><td>A written design for the bisque warehouse and the management dashboard</td><td>Ready to build in the next stage</td></tr>
-    <tr><td>A report with before and after numbers</td><td>Messages per topic, share solved by the agent, first response time, handovers and why</td></tr>
+    <tr><th data-ru="Результат">Outcome</th><th data-ru="Как измеряем">How we measure it</th></tr>
+    <tr><td data-ru="ИИ-агент отвечает на вашем номере WhatsApp на иврите, английском и русском">An AI agent answers on your WhatsApp number in Hebrew, English and Russian</td><td data-ru="Не менее 50% разговоров по согласованным темам решаются без сотрудников и без повторного вопроса в течение 72 часов, на отрезке 5 рабочих дней. Ноль критических ошибок: неверная цена, неверный адрес, обещание, которое вы не сможете выполнить">At least 50% of conversations on the agreed topics are solved without staff and without a repeat question within 72 hours, over 5 working days. Zero critical mistakes: wrong price, wrong address, a promise you can't keep</td></tr>
+    <tr><td data-ru="Сотрудники работают в одном общем ящике и получают только те разговоры, где нужен человек">Staff work in one shared inbox and get only the conversations that need a person</td><td data-ru="Каждая передача приходит с кратким резюме, и гостю не приходится повторять">Every handover arrives with a short summary, so the guest never repeats themselves</td></tr>
+    <tr><td data-ru="Учёт изделий работает в одном филиале: приём, печь, готово">Piece tracking runs in one branch: drop-off, kiln, ready</td><td data-ru="Текущая очередь на полках внесена в систему; гости получают в WhatsApp сообщение «ваше изделие готово» с фото; агент отвечает на «готово ли?» по реальным данным">The current shelf queue is in the system; guests get a "your piece is ready" WhatsApp with a photo; the agent answers "is it ready?" from real data</td></tr>
+    <tr><td data-ru="Способ маркировки проверен в вашей собственной печи">The labeling method is tested in your own kiln</td><td data-ru="20 реальных изделий проходят полный обжиг; код должен читаться на 100% из них">20 real pieces through a full firing; the code must be readable on 100% of them</td></tr>
+    <tr><td data-ru="Письменный проект склада бисквита и панели для руководства">A written design for the bisque warehouse and the management dashboard</td><td data-ru="Готов к разработке на следующем этапе">Ready to build in the next stage</td></tr>
+    <tr><td data-ru="Отчёт с цифрами «до» и «после»">A report with before and after numbers</td><td data-ru="Сообщения по темам, доля решённых агентом, время первого ответа, передачи людям и их причины">Messages per topic, share solved by the agent, first response time, handovers and why</td></tr>
   </table></div>
-  <p class="note">Phone calls are not part of the pilot. They should drop once guests get answers and status updates on WhatsApp, but we don't promise a number.</p>
+  <p class="note" data-ru="Телефонные звонки в пилот не входят. Их должно стать меньше, когда гости начнут получать ответы и статусы в WhatsApp, но конкретную цифру мы не обещаем.">Phone calls are not part of the pilot. They should drop once guests get answers and status updates on WhatsApp, but we don't promise a number.</p>
 
-  <h2>How the WhatsApp agent works</h2>
-  <p>The guest just writes, the way they would write to a person. No menus. The agent answers from your own rules and prices, in the guest's language, and stays strictly on studio topics.</p>
+  <h2 data-ru="Как работает агент в WhatsApp">How the WhatsApp agent works</h2>
+  <p data-ru="Гость просто пишет, как написал бы человеку. Никаких меню. Агент отвечает по вашим собственным правилам и ценам, на языке гостя, и держится строго студийных тем.">The guest just writes, the way they would write to a person. No menus. The agent answers from your own rules and prices, in the guest's language, and stays strictly on studio topics.</p>
   <div class="tw"><table>
-    <tr><th>Guest asks</th><th>Today</th><th>With the agent</th></tr>
-    <tr><td>"Are you open on Friday in Ben Yehuda?"</td><td>Opens the menu, finds "hours and directions", reads a long text</td><td>Gets the Friday hours for that branch and a map link in one reply</td></tr>
-    <tr><td>"Table for 4 tomorrow at 17:00, Hod HaSharon"</td><td>Menu, then a link, then starts over in Ontopo</td><td>Gets a direct Ontopo link for that branch, date and group size</td></tr>
-    <tr><td>"Is my mug ready?"</td><td>Menu option, then waits for staff to check the shelf</td><td>Gets the real status and the expected date. When ready: a photo of the finished piece</td></tr>
-    <tr><td>"Birthday for 12 kids in November"</td><td>Waits for staff</td><td>The agent asks date, branch, age and number of kids, then hands a ready lead to staff</td></tr>
-    <tr><td>A complaint or refund</td><td>Waits for staff</td><td>Goes straight to a person, with a summary</td></tr>
+    <tr><th data-ru="Гость спрашивает">Guest asks</th><th data-ru="Сегодня">Today</th><th data-ru="С агентом">With the agent</th></tr>
+    <tr><td data-ru="«Вы открыты в пятницу на Бен-Иегуда?»">"Are you open on Friday in Ben Yehuda?"</td><td data-ru="Открывает меню, находит «часы работы и как добраться», читает длинный текст">Opens the menu, finds "hours and directions", reads a long text</td><td data-ru="Одним ответом получает часы работы этого филиала в пятницу и ссылку на карту">Gets the Friday hours for that branch and a map link in one reply</td></tr>
+    <tr><td data-ru="«Столик на 4 завтра в 17:00, Ход-ха-Шарон»">"Table for 4 tomorrow at 17:00, Hod HaSharon"</td><td data-ru="Меню, потом ссылка, потом всё заново в Ontopo">Menu, then a link, then starts over in Ontopo</td><td data-ru="Получает прямую ссылку Ontopo на этот филиал, дату и размер компании">Gets a direct Ontopo link for that branch, date and group size</td></tr>
+    <tr><td data-ru="«Моя кружка готова?»">"Is my mug ready?"</td><td data-ru="Пункт меню, потом ждёт, пока сотрудник проверит полку">Menu option, then waits for staff to check the shelf</td><td data-ru="Получает реальный статус и ожидаемую дату. Когда готово: фото готового изделия">Gets the real status and the expected date. When ready: a photo of the finished piece</td></tr>
+    <tr><td data-ru="«День рождения на 12 детей в ноябре»">"Birthday for 12 kids in November"</td><td data-ru="Ждёт сотрудника">Waits for staff</td><td data-ru="Агент уточняет дату, филиал, возраст и число детей и передаёт сотрудникам готовую заявку">The agent asks date, branch, age and number of kids, then hands a ready lead to staff</td></tr>
+    <tr><td data-ru="Жалоба или возврат">A complaint or refund</td><td data-ru="Ждёт сотрудника">Waits for staff</td><td data-ru="Сразу уходит к человеку, с кратким резюме">Goes straight to a person, with a summary</td></tr>
   </table></div>
-  <p><b>When a person takes over.</b> Always: complaints, refunds and payment disputes, changes that can't be made by link, a photo of a damaged piece, large corporate events, a guest asking for a person, or two unclear messages in a row. The agent tells the guest honestly: "I'm passing you to the Ben Yehuda team, they'll reply by 14:00." The chat goes to the branch it is about, with a short summary. After that the agent stays quiet until the branch closes the chat or hands it back.</p>
-  <p><b>See it in action:</b> <a href="../agent/">the agent prototype</a>, five real guest questions, today vs. with the agent.</p>
-  <p><b>Outside working hours and on Shabbat</b> the agent collects the request and promises a reply at the next opening hour.</p>
-  <p><b>Safe rollout.</b> Week 2: the agent only drafts replies and staff press send. Week 3: it answers by itself only on the safe topics you approve. Everything else stays with staff. One switch turns the agent off, and staff keep answering from the same inbox.</p>
+  <p data-ru="<b>Когда подключается человек.</b> Всегда: жалобы, возвраты и споры об оплате, изменения, которые нельзя сделать по ссылке, фото повреждённого изделия, крупные корпоративные мероприятия, гость просит живого человека, или два непонятных сообщения подряд. Агент честно говорит гостю: «Передаю вас команде Бен-Иегуда, они ответят до 14:00». Чат уходит в тот филиал, о котором идёт речь, с кратким резюме. После этого агент молчит, пока филиал не закроет чат или не вернёт его агенту."><b>When a person takes over.</b> Always: complaints, refunds and payment disputes, changes that can't be made by link, a photo of a damaged piece, large corporate events, a guest asking for a person, or two unclear messages in a row. The agent tells the guest honestly: "I'm passing you to the Ben Yehuda team, they'll reply by 14:00." The chat goes to the branch it is about, with a short summary. After that the agent stays quiet until the branch closes the chat or hands it back.</p>
+  <p data-ru='<b>Посмотреть в деле:</b> <a href="../agent/">прототип агента</a>, пять реальных вопросов гостей, сегодня и с агентом.'><b>See it in action:</b> <a href="../agent/">the agent prototype</a>, five real guest questions, today vs. with the agent.</p>
+  <p data-ru="<b>В нерабочее время и в шабат</b> агент принимает запрос и обещает ответ в ближайший рабочий час."><b>Outside working hours and on Shabbat</b> the agent collects the request and promises a reply at the next opening hour.</p>
+  <p data-ru="<b>Безопасный запуск.</b> Неделя 2: агент только готовит черновики ответов, а отправляют сотрудники. Неделя 3: он отвечает сам только по безопасным темам, которые вы одобрите. Всё остальное остаётся за сотрудниками. Агент отключается одним переключателем, и сотрудники продолжают отвечать из того же ящика."><b>Safe rollout.</b> Week 2: the agent only drafts replies and staff press send. Week 3: it answers by itself only on the safe topics you approve. Everything else stays with staff. One switch turns the agent off, and staff keep answering from the same inbox.</p>
 
-  <h2>Piece tracking and labels</h2>
-  <p>Paper can't go into the kiln, so the piece carries its own short code on the bottom. The rule for the whole process: at most one new action per stage, under 10 seconds.</p>
+  <h2 data-ru="Учёт изделий и маркировка">Piece tracking and labels</h2>
+  <p data-ru="Бумагу в печь не положишь, поэтому изделие несёт собственный короткий код на донышке. Правило для всего процесса: не больше одного нового действия на этап, меньше 10 секунд.">Paper can't go into the kiln, so the piece carries its own short code on the bottom. The rule for the whole process: at most one new action per stage, under 10 seconds.</p>
   <ol>
-    <li><b>Drop-off.</b> Staff write a short code, like <code>Y483</code>, on the bottom with an underglaze pencil. This replaces the name you write today. In the app: guest phone, code, and a tick "send me a WhatsApp when it's ready".</li>
-    <li><b>Glaze and kiln.</b> The piece goes as usual. No labels, no load sheets.</li>
-    <li><b>Unloading.</b> Staff type or pick the code in the app and tap "ready". One photo of the whole shelf, not piece by piece. The guest gets the message.</li>
-    <li><b>Pickup.</b> Find by phone or code, tap "picked up". A QR sticker on the pickup bag only if it proves useful.</li>
+    <li data-ru="<b>Приём.</b> Сотрудник пишет на донышке короткий код, например <code>Y483</code>, карандашом для подглазурной росписи. Это заменяет имя, которое вы пишете сегодня. В приложении: телефон гостя, код и галочка «сообщить в WhatsApp, когда будет готово»."><b>Drop-off.</b> Staff write a short code, like <code>Y483</code>, on the bottom with an underglaze pencil. This replaces the name you write today. In the app: guest phone, code, and a tick "send me a WhatsApp when it's ready".</li>
+    <li data-ru="<b>Глазурь и печь.</b> Изделие идёт как обычно. Без этикеток, без листов загрузки."><b>Glaze and kiln.</b> The piece goes as usual. No labels, no load sheets.</li>
+    <li data-ru="<b>Выгрузка.</b> Сотрудник вводит или выбирает код в приложении и нажимает «готово». Одно фото всей полки, а не каждого изделия. Гость получает сообщение."><b>Unloading.</b> Staff type or pick the code in the app and tap "ready". One photo of the whole shelf, not piece by piece. The guest gets the message.</li>
+    <li data-ru="<b>Выдача.</b> Поиск по телефону или коду, нажать «выдано». QR-наклейка на пакет для выдачи, только если окажется полезной."><b>Pickup.</b> Find by phone or code, tap "picked up". A QR sticker on the pickup bag only if it proves useful.</li>
   </ol>
   <div class="card">
-    <p><b>The kiln test comes first, in week 1.</b> 20 real pieces through a full firing: 2 to 3 pencils and pens, dipped and sponged bottoms, wax, small pieces, pieces with a painted bottom. If the code does not survive on 100% of them, we switch to a photo grid of each kiln shelf. Only after that do we build the app around the method that works.</p>
-    <p style="margin:0"><b>Bisque boxes</b> get a label per box or per batch, never per piece. A piece gets its code only when a guest paints it. If you have one central kiln, we add an "in transit" step marked per batch.</p>
+    <p data-ru="<b>Сначала, на неделе 1, тест в печи.</b> 20 реальных изделий проходят полный обжиг: 2-3 вида карандашей и маркеров, донышки после окунания и губки, воск, мелкие изделия, изделия с расписанным донышком. Если код не сохранится на 100% из них, переходим на фотосетку каждой полки печи. Только после этого строим приложение вокруг способа, который работает."><b>The kiln test comes first, in week 1.</b> 20 real pieces through a full firing: 2 to 3 pencils and pens, dipped and sponged bottoms, wax, small pieces, pieces with a painted bottom. If the code does not survive on 100% of them, we switch to a photo grid of each kiln shelf. Only after that do we build the app around the method that works.</p>
+    <p style="margin:0" data-ru="<b>Коробки с бисквитом</b> получают этикетку на коробку или на партию, но никогда на отдельное изделие. Код у изделия появляется, только когда его расписывает гость. Если у вас одна центральная печь, добавляем этап «в пути» с отметкой на партию."><b>Bisque boxes</b> get a label per box or per batch, never per piece. A piece gets its code only when a guest paints it. If you have one central kiln, we add an "in transit" step marked per batch.</p>
   </div>
 
-  <h2>Timeline</h2>
-  <p>The agent goes live in week 3, after a week of shadow mode. Each ◆ is a go or no-go check.</p>
+  <h2 data-ru="График">Timeline</h2>
+  <p data-ru="Агент запускается на неделе 3, после недели теневого режима. Каждый ◆ это контрольная точка: идём дальше или нет.">The agent goes live in week 3, after a week of shadow mode. Each ◆ is a go or no-go check.</p>
   <div class="tl">
-    <div class="wk"><h3>Data in</h3><div class="d">Week 1 · 5–9 Oct</div><ul><li>Knowledge base v1</li><li>Number move started</li><li>Kiln test fired</li><li>"Ready" template filed with Meta</li></ul><div class="gate">Data and access in</div></div>
-    <div class="wk"><h3>Shadow mode</h3><div class="d">Week 2 · 12–16 Oct</div><ul><li>Agent drafts replies</li><li>Staff press send</li><li>Shelf queue entered</li></ul><div class="gate">80% of drafts OK, 0 critical errors</div></div>
-    <div class="wk live"><h3>Agent live</h3><div class="d">Week 3 · 19–23 Oct</div><ul><li>Answers safe topics</li><li>Tracking in 1 branch</li><li>First "ready" messages</li></ul><div class="gate">Tracking works</div></div>
-    <div class="wk"><h3>Measure</h3><div class="d">Week 4 · 26–30 Oct</div><ul><li>5 days of numbers</li><li>Warehouse design</li><li>Report and decision</li></ul><div class="gate">Next format chosen</div></div>
+    <div class="wk"><h3 data-ru="Данные">Data in</h3><div class="d" data-ru="Неделя 1 · 5–9 окт.">Week 1 · 5–9 Oct</div><ul><li data-ru="База знаний v1">Knowledge base v1</li><li data-ru="Начат перенос номера">Number move started</li><li data-ru="Тест в печи обожжён">Kiln test fired</li><li data-ru="Шаблон «готово» подан в Meta">"Ready" template filed with Meta</li></ul><div class="gate" data-ru="Данные и доступы получены">Data and access in</div></div>
+    <div class="wk"><h3 data-ru="Теневой режим">Shadow mode</h3><div class="d" data-ru="Неделя 2 · 12–16 окт.">Week 2 · 12–16 Oct</div><ul><li data-ru="Агент готовит черновики">Agent drafts replies</li><li data-ru="Отправляют сотрудники">Staff press send</li><li data-ru="Очередь на полках внесена">Shelf queue entered</li></ul><div class="gate" data-ru="80% черновиков в порядке, 0 критических ошибок">80% of drafts OK, 0 critical errors</div></div>
+    <div class="wk live"><h3 data-ru="Агент в работе">Agent live</h3><div class="d" data-ru="Неделя 3 · 19–23 окт.">Week 3 · 19–23 Oct</div><ul><li data-ru="Отвечает по безопасным темам">Answers safe topics</li><li data-ru="Учёт в 1 филиале">Tracking in 1 branch</li><li data-ru="Первые сообщения «готово»">First "ready" messages</li></ul><div class="gate" data-ru="Учёт работает">Tracking works</div></div>
+    <div class="wk"><h3 data-ru="Замеры">Measure</h3><div class="d" data-ru="Неделя 4 · 26–30 окт.">Week 4 · 26–30 Oct</div><ul><li data-ru="Цифры за 5 дней">5 days of numbers</li><li data-ru="Проект склада">Warehouse design</li><li data-ru="Отчёт и решение">Report and decision</li></ul><div class="gate" data-ru="Выбран формат дальнейшей работы">Next format chosen</div></div>
   </div>
-  <p class="note">If a check fails, we stop and fix it before moving on. A late check moves the dates after it, not the scope.</p>
+  <p class="note" data-ru="Если проверка не пройдена, останавливаемся и исправляем, прежде чем идти дальше. Задержка проверки сдвигает следующие даты, но не объём работ.">If a check fails, we stop and fix it before moving on. A late check moves the dates after it, not the scope.</p>
 
-  <h2>What we need from you</h2>
-  <p>The dates matter: the pilot moves by the same number of days if something arrives late.</p>
+  <h2 data-ru="Что нужно от вас">What we need from you</h2>
+  <p data-ru="Сроки важны: если что-то приходит с опозданием, пилот сдвигается на столько же дней.">The dates matter: the pilot moves by the same number of days if something arrives late.</p>
   <ul class="checks">
-    <li><span class="box"></span><span>WhatsApp chat export for the last 1 to 2 months. It becomes the agent's knowledge base and the test set</span><span class="by">7 Oct</span></li>
-    <li><span class="box"></span><span>Your Commbox account manager contact, and who owns the Meta Business account behind the number</span><span class="by">7 Oct</span></li>
-    <li><span class="box"></span><span>Hours, prices and rules per branch, plus the pickup deadline and express firing price</span><span class="by">7 Oct</span></li>
-    <li><span class="box"></span><span>The 200 messages: per day or per week? How many calls?</span><span class="by">7 Oct</span></li>
-    <li><span class="box"></span><span>Which branch is the pilot branch, its pieces per month, and how kilns are set up</span><span class="by">7 Oct</span></li>
-    <li><span class="box"></span><span>Admin access to Meta Business and your OK to move the number to the new system</span><span class="by">9 Oct</span></li>
-    <li><span class="box"></span><span>20 pieces for the kiln test</span><span class="by">9 Oct</span></li>
-    <li><span class="box"></span><span>A signed data processing agreement (see Privacy)</span><span class="by">9 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Экспорт чатов WhatsApp за последние 1-2 месяца. Он станет базой знаний агента и набором для тестов">WhatsApp chat export for the last 1 to 2 months. It becomes the agent's knowledge base and the test set</span><span class="by" data-ru="7 окт.">7 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Контакт вашего менеджера в Commbox и кто владеет аккаунтом Meta Business, к которому привязан номер">Your Commbox account manager contact, and who owns the Meta Business account behind the number</span><span class="by" data-ru="7 окт.">7 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Часы работы, цены и правила по каждому филиалу, а также срок, до которого нужно забрать изделие, и цена срочного обжига">Hours, prices and rules per branch, plus the pickup deadline and express firing price</span><span class="by" data-ru="7 окт.">7 Oct</span></li>
+    <li><span class="box"></span><span data-ru="200 сообщений: в день или в неделю? Сколько звонков?">The 200 messages: per day or per week? How many calls?</span><span class="by" data-ru="7 окт.">7 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Какой филиал пилотный, сколько изделий в нём в месяц и как устроены печи">Which branch is the pilot branch, its pieces per month, and how kilns are set up</span><span class="by" data-ru="7 окт.">7 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Админ-доступ к Meta Business и ваше согласие перенести номер в новую систему">Admin access to Meta Business and your OK to move the number to the new system</span><span class="by" data-ru="9 окт.">9 Oct</span></li>
+    <li><span class="box"></span><span data-ru="20 изделий для теста в печи">20 pieces for the kiln test</span><span class="by" data-ru="9 окт.">9 Oct</span></li>
+    <li><span class="box"></span><span data-ru="Подписанное соглашение об обработке данных (см. «Конфиденциальность»)">A signed data processing agreement (see Privacy)</span><span class="by" data-ru="9 окт.">9 Oct</span></li>
   </ul>
-  <p class="note">From your team: no more than 2 hours a week. Reference answers come from their real replies in the export, not from new writing. One Hebrew speaker on your side reviews a sample of the agent's replies each week.</p>
+  <p class="note" data-ru="От вашей команды: не больше 2 часов в неделю. Эталонные ответы берём из их реальных ответов в экспорте, а не пишем заново. Один человек с ивритом с вашей стороны раз в неделю проверяет выборку ответов агента.">From your team: no more than 2 hours a week. Reference answers come from their real replies in the export, not from new writing. One Hebrew speaker on your side reviews a sample of the agent's replies each week.</p>
 
-  <h2>Not in the pilot</h2>
-  <p>These are real needs, but they go into the next stage, so the month stays focused:</p>
+  <h2 data-ru="Что не входит в пилот">Not in the pilot</h2>
+  <p data-ru="Это реальные потребности, но они переходят на следующий этап, чтобы месяц оставался сфокусированным:">These are real needs, but they go into the next stage, so the month stays focused:</p>
   <ul>
-    <li>Tracking in the other three branches</li>
-    <li>A working management dashboard and warehouse system (the pilot delivers their design)</li>
-    <li>Creating bookings inside Ontopo. Ontopo has no public API, so we ask for partner access; until then the agent sends a direct link</li>
-    <li>POS and ValueCard integrations</li>
-    <li>BISQUE B2B automation: account approval, bank-transfer payments, special orders, back-in-stock alerts</li>
-    <li>Loyalty club, website changes, phone calls</li>
+    <li data-ru="Учёт в остальных трёх филиалах">Tracking in the other three branches</li>
+    <li data-ru="Работающие панель для руководства и складская система (пилот даёт их проект)">A working management dashboard and warehouse system (the pilot delivers their design)</li>
+    <li data-ru="Создание бронирований внутри Ontopo. У Ontopo нет публичного API, поэтому запрашиваем партнёрский доступ; до тех пор агент отправляет прямую ссылку">Creating bookings inside Ontopo. Ontopo has no public API, so we ask for partner access; until then the agent sends a direct link</li>
+    <li data-ru="Интеграции с кассой (POS) и ValueCard">POS and ValueCard integrations</li>
+    <li data-ru="Автоматизация BISQUE B2B: одобрение аккаунтов, оплата банковским переводом, спецзаказы, уведомления о поступлении">BISQUE B2B automation: account approval, bank-transfer payments, special orders, back-in-stock alerts</li>
+    <li data-ru="Клуб лояльности, изменения сайта, телефонные звонки">Loyalty club, website changes, phone calls</li>
   </ul>
 
-  <h2>Privacy and data</h2>
-  <p>The work follows Israel's Privacy Protection Law, including Amendment 13 (in force since August 2025).</p>
+  <h2 data-ru="Конфиденциальность и данные">Privacy and data</h2>
+  <p data-ru="Работа ведётся по израильскому Закону о защите частной жизни, включая Поправку 13 (действует с августа 2025).">The work follows Israel's Privacy Protection Law, including Amendment 13 (in force since August 2025).</p>
   <ul>
-    <li>Color Café owns all guest data. We sign a data processing agreement before I receive any export.</li>
-    <li>Phone numbers and names are removed from the export before it is used to train or test the agent.</li>
-    <li>The inbox runs on a server registered to Color Café. Access is limited to your team and me.</li>
-    <li>A guest gets a "ready" message only after ticking the consent box at drop-off. Marketing messages need separate consent and are not part of the pilot.</li>
+    <li data-ru="Все данные гостей принадлежат Color Café. Мы подписываем соглашение об обработке данных до того, как я получу какой-либо экспорт.">Color Café owns all guest data. We sign a data processing agreement before I receive any export.</li>
+    <li data-ru="Номера телефонов и имена удаляются из экспорта до того, как он используется для обучения или тестирования агента.">Phone numbers and names are removed from the export before it is used to train or test the agent.</li>
+    <li data-ru="Ящик работает на сервере, зарегистрированном на Color Café. Доступ есть только у вашей команды и у меня.">The inbox runs on a server registered to Color Café. Access is limited to your team and me.</li>
+    <li data-ru="Гость получает сообщение «готово» только если при сдаче изделия поставил галочку согласия. Для маркетинговых сообщений нужно отдельное согласие, и в пилот они не входят.">A guest gets a "ready" message only after ticking the consent box at drop-off. Marketing messages need separate consent and are not part of the pilot.</li>
   </ul>
 
-  <h2>Price and next steps</h2>
-  <p>I will send pricing and the format of our work after the pilot separately.</p>
+  <h2 data-ru="Цена и следующие шаги">Price and next steps</h2>
+  <p data-ru="Цену и формат нашей работы после пилота пришлю отдельно.">I will send pricing and the format of our work after the pilot separately.</p>
 
-  <h2>Found along the way</h2>
+  <h2 data-ru="Что нашлось по ходу">Found along the way</h2>
   <ul>
-    <li><b>BISQUE wholesale prices are publicly visible.</b> The site hides prices from unapproved visitors, but a standard Shopify data address still shows all 311 products with prices to anyone. It takes about an hour to close, and I can help.</li>
-    <li><b>Clay House is both a competitor and a BISQUE customer.</b> It is on the "our customers" list on bisque.co.il. Worth keeping in mind for B2B pricing.</li>
-    <li><b>Clay Play in Hod HaSharon</b> promises pickup "within 6 weeks at most" and admits in its FAQ that pickup messages get lost. It is the direct rival of the Sokolov 40 branch.</li>
+    <li data-ru="<b>Оптовые цены BISQUE видны всем.</b> Сайт скрывает цены от неодобренных посетителей, но стандартный адрес данных Shopify всё равно показывает любому все 311 товаров с ценами. Закрыть это занимает около часа, и я могу помочь."><b>BISQUE wholesale prices are publicly visible.</b> The site hides prices from unapproved visitors, but a standard Shopify data address still shows all 311 products with prices to anyone. It takes about an hour to close, and I can help.</li>
+    <li data-ru="<b>Clay House одновременно конкурент и клиент BISQUE.</b> Он есть в списке «наши клиенты» на bisque.co.il. Стоит учитывать при B2B-ценах."><b>Clay House is both a competitor and a BISQUE customer.</b> It is on the "our customers" list on bisque.co.il. Worth keeping in mind for B2B pricing.</li>
+    <li data-ru="<b>Clay Play в Ход-ха-Шароне</b> обещает выдачу «максимум в течение 6 недель» и признаёт в своём FAQ, что сообщения о выдаче теряются. Это прямой соперник филиала на Соколов 40."><b>Clay Play in Hod HaSharon</b> promises pickup "within 6 weeks at most" and admits in its FAQ that pickup messages get lost. It is the direct rival of the Sokolov 40 branch.</li>
   </ul>
-  <p class="src">Sources: <a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>, <a href="https://bisque.co.il/collections/%D7%91%D7%99%D7%A1%D7%A7%D7%99%D7%9D">BISQUE</a>, <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing">Meta WhatsApp pricing</a>. Checked on 30 September 2026. Concept page: <a href="../">Color Café OS</a>.</p>
+  <p class="src" data-ru='Источники: <a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>, <a href="https://bisque.co.il/collections/%D7%91%D7%99%D7%A1%D7%A7%D7%99%D7%9D">BISQUE</a>, <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing">цены Meta WhatsApp</a>. Проверено 30 сентября 2026. Страница концепции: <a href="../">Color Café OS</a>.'>Sources: <a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>, <a href="https://bisque.co.il/collections/%D7%91%D7%99%D7%A1%D7%A7%D7%99%D7%9D">BISQUE</a>, <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing">Meta WhatsApp pricing</a>. Checked on 30 September 2026. Concept page: <a href="../">Color Café OS</a>.</p>
 </main>
 <footer class="author-sign">Made by Dmitry Khinkis</footer>
+<script>
+(function(){
+  var META = {
+    en: {title: "Color Café · Pilot Month Proposal", desc: "Pilot month for Color Café, 5 to 30 October 2026: a WhatsApp AI agent and piece tracking."},
+    ru: {title: "Color Café · Предложение пилотного месяца", desc: "Пилотный месяц для Color Café, 5-30 октября 2026: ИИ-агент в WhatsApp и учёт изделий."}
+  };
+  var root = document.documentElement;
+  var els = document.querySelectorAll("[data-ru]");
+  var desc = document.querySelector('meta[name="description"]');
+  for (var i = 0; i < els.length; i++) {
+    if (els[i].getAttribute("data-en") === null) els[i].setAttribute("data-en", els[i].innerHTML);
+  }
+  function apply(lang) {
+    root.lang = lang;
+    root.setAttribute("data-lang", lang);
+    for (var i = 0; i < els.length; i++) {
+      els[i].innerHTML = els[i].getAttribute(lang === "ru" ? "data-ru" : "data-en");
+    }
+    document.title = META[lang].title;
+    if (desc) desc.setAttribute("content", META[lang].desc);
+  }
+  function pick() {
+    var m = /[?&]lang=(en|ru)\b/.exec(location.search);
+    if (m) return m[1];
+    try { var s = localStorage.getItem("cc-lang"); if (s === "en" || s === "ru") return s; } catch (e) {}
+    return "en";
+  }
+  var current = pick();
+  apply(current);
+  var btn = document.querySelector(".lang-toggle");
+  if (btn) btn.addEventListener("click", function(){
+    current = current === "ru" ? "en" : "ru";
+    apply(current);
+    try { localStorage.setItem("cc-lang", current); } catch (e) {}
+  });
+})();
+</script>
 </body>
 </html>
