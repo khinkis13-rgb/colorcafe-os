@@ -781,7 +781,6 @@ $("vReady").addEventListener("click", () => setVariant("ready"));
 function initialLang(){
   const q = new URLSearchParams(location.search).get("lang");
   if(LANGS.includes(q)) return q;
-  try { const s = localStorage.getItem("cc-lang"); if(LANGS.includes(s)) return s; } catch(e){}
   return "en";
 }
 function applyLang(l){
@@ -802,7 +801,7 @@ function applyLang(l){
 }
 function setLang(l){
   applyLang(l);
-  try { localStorage.setItem("cc-lang", l); } catch(e){}
+  
   const u = new URL(location.href);
   if(u.searchParams.has("lang")){ u.searchParams.set("lang", l); history.replaceState(null, "", u); }
   document.dispatchEvent(new CustomEvent("langchange", {detail:{lang:l}}));

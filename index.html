@@ -809,14 +809,13 @@ const L=v=>typeof v==="function"?v():v;
 const TITLE_EN=document.title, TITLE_RU="Color Café OS - концепция";
 function pickLang(){let q=null;try{q=new URLSearchParams(location.search).get("lang")}catch(e){}
   if(q==="ru"||q==="en")return q;
-  try{const s=localStorage.getItem("cc-lang");if(s==="ru"||s==="en")return s}catch(e){}
   return "en"}
 function applyStatic(lang){const r=document.documentElement;r.lang=lang;r.dataset.lang=lang;document.title=lang==="ru"?TITLE_RU:TITLE_EN;
   $$("[data-ru]").forEach(el=>{if(!el.hasAttribute("data-en"))el.setAttribute("data-en",el.innerHTML);
     const v=lang==="ru"?el.getAttribute("data-ru"):el.getAttribute("data-en");if(el.innerHTML!==v)el.innerHTML=v});
   ["placeholder","aria-label","title","alt"].forEach(a=>$$(`[data-ru-${a}]`).forEach(el=>{const k="data-en-"+a;
     if(!el.hasAttribute(k))el.setAttribute(k,el.getAttribute(a)||"");el.setAttribute(a,lang==="ru"?el.getAttribute("data-ru-"+a):el.getAttribute(k))}))}
-function setLang(lang){applyStatic(lang);try{localStorage.setItem("cc-lang",lang)}catch(e){}
+function setLang(lang){applyStatic(lang);
   try{const u=new URL(location.href);if(u.searchParams.has("lang")){u.searchParams.set("lang",lang);history.replaceState(null,"",u)}}catch(e){}
   document.dispatchEvent(new Event("langchange"))}
 document.documentElement.lang=document.documentElement.dataset.lang=pickLang();

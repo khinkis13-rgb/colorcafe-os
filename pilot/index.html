@@ -210,7 +210,6 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
   function pick() {
     var m = /[?&]lang=(en|ru)\b/.exec(location.search);
     if (m) return m[1];
-    try { var s = localStorage.getItem("cc-lang"); if (s === "en" || s === "ru") return s; } catch (e) {}
     return "en";
   }
   var current = pick();
@@ -219,7 +218,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
   if (btn) btn.addEventListener("click", function(){
     current = current === "ru" ? "en" : "ru";
     apply(current);
-    try { localStorage.setItem("cc-lang", current); } catch (e) {}
+    
   });
 })();
 </script>
