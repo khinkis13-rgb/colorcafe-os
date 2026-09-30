@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Color Café · WhatsApp Agent Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --milk:#FAF7F5; --cocoa:#523B2E; --brown:#78523B; --terra:#B77A5C; --rose:#CCA3A3; --blush:#E3D1CF;
+  --taupe:#A69992; --line:#eadfd9; --ink-soft:#7d6558; --white:#fff; --teal:#214D57; --ok:#3f7d6a;
+  --wa-bg:#efeae2; --wa-out:#d9fdd3; --wa-in:#ffffff; --wa-ink:#111b21; --wa-meta:#667781; --wa-green:#1f8a5b; --wa-tick:#53bdeb;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Poppins",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --chat:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,"Noto Sans Hebrew",sans-serif;
+  --shadow:0 24px 50px -26px rgba(82,59,46,.45);
+  --logo:url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgZGF0YS1iYm94PSI0Mi4yIDMwLjcgMjk3IDI5My42IiB2aWV3Qm94PSIwIDAgMzg0LjIgMzYzLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZGF0YS10eXBlPSJjb2xvciI+CiAgICA8Zz4KICAgICAgICA8cGF0aCBkPSJNMTkwLjcgMzI0LjNjLTM5LjcgMC03Ny0xNS4zLTEwNS00M3MtNDMuNS02NC42LTQzLjUtMTAzLjggMTUuNC03Ni4xIDQzLjUtMTAzLjggNjUuMy00MyAxMDUtNDMgNzcgMTUuMyAxMDUgNDMgNDMuNSA2NC42IDQzLjUgMTAzLjgtMTUuNCA3Ni4xLTQzLjUgMTAzLjgtNjUuMyA0My0xMDUgNDNtMC0yODkuOGMtMzguNyAwLTc1IDE0LjktMTAyLjQgNDEuOS0yNy4zIDI3LTQyLjQgNjMtNDIuNCAxMDEuMlM2MSAyNTEuOCA4OC4zIDI3OC44czYzLjcgNDEuOSAxMDIuNCA0MS45IDc1LTE0LjkgMTAyLjQtNDEuOWMyNy4zLTI3IDQyLjQtNjMgNDIuNC0xMDEuMnMtMTUuMS03NC4yLTQyLjQtMTAxLjItNjMuNy00MS45LTEwMi40LTQxLjkiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNODguMiAxNjUuOGMtLjEuNy0uNCAxLjItMSAxLjYtLjUuNC0xLjEuNS0xLjguNC0uNyAwLTEuMi0uNC0xLjYtLjlzLS41LTEuMS0uNC0xLjhjMC0uNi40LTEuMiAxLTEuNS41LS40IDEuMS0uNSAxLjgtLjRzMS4yLjQgMS42LjkuNSAxLjEuNCAxLjgiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMTAzLjYgMTM0LjFjLS43IDEuMy0xLjcgMi40LTIuOCAzLjMtMS4yLjktMi41IDEuNS0zLjkgMS45cy0yLjkuNS00LjQuMy0zLS42LTQuNC0xLjQtMi42LTEuNy0zLjYtMi45LTEuNy0yLjQtMi4xLTMuOGMtLjUtMS40LS42LTIuOC0uNS00LjJxLjE1LTIuMSAxLjItNC4yYy45LTEuNiAyLTIuOCAzLjUtMy44IDEuNS0uOSAzLjEtMS41IDQuOC0xLjd2NC44Yy0uOC4yLTEuNi41LTIuMyAxcy0xLjMgMS4xLTEuNyAxLjljLS40LjctLjYgMS41LS43IDIuNCAwIC44IDAgMS42LjMgMi40cy43IDEuNSAxLjMgMi4yIDEuMyAxLjIgMi4xIDEuN2MuOC40IDEuNy43IDIuNi44czEuNyAwIDIuNi0uMWMuOC0uMiAxLjYtLjUgMi4yLTEgLjctLjUgMS4yLTEuMSAxLjYtMS44LjQtLjguNy0xLjYuNy0yLjVzLS4xLTEuNy0uNC0yLjVsNC4xLTIuNmMuNyAxLjUgMS4xIDMuMiAxLjEgNC45cy0uNCAzLjQtMS4zIDUiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMTE5LjYgMTEzYy0xLjEgMS4xLTIuMyAxLjktMy43IDIuNHMtMi44LjgtNC4zLjdjLTEuNSAwLTIuOS0uMy00LjMtLjlzLTIuNy0xLjQtMy44LTIuNS0yLTIuNC0yLjYtMy44LS45LTIuOC0xLTQuM2MwLTEuNS4yLTIuOS43LTQuMnEuNzUtMi4xIDIuNC0zLjZjMS4xLTEuMSAyLjMtMS45IDMuNy0yLjRzMi44LS44IDQuMy0uN2MxLjUgMCAyLjkuMyA0LjMuOXMyLjcgMS40IDMuOCAyLjUgMiAyLjQgMi42IDMuN2MuNiAxLjQuOSAyLjggMSA0LjMgMCAxLjUtLjIgMi45LS43IDQuMi0uNSAxLjQtMS4zIDIuNi0yLjQgMy43bS0zLjQtMy40Yy42LS42IDEtMS4zIDEuMy0yLjFzLjQtMS42LjQtMi40LS4yLTEuNy0uNi0yLjUtLjktMS41LTEuNS0yLjJjLS43LS43LTEuNC0xLjItMi4yLTEuNXMtMS43LS41LTIuNS0uNmMtLjkgMC0xLjcgMC0yLjUuNC0uOC4zLTEuNS43LTIuMSAxLjNzLTEgMS4zLTEuMyAyLjEtLjQgMS42LS40IDIuNC4yIDEuNy42IDIuNS45IDEuNSAxLjUgMi4yYy43LjcgMS40IDEuMiAyLjIgMS41czEuNy41IDIuNS42Yy45IDAgMS43IDAgMi41LS40LjgtLjMgMS41LS43IDIuMS0xLjMiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjNzg1MjNiIiBkPSJtMTMzLjcgMTAwLjYtMTEuNC0xOS4yIDQuMS0yLjQgOSAxNS4xIDcuNi00LjUgMi40IDQuMXoiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMTYxLjggODguMmMtMS41LjQtMi45LjUtNC40LjNzLTIuOC0uNy00LjEtMS40LTIuNC0xLjctMy4zLTIuOS0xLjYtMi41LTIuMS00LjFjLS40LTEuNS0uNi0zLS40LTQuNXMuNi0yLjkgMS4zLTQuMiAxLjYtMi40IDIuNy0zLjRjMS4xLS45IDIuNC0xLjYgMy45LTJzMi45LS41IDQuNC0uMyAyLjguNyA0LjEgMS40IDIuNCAxLjcgMy4zIDIuOSAxLjYgMi41IDIuMSA0LjFjLjQgMS41LjYgMyAuNCA0LjVzLS42IDIuOS0xLjMgNC4yLTEuNiAyLjQtMi43IDMuNGMtMS4xLjktMi40IDEuNi0zLjkgMm0tMS40LTQuNmMuOC0uMiAxLjUtLjYgMi4yLTEuMi42LS41IDEuMS0xLjIgMS41LTJzLjYtMS42LjctMi40YzAtLjkgMC0xLjgtLjMtMi43cS0uNDUtMS4zNS0xLjItMi40Yy0uNS0uNy0xLjItMS4zLTEuOS0xLjdzLTEuNS0uNy0yLjMtLjljLS44LS4xLTEuNyAwLTIuNS4ycy0xLjUuNi0yLjIgMS4yYy0uNi41LTEuMSAxLjItMS41IDJzLS42IDEuNi0uNyAyLjRjMCAuOSAwIDEuOC4zIDIuN3EuNDUgMS4zNSAxLjIgMi40Yy41LjcgMS4yIDEuMyAxLjkgMS43czEuNS43IDIuMy45Yy44LjEgMS43IDAgMi41LS4yIiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0ibTE4MCA4NC4xLS40LTIyLjJoOS4yYzEuMi0uMiAyLjQuMSAzLjQuN3ExLjUuOSAyLjQgMi40Yy42IDEgLjkgMi4yLjkgMy40IDAgMS0uMSAxLjgtLjQgMi43LS4zLjgtLjggMS42LTEuMyAyLjItLjYuNi0xLjMgMS4yLTIuMSAxLjZsNS41IDloLTUuNmwtNS4yLTguNWgtMS43bC4xIDguN3ptNC42LTEzLjVoMy44Yy40IDAgLjgtLjIgMS4yLS40cy42LS41LjgtLjlxLjMtLjYuMy0xLjJ0LS4zLTEuMmMtLjItLjQtLjUtLjYtLjktLjlxLS42LS4zLTEuMi0uM2gtMy44djQuOFoiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMjI3LjggOTIuNGMtMS40LS42LTIuNi0xLjQtMy42LTIuNXMtMS43LTIuMy0yLjMtMy43Yy0uNS0xLjQtLjgtMi44LS43LTQuMyAwLTEuNS40LTMgMS00LjQuNi0xLjUgMS41LTIuNyAyLjYtMy44czIuMy0xLjkgMy42LTIuNXEyLjEtLjkgNC4yLS45YzEuNSAwIDIuOS4yIDQuMy44IDEuNy43IDMuMSAxLjcgNC4xIDMuMSAxLjEgMS40IDEuOCAyLjkgMi4yIDQuNWwtNC45LjRjLS4zLS44LS43LTEuNS0xLjItMi4ycS0uOS0xLjA1LTIuMS0xLjVjLS44LS4zLTEuNi0uNS0yLjQtLjVxLTEuMiAwLTIuNC42LTEuMi40NS0yLjEgMS41Yy0uNi42LTEuMSAxLjQtMS41IDIuMi0uNC45LS42IDEuNy0uNiAyLjZzMCAxLjcuNCAyLjVjLjMuOC43IDEuNSAxLjMgMi4xczEuMiAxLjEgMiAxLjQgMS43LjUgMi42LjRjLjkgMCAxLjctLjMgMi41LS42bDMgMy44Yy0xLjUuOS0zLjEgMS40LTQuOCAxLjZzLTMuNSAwLTUuMS0uOCIgZmlsbD0iIzc4NTIzYiIgZGF0YS1jb2xvcj0iMSIvPgogICAgICAgIDxwYXRoIGQ9Im0yNjIuNCA4Ni41IDQuMiAzLjQtNy44IDIyLjQtNC0zLjIgMS4yLTMuNS03LTUuNi0zLjIgMS45LTQtMy4yIDIwLjUtMTIuMlptLTguOSAxMC45IDQuMiAzLjQgMi42LTcuNHoiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjNzg1MjNiIiBkPSJtMjYzLjcgMTE4LjIgMTgtMTMuNCA4IDEwLjYtMy44IDIuOS01LjEtNi44LTIuNiAxLjkgNC4yIDUuNi0zLjkgMi44LTQuMi01LjUtNy43IDUuN3oiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJtMjc1LjUgMTM1LjIgMjAuNi05IDUuOCAxMy00LjQgMS45LTMuOS04LjYtMi45IDEuMyAzIDYuNi00LjQgMS45LTMtNi42LTQuNCAxLjkgMy45IDguNi00LjQgMS45LTUuOC0xM1ptMjQuNS00LjYgNC44LS43IDIgNC40LTUuNC0uOC0xLjMtMi45WiIgZmlsbD0iIzc4NTIzYiIgZGF0YS1jb2xvcj0iMSIvPgogICAgICAgIDxwYXRoIGQ9Ik0yOTMuMSAxNjYuOGMwLS43LjEtMS4yLjUtMS43cy45LS44IDEuNi0uOGMuNiAwIDEuMi4xIDEuNy41cy44IDEgLjggMS42YzAgLjctLjEgMS4yLS41IDEuN3MtLjkuOC0xLjYuOGMtLjYgMC0xLjItLjEtMS43LS42LS41LS40LS43LTEtLjgtMS42IiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0iTTc0LjggMTk4LjNjLS4yLTEuNS0uMi0yLjkuMi00LjNzMS0yLjcgMS45LTMuOCAyLTIuMSAzLjItMi45YzEuMy0uOCAyLjctMS4zIDQuMy0xLjUgMS42LS4zIDMuMS0uMiA0LjYuMXMyLjguOSA0IDEuN3ExLjggMS4yIDMgM2MuOCAxLjIgMS4zIDIuNSAxLjYgNCAuMyAxLjguMSAzLjQtLjQgNXEtLjkgMi40LTIuNyA0LjJsLTEuNi0yLjFjLjgtLjkgMS41LTEuOSAxLjgtMy4xcy41LTIuNC4zLTMuNnEtLjMtMS42NS0xLjItM2MtLjYtLjktMS40LTEuNy0yLjMtMi4zcy0yLTEtMy4xLTEuM2MtMS4xLS4yLTIuMy0uMy0zLjUgMHEtMS44LjMtMy4zIDEuMmMtMSAuNi0xLjggMS4zLTIuNSAyLjJzLTEuMiAxLjgtMS41IDIuOS0uMyAyLjEtLjIgMy4yYy4yIDEuMy43IDIuNCAxLjUgMy40czEuNyAxLjggMi43IDIuM2wtLjkgMi41Yy0xLjUtLjctMi44LTEuOC0zLjktMy4xcy0xLjctMi45LTItNC42IiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0iTTg1LjEgMjIzLjVxLjYgMS4zNSAxLjggMi4xdDIuNy45YzEgMCAxLjkgMCAyLjktLjUgMS0uNCAxLjctMSAyLjMtMS44czEtMS42IDEuMi0yLjUgMC0xLjgtLjMtMi43cS0uNi0xLjM1LTEuOC0yLjF0LTIuNy0uOWMtMSAwLTEuOSAwLTIuOS41cS0xLjUuNi0yLjQgMS44Yy0uNi44LTEgMS42LTEuMSAyLjVzMCAxLjguNCAyLjdtLTIuNSAxLjFjLS42LTEuMy0uOC0yLjctLjYtNC4xcy44LTIuNiAxLjYtMy44Yy45LTEuMSAyLTIgMy40LTIuNiAxLjEtLjUgMi4xLS43IDMuMi0uN3MyLjEuMSAzLjEuNSAxLjkuOSAyLjcgMS42IDEuNCAxLjUgMS44IDIuNWMuNiAxLjMuOCAyLjcuNiA0LjFzLS44IDIuNy0xLjYgMy44Yy0uOSAxLjEtMiAyLTMuNSAyLjYtMS4xLjUtMi4xLjctMy4yLjdzLTIuMS0uMS0zLjEtLjUtMS45LS45LTIuNy0xLjYtMS40LTEuNS0xLjgtMi41IiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZmlsbD0iIzc4NTIzYiIgZD0ibTkyLjEgMjQxLjEgMTkuOS0xMyAxLjQgMi4yLTE5LjggMTN6IiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0iTTEwNy41IDI1Ni43Yy43LjcgMS41IDEuMiAyLjQgMS40czEuOS4yIDIuOCAwYy45LS4zIDEuOC0uNyAyLjUtMS40czEuMy0xLjUgMS42LTIuNWMuMy0uOS40LTEuOS4yLTIuOHMtLjYtMS43LTEuMy0yLjQtMS41LTEuMi0yLjQtMS40LTEuOS0uMi0yLjggMGMtLjkuMy0xLjguNy0yLjUgMS40LS44LjctMS4zIDEuNi0xLjYgMi41cy0uMyAxLjktLjEgMi44LjYgMS43IDEuMyAyLjRtLTIuMSAxLjhjLTEtMS0xLjctMi4yLTItMy42cy0uMi0yLjcuMi00LjEgMS4yLTIuNiAyLjMtMy42Yy44LS44IDEuOC0xLjQgMi44LTEuOHMyLjEtLjYgMy4xLS42YzEuMSAwIDIuMS4yIDMuMS42czEuOCAxIDIuNiAxLjdjMSAxIDEuNyAyLjIgMiAzLjZzLjIgMi43LS4yIDQuMS0xLjIgMi42LTIuMyAzLjdjLS44LjgtMS44IDEuNC0yLjggMS44cy0yIC42LTMuMS42cS0xLjY1IDAtMy0uNmMtMS0uNC0xLjgtMS0yLjYtMS44IiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0ibTEyMC42IDI3MS4xIDktMTIuOSAyLjIgMS41LTEuMSAxLjZjLjktLjMgMS44LS40IDIuOC0uM3MxLjguNSAyLjcgMWMuNS4zIDEgLjcgMS4zIDEuMmwtMi40IDEuNmMtLjMtLjQtLjYtLjYtLjktLjktLjctLjQtMS40LS43LTIuMS0uNy0uOCAwLTEuNSAwLTIuMi40LS43LjMtMS4zLjgtMS43IDEuNWwtNS4yIDcuNi0yLjItMS41WiIgZmlsbD0iIzc4NTIzYiIgZGF0YS1jb2xvcj0iMSIvPgogICAgICAgIDxwYXRoIGZpbGw9IiM3ODUyM2IiIGQ9Im0xNzQuOCAyNzAuNy0uNiAyLjUtNy4yLTEuOC00LjggMTguOC0yLjYtLjcgNC44LTE4LjctNy4yLTEuOC43LTIuNnoiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMTk2LjIgMjgzLjZ2OS44aC0yLjd2LTkuMmMwLS44LS4yLTEuNS0uNS0yLjItLjQtLjctLjktMS4yLTEuNi0xLjZzLTEuNC0uNi0yLjItLjYtMS41LjItMi4yLjYtMS4yLjktMS42IDEuNS0uNiAxLjQtLjYgMi4ydjkuMmgtMi43di0yMy41aDIuOHY5LjhjLjUtLjcgMS4yLTEuMyAyLjEtMS43czEuOC0uNiAyLjgtLjZjMS4yIDAgMi4zLjMgMy4yLjkgMSAuNiAxLjggMS4zIDIuMyAyLjNzLjkgMiAuOSAzLjIiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJtMjA4LjIgMjgyLjkgMTAuMS0yLjNjLS4zLS44LS43LTEuNi0xLjQtMi4yLS42LS42LTEuNC0xLTIuMi0xLjNzLTEuNy0uMy0yLjUgMGMtLjkuMi0xLjYuNi0yLjIgMS4ycy0xLjEgMS4zLTEuNCAyLjEtLjQgMS43LS4zIDIuNm03LjEgNy45Yy0xLjQuMy0yLjguMy00LjEtLjJzLTIuNS0xLjItMy41LTIuMy0xLjYtMi4zLTItMy44Yy0uMy0xLjEtLjMtMi4yLS4xLTMuM3MuNS0yIDEuMS0yLjljLjUtLjkgMS4yLTEuNyAyLjEtMi4zLjgtLjYgMS44LTEuMSAyLjktMS4zIDEuMi0uMyAyLjMtLjMgMy40IDAgMS4xLjIgMi4xLjcgMyAxLjRzMS42IDEuNSAyLjIgMi41IDEgMi4xIDEuMiAzLjRMMjA5IDI4NWMuMy44LjggMS41IDEuNCAyLjFxLjkuOSAyLjEgMS4yYy44LjIgMS42LjMgMi41IDAgLjktLjIgMS43LS42IDIuNC0xLjMuNi0uNiAxLjEtMS40IDEuNC0yLjRoMi44Yy0uMyAxLjUtMSAyLjgtMiA0LTEuMSAxLjEtMi4zIDEuOS0zLjkgMi4yIiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZmlsbD0iIzc4NTIzYiIgZD0ibTI0OC44IDI3Ny40LTEyLjUtMTguMiAxMS4zLTcuNSAxLjUgMi4yLTkuMSA2IDMuNiA1LjIgNy40LTUgMS41IDIuMi03LjQgNSA0LjQgNi41IDkuMS02LjEgMS41IDIuMnoiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJNMjcyLjkgMjU1LjJjLjctLjggMS4xLTEuNiAxLjMtMi41cS4xNS0xLjM1LS4zLTIuN2MtLjQtLjktLjktMS43LTEuNy0yLjRzLTEuNy0xLjItMi42LTEuNXEtMS4zNS0uNDUtMi43IDBjLS45LjItMS43LjctMi40IDEuNC0uNy44LTEuMiAxLjYtMS40IDIuNnMtLjIgMS45LjEgMi45LjggMS44IDEuNiAyLjUgMS43IDEuMiAyLjcgMS40IDIgLjIgMi45LS4xYzEtLjMgMS44LS44IDIuNS0xLjVtLTYuNS0xMy4yIDEuOC0xLjkgMTEuNyAxMC42LTEuOCAxLjktMi0xLjdjLjMgMSAuNCAyIC4yIDNzLS43IDItMS41IDIuOC0xLjcgMS41LTIuNyAxLjktMi4xLjctMy4yLjctMi4yLS4xLTMuMi0uNS0yLS45LTIuOS0xLjdjLS44LS44LTEuNS0xLjYtMS45LTIuNnMtLjctMi0uNy0zLjEuMS0yLjEuNS0zLjEuOS0xLjkgMS43LTIuOCAxLjgtMS41IDIuOS0xLjggMi4xLS4zIDMuMi0uMWwtMi4xLTEuOFoiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJtMjg2LjkgMjQwLjgtMTMuNi04LjEgMS40LTIuMyAxLjcgMWMtLjMtLjktLjUtMS44LS40LTIuNyAwLS45LjQtMS45LjktMi43LjMtLjUuNy0xIDEuMS0xLjRsMS43IDIuM2MtLjMuMy0uNi42LS44IDFxLS42IDEuMDUtLjYgMi4xYzAgLjguMiAxLjUuNSAyLjEuNC43LjkgMS4yIDEuNiAxLjZsOCA0LjctMS40IDIuM1oiIGZpbGw9IiM3ODUyM2IiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjNzg1MjNiIiBkPSJtMjg3IDIxMC44LTEuMyAzLjMgMTIuMyA0LjctLjkgMi41LTEyLjMtNC43LTEgMi41LTIuNS0uOSAxLTIuNi00LjctMS43IDEtMi41IDQuNiAxLjggMS4zLTMuNHoiIGRhdGEtY29sb3I9IjEiLz4KICAgICAgICA8cGF0aCBkPSJtMjk1LjIgMTg4LjggOS43IDEuNi0uNCAyLjYtOS4yLTEuNWMtLjgtLjEtMS41IDAtMi4zLjItLjcuMy0xLjMuNy0xLjggMS4zcy0uOCAxLjMtLjkgMmMtLjEuOCAwIDEuNS4yIDIuMi4zLjcuNyAxLjMgMS4zIDEuOHEuOS43NSAyLjEuOWw5LjIgMS41LS40IDIuNi0yMy41LTMuOS40LTIuNiA5LjggMS42Yy0uNi0uNy0xLjEtMS41LTEuNC0yLjRzLS40LTEuOC0uMi0yLjhjLjItMS4yLjctMi4yIDEuNC0zIC43LS45IDEuNi0xLjUgMi43LTEuOXMyLjItLjUgMy40LS4zIiBmaWxsPSIjNzg1MjNiIiBkYXRhLWNvbG9yPSIxIi8+CiAgICAgICAgPHBhdGggZD0iTTE3OS42IDEwNC42Yy0uNCAxLTEuOSA4LjMtMi4yIDEwLjZzLS4zIDIuNS4zIDMuNmMuNSAxIC42IDEuNC40IDMuOCAwIDEuNSAwIDYuMy4yIDEwLjcuOCAxOS45IDEuMiAyOC43IDEuNCAzMy4ybC4yIDQuOWgtMS4yYy0xLjEgMC0xLjIgMC0xLjItLjlzLTIuNy0yOC41LTMuMS0zMS41Yy0uMy0yLjQtMy43LTEzLjktNC0xMy42IDAgLjEtLjMgMS4yLS41IDIuMy0uMiAxLjItLjYgMy45LTEgNi4xLS40IDIuNC0uNiA0LjYtLjYgNS41LjIgMi4xIDIgMTkuOSAyLjcgMjYuNC43IDcuMS44IDYuNi0uNCA2LjZzLTIuNC4zLTQuMS42Yy01LjIuOS04LjUgMi40LTkuMiA0LS4yLjUtLjMgMS42LS4xIDMgLjggOS4xIDEuMSAxMiAxLjggMTUuOSAxLjggMTEgNC45IDE5LjIgOS41IDI1LjUgMi4xIDIuOSA1LjYgNi4xIDcuNiA3LjEgMy41IDEuNiAxMC4xIDIuNiAxNi4yIDIuNCA0LjUtLjIgNy4zLS45IDEwLjQtMi42IDIuOC0xLjUgNy01LjggOS04LjlsMS41LTIuNCAyLjgtLjJjNC41LS4zIDcuNS0xLjQgMTEuNC00LjQgMy45LTIuOSA2LjUtNi4zIDguNC0xMC43IDEuMS0yLjcgMS4yLTIuOSAxLjMtNi4zLjItNi42LTEuNC0xMC42LTUtMTIuNC0yLjMtMS4yLTcuNS0xLjEtMTAuNy4xLS40LjItLjQgMC0uMi0xLjcuNS00LjIgMC01LjMtMi40LTYuNS0xLjYtLjgtNi41LTEuOS05LjQtMi4yLTEuNy0uMi0yLS4zLTEuOS0uNiAwLS4yIDEuNS00IDMuMi04LjQgMy4yLTguNSAzLjctMTAgMy42LTExLjcgMC0uNi4yLTEuNS40LTIuMS40LTEgMS4yLTguOC45LTkuMS0uMy0uMi0zIDUuOC0zLjUgNy42LS4yIDEtLjcgMi4xLTEgMi41LS42LjgtMi4xIDQuNC02LjEgMTQuOGwtMi40IDYuMmgtMS40Yy0xLjEuMi0xLjMgMC0xLjItLjIuNi0xLjQgNS4zLTE2LjkgNS45LTE5LjMuNC0xLjYuOS0yLjkgMS0yLjkuMyAwIDUuNC0xOS40IDUuMy0yMC4zIDAtLjIuNi0xLjkgMS40LTMuNyAxLjYtMy44IDEuOS01LjIgMS40LTYuNy0uNS0xLjYtMi4yLTMuMi0zLjItMy4ycy0zIDEtMy41IDEuOGMtLjggMS4yLTEuNiA0LjgtMS42IDcuMnMtLjIgMi45LS42IDRjLTEuMiAzLjUtNC45IDE4LjgtNC43IDE5LjYuMS41LS40IDMuMS0xLjUgNy40LS45IDMuNi0yLjEgOC4zLTIuNiAxMC40LTEuNCA2LjItMS4zIDUuOS0yLjMgNS45cy0uOCAwLS43LS42YzAtLjQuOS01LjcgMS44LTExLjkgMy4zLTIzIDMuMy0yMy41IDUuMS0yNy42IDEuNi0zLjggMS44LTYuMy43LTguMnMtMi4xLTIuMi00LjUtMS41Yy0yLjEuNi0yLjEuNy0yLjEgNy40czAgNi40LTIuNCAyNC4yYy0xLjMgMTAtMi40IDE4LjItMi40IDE4LjNzLS41IDAtMSAwYy0uOSAwLTEgMC0xLS44cy41LTYuNiAxLjItMTMuOGMuOC04LjYgMS4xLTEzLjkgMS0xNS42LS4xLTIuMSAwLTIuOC40LTMuNy41LTEuMi41LTMuNi0uNC0xNS42LS4yLTMuMS0uNC01LjgtLjQtNi4yIDAtMS40LS4zIDAtMS43IDcuNC0xLjMgNi42LTEuNSA4LjMtMS41IDExLjggMCAyLjMtLjIgNC43LS40IDUuNC0uMyAxLjEtMSAxMy43LTEuNiAyNi45LS4yIDMuOC0uMiA0LjEtLjcgNC4xcy0uNS0uMi0uNS0xLjUtLjEtNS40LS4zLTEwLjItLjUtMTQuOC0uNy0yMi4yLS42LTE0LjQtLjctMTUuNmMtLjItMS43LS4yLTIuNCAwLTNzLjMtMS40LjItMi43Yy0uMy0yLjktMi4xLTExLjktMi4zLTExLjRtLjYgMTUuNGMwIC4yLjIuOS4zIDEuN2wuMiAxLjNoLTIuM3YtMS4zYzAtMS43LjQtMi40IDEuMi0yLjIuMyAwIC42LjMuNy41bTI4LjYgOC45YzEuMi4zIDEuNS40IDEuNC44IDAgLjMtMS4xIDQuMy0yLjMgOS4xLTEuMiA0LjctMi4yIDguNi0yLjIgOC43LS4yLjItMy45LS45LTMuOS0xLjIgMC0uMiAxLTQuMyAyLjItOS4xIDIuMS04LjIgMi4zLTguOCAyLjgtOC43LjMgMCAxLjMuMyAyLjEuNW0tMTEuOCA1Yy44IDAgMSAuNC43IDEuNC0uMi43LS4zLjgtMSAuOC0xLjYgMC0yLS4zLTEuOS0xLjIuMy0xLjYuMy0xLjYuOS0xLjMuMy4yLjguMyAxLjEuM20tMjUuMSAxLjdjMS40IDEuNy45IDQuOC0uOSA0LjgtLjkgMC0xLjItLjItMS44LTEuMS0uOS0xLjMtLjUtMy44LjctNC4yIDEtLjQgMS4zLS4zIDIuMS42bTE2LjkgM2MuMi4zLjMuOS4zIDEuMyAwIC43IDAgLjctMS40LjdzLTEuNCAwLTEuMi0uOGMuMy0xLjMuNy0xLjggMS40LTEuOHMuOC4yIDEgLjVtLTE1LjggMi44YzAgLjMuNSA1LjYgMS4xIDExLjggMiAxOS44IDIuNiAyNyAyLjUgMjcuMS0uMi4yLTMuOS0uMi0zLjktLjRzLS45LTguOC0yLTE5LjJjLTEuMS0xMC41LTItMTkuMS0xLjktMTkuMSAwIDAgLjktLjIgMS45LS4zczEuOS0uMyAyLjEtLjNjLjEgMCAuMi4yLjIuNW0zMC43IDYuNWMuOC4yIDEuMS40LjkuOCAwIC4zLS4yLjgtLjMgMS4zLS4yLjgtLjIuOC0xLjcuNi0uOC0uMS0xLjUtLjItMS41LS4yczAtLjYuMy0xLjRjLjMtMS41LjUtMS41IDIuMy0xLjFtOC42IDIuOGMuMS4zLjEgMSAwIDEuNi0uMi45LS4zLjktMSAuOC0xLjUtLjQtMS44LS42LTEuNS0xLjQuNC0xLjEuOC0xLjUgMS42LTEuNXMuNy4yLjguNm0tMzIuOCAyMy4xYy4xLjguMiAyLjcuMiA0LjF2Mi42aC0uOWMtLjUgMC0uOSAwLS45LS4yIDAtLjMtLjUtNC43LS43LTYuNmwtLjItMS40aDIuMmwuMiAxLjVabTQuMiAyLjZjMCAzLjQgMCA0LjEtLjQgNC4xcy0uNC0uNy0uNC00LjEgMC00LjEuNC00LjEuNC43LjQgNC4xbTUuNy0zLjdjMCAuMi0uMiAxLjktLjQgMy45LS4yIDEuOS0uNCAzLjYtLjQgMy43cy0uNC4yLS45LjJoLS45bC4yLTIuOGMuMS0xLjUuMy0zLjQuNC00LjEuMi0xLjMuMi0xLjMgMS4xLTEuM3MxIC4xIDEgLjRtNS4xLS4xYzAgLjEtLjQgMi0uOSA0LjItLjcgMi44LTEgNC0xLjMgNHMtLjMtLjItLjItLjZjMC0uMy40LTIuMy42LTQuMi41LTMuNS41LTMuNiAxLjItMy42cy43IDAgLjcuMm02LjQgMS4xYy0uNSAyLTIgNS40LTIuNSA2LjEtLjQuNS0uOC43LTEuNi43cy0xLS4xLTEtLjQuNS0yIDEuMi00bDEuMi0zLjZoMi45bC0uMyAxWm0tMzAtLjNjMCAuMS4yIDEuNi40IDMuM2wuNCAzaC0uOGMtMS40IDAtOC41LTEuNC0xMC4xLTItMS44LS43LTIuMi0xLjMtMS40LTEuOSAxLjYtMS4yIDExLjUtMy4zIDExLjYtMi40bTQwLjcuNmMzLjEuNiA1LjkgMS43IDUuOSAyLjMgMCAxLTQgMi4xLTEwLjYgMy4xLTUuNC44LTUuMS44LTQtLjguNS0uOCAxLjMtMi4zIDEuNy0zLjRsLjgtMiAxLjguMmMxIC4xIDIuOS40IDQuMy43bTYuMSA3LjRjLTEuOSAyMi41LTguNCAzOC45LTE3LjMgNDMuNS00LjkgMi41LTEyLjMgMy0yMC42IDEuNC00LjMtLjktNy41LTMuNC0xMS04LjYtNS4zLTcuOS04LjYtMjAtOS43LTM1LjUtLjItMi44LS4yLTIuOS4zLTIuNyAyLjggMS4xIDkuMiAyLjIgMTUuOCAyLjggNS4yLjUgMTkuOS41IDI0LjQuMSA2LjUtLjYgMTMuNy0xLjggMTYuNS0yLjguOC0uMyAxLjUtLjUgMS42LS42djIuM20xMi4zIDIuNWMyIC45IDMuMyA0LjQgMy43IDkuNS4yIDMuNi0uNCA2LTIuMiA5LjNzLTIuNiA0LjItNS41IDYuNGMtMy44IDIuOC02LjIgMy43LTEwLjcgNC4xbC0yLjQuMi4zLS44Yy43LTEuOCAxLjItMi40IDEuOS0yLjQgMi4yIDAgOC43LTIuOSAxMS01IDQuMS0zLjcgNS45LTEyLjYgMy40LTE3LjEtLjctMS4yLTIuNC0yLjItMy44LTIuMnMtMy42LjctNS4xIDEuNWMtLjYuMy0xLjEuNS0xLjIuNCAwIDAgMC0uNy4xLTEuNXEuMi0xLjQgMS45LTIuMWMzLjEtMS4yIDYuNi0xLjQgOC43LS40bS0zLjIgNC45Yy44LjcgMS4yIDIuMSAxLjIgNC42cTAgMTAuMzUtMTAuOCAxMy44Yy0xIC4zLTEuOS41LTIgLjUgMCAwIDAtLjQuMi0uNy41LTEgMi4yLTcuOSAyLjktMTEuOWwuNi0zLjggMS45LTEuMWMxLjYtLjkgMy44LTEuNyA1LjEtMS44LjIgMCAuNi4yLjkuNSIgZmlsbD0iIzc4NTIzYiIgZGF0YS1jb2xvcj0iMSIvPgogICAgPC9nPgo8L3N2Zz4K");
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{height:100%}
+body{margin:0;min-height:100%;display:flex;flex-direction:column;background:var(--milk);color:var(--cocoa);font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+button:focus-visible,a:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;margin:0;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding-inline:20px}
+main{padding-block:56px 40px;display:flex;flex-direction:column;gap:44px}
+
+/* header */
+.hero{display:flex;flex-direction:column;gap:16px;max-width:820px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:500}
+.hero h1{font-size:clamp(38px,5.4vw,64px)}
+.hero h1 em{font-style:italic;color:var(--terra)}
+.lead{font-size:clamp(16px,1.5vw,18px);color:var(--ink-soft);max-width:62ch}
+
+/* picker */
+.picker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.pick{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px 14px 13px;border-radius:14px;background:var(--white);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s,background .2s,transform .2s}
+.pick:hover{transform:translateY(-1px);box-shadow:inset 0 0 0 1px var(--rose)}
+.pick b{font-weight:500;font-size:14px;line-height:1.3}
+.pick span{font-family:var(--chat);font-size:13px;color:var(--ink-soft);line-height:1.35;text-align:right}
+.pick[aria-selected="true"]{background:var(--cocoa);color:var(--milk);box-shadow:none}
+.pick[aria-selected="true"] span{color:var(--blush)}
+
+/* stage */
+.stage{display:grid;grid-template-columns:320px 320px minmax(0,1fr);gap:28px;align-items:start}
+.col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.col-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding-inline:6px}
+.col-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:var(--taupe)}
+.col-label.on{color:var(--terra)}
+.taps{font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.taps b{font-weight:500;color:var(--cocoa);display:inline-block}
+.taps b.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.4);color:var(--terra)}}
+
+.phone{width:100%;max-width:320px;background:#1e1512;border-radius:42px;padding:9px;box-shadow:var(--shadow);position:relative;margin-inline:auto}
+.screen{height:600px;border-radius:34px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:var(--wa-bg)}
+.island{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:84px;height:24px;background:#1e1512;border-radius:20px;z-index:6}
+.sbar{flex:0 0 auto;height:42px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 24px 4px;font:600 12px/1 var(--chat);color:var(--wa-ink);background:#f6f5f3}
+.sbar i{font-style:normal;letter-spacing:1px;font-size:10px}
+.wa-head{flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:6px 12px 8px;background:#f6f5f3;border-bottom:1px solid #e3ded8}
+.wa-head .back{font:400 22px/1 var(--chat);color:var(--wa-ink);width:14px}
+.av{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--blush) var(--logo) center/84% no-repeat}
+.wa-head .who{min-width:0;display:flex;flex-direction:column;font-family:var(--chat);line-height:1.2}
+.wa-head .who b{font-weight:600;font-size:13.5px;color:var(--wa-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wa-head .who small{font-size:11px;color:var(--wa-meta)}
+.wa-head .who small.typing{color:var(--wa-green)}
+
+.chat{flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 9px 12px;display:flex;flex-direction:column;gap:5px;scrollbar-width:none;
+  background-color:var(--wa-bg);
+  background-image:
+    radial-gradient(circle at 20% 30%,rgba(120,100,80,.07) 0 2px,transparent 2.5px),
+    radial-gradient(circle at 70% 70%,rgba(120,100,80,.06) 0 3px,transparent 3.5px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' fill='none' stroke='%23a08c78' stroke-opacity='.13' stroke-width='1.3'%3E%3Cpath d='M10 20q6-8 12 0t12 0'/%3E%3Ccircle cx='66' cy='18' r='6'/%3E%3Cpath d='M52 60l8-8 8 8-8 8z'/%3E%3Cpath d='M14 64h14v10a7 7 0 0 1-14 0z'/%3E%3Cpath d='M28 67h3a3 3 0 0 1 0 6h-3'/%3E%3Cpath d='M78 44l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6-4.5-4 6-1z'/%3E%3C/svg%3E");
+  background-size:34px 34px,46px 46px,90px 90px}
+.chat::-webkit-scrollbar{display:none}
+.day{align-self:center;background:#fff;border-radius:8px;padding:3px 10px;font:500 11.5px/1.4 var(--chat);color:#54656f;box-shadow:0 1px .5px rgba(11,20,26,.1);margin-block:4px 6px}
+.sys{align-self:center;max-width:88%;text-align:center;background:#fdf4c5;color:#54656f;border-radius:8px;padding:4px 10px;font:12px/1.4 var(--chat);box-shadow:0 1px .5px rgba(11,20,26,.1);margin-block:4px;animation:pop .35s ease-out}
+.row{display:flex}
+.row.out{justify-content:flex-end}
+.row.in{justify-content:flex-start}
+.b{position:relative;max-width:86%;min-width:64px;padding:6px 8px 4px;border-radius:8px;font:13.5px/1.42 var(--chat);color:var(--wa-ink);box-shadow:0 1px .5px rgba(11,20,26,.13);text-align:right;animation:pop .32s cubic-bezier(.3,1.3,.5,1);overflow-wrap:anywhere}
+.in .b{background:var(--wa-in);border-top-left-radius:0}
+.out .b{background:var(--wa-out);border-top-right-radius:0}
+.in .b::before,.out .b::before{content:"";position:absolute;top:0;width:0;height:0;border-bottom:9px solid transparent}
+.in .b::before{left:-7px;border-right:8px solid var(--wa-in)}
+.out .b::before{right:-7px;border-left:8px solid var(--wa-out)}
+@keyframes pop{from{opacity:0;transform:translateY(6px) scale(.97)}}
+.tx{white-space:pre-line}
+.meta{display:flex;justify-content:flex-end;align-items:center;gap:3px;direction:ltr;font-size:10.5px;color:var(--wa-meta);margin-top:1px;line-height:1.2}
+.b[dir="rtl"] .meta{justify-content:flex-start}
+.meta svg{width:15px;height:10px}
+.wa-menu{display:flex;justify-content:center;align-items:center;gap:6px;width:calc(100% + 16px);margin:6px -8px -4px;padding:8px 0 7px;border-top:1px solid #e9edef;color:var(--wa-green);font:500 13.5px/1 var(--chat);border-radius:0 0 8px 8px;cursor:default}
+.wa-menu svg{width:15px;height:15px}
+.wa-menu.tap{animation:tap .6s}
+@keyframes tap{30%{background:#dcefe4}}
+
+/* typing */
+.b.typing{display:flex;gap:4px;padding:11px 12px;min-width:0}
+.b.typing i{width:6px;height:6px;border-radius:50%;background:#9aa4aa;animation:dot 1s infinite}
+.b.typing i:nth-child(2){animation-delay:.15s}.b.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-2px)}}
+
+/* rich bubbles */
+.card{margin:-2px -4px 6px;border-radius:6px;background:#f5f6f6;overflow:hidden}
+.card .thumb{display:block;width:100%;height:auto}
+.card .ct{padding:7px 9px 8px;display:flex;flex-direction:column;gap:1px}
+.card .ct b{font-weight:600;font-size:13px}
+.card .ct small{font-size:12px;color:var(--wa-meta)}
+.cta{display:flex;justify-content:center;align-items:center;gap:6px;width:calc(100% + 16px);margin:6px -8px -4px;padding:9px 0 8px;border-top:1px solid #e9edef;color:var(--wa-green);font:500 13.5px/1 var(--chat);text-decoration:none}
+.cta svg{width:14px;height:14px}
+.cta:hover{background:#f3faf6}
+.photo{margin:-3px -5px 4px;border-radius:6px;overflow:hidden;line-height:0}
+.photo svg{width:100%;height:auto;display:block}
+.b.pic{padding:3px 3px 4px;width:230px;max-width:86%}
+.b.pic .tx,.b.pic .meta{padding-inline:5px}
+.status{margin:6px 0 4px;padding:8px 9px;border-radius:8px;background:#faf6f2;border:1px solid #efe6df;display:flex;flex-direction:column;gap:7px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.steps span{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;color:var(--wa-meta);text-align:center;line-height:1.2}
+.steps span::before{content:"";width:100%;height:4px;border-radius:4px;background:#e6ddd6}
+.steps span.done{color:var(--wa-ink)}
+.steps span.done::before{background:var(--ok)}
+.steps span.now{color:#b4552c;font-weight:600}
+.steps span.now::before{background:linear-gradient(90deg,#e8905f,#c7562a);animation:glow 1.4s ease-in-out infinite alternate}
+@keyframes glow{to{opacity:.55}}
+.status .eta{font-size:12.5px}
+.status .eta b{font-weight:600}
+.status code{align-self:flex-start;font:600 11.5px/1 ui-monospace,Menlo,monospace;color:var(--brown);direction:ltr;unicode-bidi:isolate}
+
+/* list sheet */
+.sheet-wrap{position:absolute;inset:0;z-index:5;background:rgba(20,16,14,0);pointer-events:none;transition:background .3s}
+.sheet-wrap.on{background:rgba(20,16,14,.38)}
+.sheet{position:absolute;left:0;right:0;bottom:0;height:86%;background:#fff;border-radius:18px 18px 0 0;transform:translateY(100%);transition:transform .38s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;font-family:var(--chat)}
+.sheet-wrap.on .sheet{transform:none}
+.sh-head{position:relative;text-align:center;padding:16px 0 10px;font-weight:600;font-size:14px;color:var(--wa-ink)}
+.sh-head .x{position:absolute;right:16px;top:12px;font-size:18px;font-weight:300}
+.sheet ul{list-style:none;margin:0;padding:0 14px;flex:1}
+.sheet li{padding:11px 4px;border-bottom:1px solid #eceae8;font-size:13.5px;color:var(--wa-ink);text-align:left;transition:background .2s}
+.sheet li.hit{background:#e7f3ec;border-radius:6px}
+.sh-foot{text-align:center;font-size:11.5px;color:var(--wa-meta);padding:10px 0 16px;border-top:1px solid #eceae8}
+
+.composer{flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:7px 10px 12px;background:#f6f5f3}
+.composer .plus{font:300 22px/1 var(--chat);color:var(--wa-ink)}
+.composer .field{flex:1;height:30px;border-radius:16px;background:#fff;border:1px solid #e3e0dc}
+.composer .mic{width:30px;height:30px;border-radius:50%;background:var(--wa-green);display:grid;place-items:center}
+.composer .mic svg{width:13px;height:13px}
+
+/* panel */
+.panel{display:flex;flex-direction:column;gap:20px;padding-top:30px;min-width:0}
+.panel h2{font-size:clamp(28px,3vw,36px)}
+.panel .why{color:var(--ink-soft);max-width:52ch}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--cocoa);color:var(--milk);font-size:13px;font-weight:400;transition:background .2s}
+.btn:hover{background:var(--brown)}
+.btn svg{width:14px;height:14px}
+.seg{display:inline-flex;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);background:var(--white)}
+.seg button{padding:6px 12px;border-radius:999px;font-size:12.5px;color:var(--ink-soft)}
+.seg button[aria-pressed="true"]{background:var(--blush);color:var(--cocoa);font-weight:500}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:12px 14px;border-top:1px solid var(--cocoa);display:flex;flex-direction:column;gap:4px}
+.stat .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);font-weight:500}
+.stat .v{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font-variant-numeric:tabular-nums}
+.stat .v s{text-decoration:none;font-family:var(--serif);font-size:30px;line-height:1;color:var(--taupe)}
+.stat .v strong{font-family:var(--serif);font-size:30px;line-height:1;font-weight:600;color:var(--cocoa)}
+.stat .v em{font-style:normal;color:var(--terra)}
+.stat .sub{font-size:11.5px;color:var(--taupe)}
+.stat .note{font-size:12.5px;color:var(--ink-soft);line-height:1.45}
+
+.inbox{display:flex;flex-direction:column;gap:8px}
+.inbox .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);font-weight:500}
+.inbox .empty{font-size:13.5px;color:var(--ink-soft);padding:14px 16px;border:1px dashed #dccfc7;border-radius:12px}
+.handover{background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 30px -22px rgba(82,59,46,.5);overflow:hidden;animation:slide .45s cubic-bezier(.2,.9,.3,1)}
+@keyframes slide{from{opacity:0;transform:translateY(10px)}}
+.handover header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 16px;border-bottom:1px solid var(--line);background:#fcf9f7}
+.handover header span{font-size:11.5px;color:var(--ink-soft)}
+.prio{font-size:11px;font-weight:500;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.prio.urgent{background:#f6dcd2;color:#8e3d1f}
+.prio.normal{background:#e1ece7;color:#2f6555}
+.handover h4{font-size:24px;font-weight:600;padding:12px 16px 4px}
+.handover dl{margin:0;padding:4px 16px 12px;display:grid;grid-template-columns:auto 1fr;column-gap:14px}
+.handover dt,.handover dd{margin:0;padding:6px 0;border-bottom:1px solid #f1e9e4;font-size:13px;line-height:1.4}
+.handover dt{color:var(--taupe);white-space:nowrap}
+.handover dd{color:var(--cocoa)}
+.handover dd .he{font-family:var(--chat)}
+.handover dl>*:nth-last-child(-n+2){border-bottom:0}
+.handover footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 16px;background:var(--cocoa);color:var(--milk);font-size:13px}
+.handover footer b{font-weight:500}
+
+/* rules */
+.rules{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:40px;padding-top:40px;border-top:1px solid var(--line)}
+.rules h2{font-size:clamp(32px,4vw,46px)}
+.rules .intro{display:flex;flex-direction:column;gap:14px}
+.rules .intro p{color:var(--ink-soft);max-width:46ch}
+.rlist{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+.rlist li{padding:11px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.rlist li b{font-weight:500;font-size:14.5px}
+.rlist li span{font-size:13px;color:var(--ink-soft);line-height:1.45}
+.offhours{grid-column:1/-1;margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;padding:18px;border-radius:16px;background:var(--blush)}
+.offhours b{font-weight:500}
+.offhours p{font-size:13.5px;color:var(--brown);margin-top:4px}
+.offhours .mini{background:var(--wa-bg);border-radius:12px;padding:12px 14px 12px 20px}
+.offhours .mini .b{max-width:100%;animation:none}
+
+.fine{font-size:12.5px;color:var(--taupe);max-width:80ch}
+.author-sign{margin-top:auto;padding-block:20px 22px;text-align:center;font-size:11px;color:var(--taupe);letter-spacing:.04em;user-select:none;pointer-events:none}
+
+@media (max-width:1100px){
+  .stage{grid-template-columns:1fr 1fr}
+  .panel{grid-column:1/-1;padding-top:0}
+  .picker{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  main{padding-block:36px 28px;gap:34px}
+  .stage{grid-template-columns:1fr}
+  .picker{grid-template-columns:1fr 1fr}
+  .rules{grid-template-columns:1fr;gap:20px}
+  .rlist{grid-template-columns:1fr}
+  .offhours{grid-template-columns:1fr}
+}
+@media (max-width:440px){
+  .picker{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .screen{height:560px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Color Café · WhatsApp agent prototype</span>
+    <h1>Guests just write. The agent answers like <em>your best team member.</em></h1>
+    <p class="lead">Same WhatsApp number, same warm tone. No menus to tap through: guests ask in their own words and get a real answer, or a person who already knows the story.</p>
+  </header>
+
+  <section aria-label="Scenarios" class="picker" role="tablist" id="picker"></section>
+
+  <section class="stage" aria-live="off">
+    <div class="col">
+      <div class="col-head"><span class="col-label">Today: menu bot</span><span class="taps">Taps <b id="tapsL">0</b></span></div>
+      <div class="phone" aria-label="Current menu bot">
+        <div class="screen">
+          <div class="island"></div>
+          <div class="sbar"><span>12:51</span><i>●●● ◔ ▮</i></div>
+          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo"></span><span class="who"><b>Color Cafe Customer Support</b><small>business account</small></span></div>
+          <div class="chat" id="chatL"></div>
+          <div class="composer"><span class="plus">+</span><span class="field"></span><span class="mic"><svg viewBox="0 0 12 16" fill="#fff"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="5.3" y="12" width="1.4" height="4"/></svg></span></div>
+          <div class="sheet-wrap" id="sheetL">
+            <div class="sheet">
+              <div class="sh-head"><span class="x">✕</span><span dir="rtl">הגיבו</span></div>
+              <ul id="sheetList"></ul>
+              <p class="sh-foot">Tap an item to select it</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="col-head"><span class="col-label on">With the agent</span><span class="taps">Taps <b id="tapsR">0</b></span></div>
+      <div class="phone" aria-label="AI agent">
+        <div class="screen">
+          <div class="island"></div>
+          <div class="sbar"><span>12:51</span><i>●●● ◔ ▮</i></div>
+          <div class="wa-head"><span class="back">‹</span><span class="av" role="img" aria-label="Color Café logo"></span><span class="who"><b>Color Cafe Customer Support</b><small id="statusR">online</small></span></div>
+          <div class="chat" id="chatR"></div>
+          <div class="composer"><span class="plus">+</span><span class="field"></span><span class="mic"><svg viewBox="0 0 12 16" fill="#fff"><rect x="3.5" y="0" width="5" height="10" rx="2.5"/><path d="M1 7.5a5 5 0 0 0 10 0" fill="none" stroke="#fff" stroke-width="1.4"/><rect x="5.3" y="12" width="1.4" height="4"/></svg></span></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="controls">
+        <button class="btn" id="replay" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 8a5.5 5.5 0 1 0 1.7-4"/><path d="M2 1.8v3.6h3.6"/></svg>Replay</button>
+        <div class="seg" id="variant" hidden>
+          <button type="button" id="vKiln" aria-pressed="true">Still in the kiln</button>
+          <button type="button" id="vReady" aria-pressed="false">Ready to collect</button>
+        </div>
+      </div>
+      <h2 id="sTitle"></h2>
+      <p class="why" id="sWhy"></p>
+      <div class="stats">
+        <div class="stat"><span class="k">Menu taps</span><div class="v"><s id="stTapsA"></s><em>→</em><strong>0</strong></div><span class="sub">today → with the agent</span><p class="note" id="stTapsNote"></p></div>
+        <div class="stat"><span class="k">Staff involved</span><div class="v"><s id="stStaffA"></s><em>→</em><strong id="stStaffB"></strong></div><span class="sub">today → with the agent</span><p class="note" id="stStaffNote"></p></div>
+      </div>
+      <div class="inbox">
+        <span class="k">Team inbox</span>
+        <div id="inbox"></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="rules" aria-labelledby="rulesH">
+    <div class="intro">
+      <span class="eyebrow">Handover rules</span>
+      <h2 id="rulesH">When a person takes over</h2>
+      <p>The agent answers what the studio has already decided: hours, addresses, booking, piece status, event basics. Anything that needs judgement goes to the team, with a summary, so the guest never has to repeat the story.</p>
+    </div>
+    <ul class="rlist">
+      <li><b>Complaints</b><span>Handed over at once, with the guest's words and order details.</span></li>
+      <li><b>Refunds and payment disputes</b><span>The agent never promises money back or a discount.</span></li>
+      <li><b>Changes a link can't handle</b><span>Moving a group, splitting a bill, special requests on a booking.</span></li>
+      <li><b>A photo of a damaged piece</b><span>Cracks, chips or glaze problems go straight to the team with the photo.</span></li>
+      <li><b>Large corporate events</b><span>The agent collects the basics; the team sends the quote.</span></li>
+      <li><b>The guest asks for a person</b><span>"אפשר לדבר עם נציג?" is honoured on the first ask.</span></li>
+      <li><b>Two unclear messages in a row</b><span>After two misses, the agent stops guessing and hands over.</span></li>
+      <li class="offhours">
+        <div><b>Outside opening hours and on Shabbat</b><p>The agent still answers the simple questions. For everything else it collects the request and promises a reply at the next opening hour.</p></div>
+        <div class="mini"><div class="row in"><div class="b" dir="rtl"><div class="tx">קיבלנו, תודה 🙏
+הצוות שלנו בחופשת שבת. רשמתי את כל הפרטים, ונחזור אליכם ביום ראשון ב־10:00, מיד כשנפתח 🥰</div><div class="meta">21:14</div></div></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <p class="fine">Prototype. Conversations are illustrative; real answers come from Color Café's own rules and prices. Opening hours, dates, order codes and reply times shown here are placeholders. The "today" replies reconstruct the current menu flow for comparison.</p>
+</main>
+<footer class="author-sign">Made by Dmitry Khinkis</footer>
+
+<script>
+(() => {
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = id => document.getElementById(id);
+
+const MENU = ["נעים להכיר","להזמנת מקום","מעבר לנציג","הזמנת ערכות צביעה","שינוי / ביטול הזמנה","אירוע פרטי / חברה","סטטוס כלים מוכנים","שעות פעילות ודרכי הגעה"];
+const GREETING = "היי 👋\nכאן הנציגה הדיגיטלית של Color Café - סטודיו לצביעת כלי קרמיקה.\nתודה שפנית אלינו 🥰";
+
+const ICON = {
+  list:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5.5 4h8M5.5 8h8M5.5 12h8"/><circle cx="2.3" cy="4" r=".6" fill="currentColor"/><circle cx="2.3" cy="8" r=".6" fill="currentColor"/><circle cx="2.3" cy="12" r=".6" fill="currentColor"/></svg>',
+  ext:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 2.5h4.5V7"/><path d="M13.5 2.5 7 9"/><path d="M11.5 9.5v4h-9v-9h4"/></svg>',
+  pin:'<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 15s5-4.6 5-8.5A5 5 0 0 0 3 6.5C3 10.4 8 15 8 15z"/><circle cx="8" cy="6.5" r="1.8"/></svg>',
+  ticks:'<svg viewBox="0 0 18 11" fill="none" stroke="#53bdeb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6l3 3 6-7"/><path d="M7.5 8.5 8.5 9.5l6-7.5"/></svg>'
+};
+
+const ART = {
+  mug:`<svg viewBox="0 0 240 170" role="img" aria-label="Photo of the finished mug">
+    <defs><clipPath id="mugc"><path d="M62 40h100v78c0 12-10 20-22 20H84c-12 0-22-8-22-20z"/></clipPath>
+    <linearGradient id="bgm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3EAE3"/><stop offset="1" stop-color="#E7D9CE"/></linearGradient></defs>
+    <rect width="240" height="170" fill="url(#bgm)"/>
+    <rect y="122" width="240" height="48" fill="#D6BFAE"/>
+    <path d="M0 122h240" stroke="#C4A893" stroke-width="1"/>
+    <ellipse cx="114" cy="139" rx="60" ry="8" fill="#523B2E" opacity=".16"/>
+    <path d="M160 60c30 0 32 50 0 50" fill="none" stroke="#E7DCD2" stroke-width="14" stroke-linecap="round"/>
+    <path d="M160 60c30 0 32 50 0 50" fill="none" stroke="#F8F2EC" stroke-width="9" stroke-linecap="round"/>
+    <path d="M62 40h100v78c0 12-10 20-22 20H84c-12 0-22-8-22-20z" fill="#F8F2EC"/>
+    <g clip-path="url(#mugc)">
+      <path d="M56 80c14-9 26 9 40 0s26 9 40 0 22 9 32 2v16c-10 7-18-2-32-2s-26 9-40 0-26-9-40 0z" fill="#214D57"/>
+      <g fill="#B77A5C"><circle cx="76" cy="58" r="4"/><circle cx="98" cy="54" r="4"/><circle cx="120" cy="58" r="4"/><circle cx="142" cy="54" r="4"/></g>
+      <g fill="#CCA3A3"><circle cx="80" cy="118" r="5"/><circle cx="104" cy="122" r="5"/><circle cx="128" cy="118" r="5"/><circle cx="150" cy="122" r="5"/></g>
+      <path d="M150 40v100" stroke="#523B2E" stroke-opacity=".06" stroke-width="16"/>
+    </g>
+    <ellipse cx="112" cy="40" rx="50" ry="8" fill="#EDE3DA"/>
+    <ellipse cx="112" cy="41" rx="44" ry="5.5" fill="#CDB8A9"/>
+    <path d="M73 52v56" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+    <text x="226" y="160" text-anchor="end" font-family="Georgia,serif" font-style="italic" font-size="10" fill="#8a6d5c">Y-4832-2</text>
+  </svg>`,
+  bowl:`<svg viewBox="0 0 240 170" role="img" aria-label="Photo of a cracked bowl">
+    <rect width="240" height="170" fill="#E9E3DD"/>
+    <rect y="118" width="240" height="52" fill="#CFC5BB"/>
+    <ellipse cx="120" cy="140" rx="76" ry="9" fill="#3a2a22" opacity=".16"/>
+    <path d="M48 70h144c0 42-32 66-72 66S48 112 48 70z" fill="#F4EEE8"/>
+    <path d="M52 88c20 8 116 8 136 0l-3 10c-22 8-108 8-130 0z" fill="#CCA3A3"/>
+    <ellipse cx="120" cy="70" rx="72" ry="13" fill="#ECE2D9"/>
+    <ellipse cx="120" cy="71" rx="64" ry="9" fill="#D5C4B6"/>
+    <path d="M122 60l-5 12 8 9-7 11 9 12-6 12 4 10" fill="none" stroke="#3b2820" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M125 81l10 5M118 92l-9 6" fill="none" stroke="#3b2820" stroke-width="1.2"/>
+  </svg>`,
+  map:`<svg viewBox="0 0 240 110" role="img" aria-label="Map preview">
+    <rect width="240" height="110" fill="#ECE6DF"/>
+    <path d="M0 70 240 38" stroke="#fff" stroke-width="10"/>
+    <path d="M70 0l40 110M170 0l-26 110" stroke="#fff" stroke-width="7"/>
+    <path d="M0 22h240" stroke="#fff" stroke-width="4"/>
+    <rect x="182" y="58" width="44" height="34" rx="6" fill="#d7e4d2"/>
+    <path d="M0 96c40-6 80 10 120 2" stroke="#cfe0ea" stroke-width="8" fill="none"/>
+    <path d="M128 60c0-10 16-10 16 0 0 7-8 15-8 15s-8-8-8-15z" fill="#B77A5C"/>
+    <circle cx="136" cy="60" r="3" fill="#fff"/>
+  </svg>`,
+  ontopo:`<svg viewBox="0 0 240 90" role="img" aria-label="Booking page preview">
+    <rect width="240" height="90" fill="#FAF7F5"/>
+    <rect x="16" y="18" width="92" height="10" rx="3" fill="#523B2E" opacity=".8"/>
+    <rect x="16" y="36" width="140" height="7" rx="3" fill="#A69992" opacity=".5"/>
+    <g font-family="Arial,sans-serif" font-size="11" fill="#523B2E">
+      <rect x="16" y="54" width="58" height="22" rx="11" fill="#fff" stroke="#eadfd9"/><text x="45" y="69" text-anchor="middle">4 👥</text>
+      <rect x="80" y="54" width="68" height="22" rx="11" fill="#fff" stroke="#eadfd9"/><text x="114" y="69" text-anchor="middle">Thu 1.10</text>
+      <rect x="154" y="54" width="70" height="22" rx="11" fill="#B77A5C"/><text x="189" y="69" text-anchor="middle" fill="#fff">17:00</text>
+    </g>
+  </svg>`
+};
+
+/* ---------- scenarios ---------- */
+/* step kinds: g = guest, a = agent (typing), b = menu bot (instant), sheet = list pick, sys = system chip, ho = handover */
+const S = [
+ { id:"hours", tab:"Hours & directions", q:"אתם פתוחים בשישי בבן יהודה?",
+   title:"Hours & directions",
+   why:"The guest asked about one branch on one day. Today they get every branch's hours and have to find the answer themselves. The agent answers the actual question and adds the map pin.",
+   taps:2, tapsNote:"Open the menu, pick a topic. The reply is the same for every guest.",
+   staff:["No","No"], staffNote:"Neither needs the team. The agent's answer is simply specific.",
+   left:[
+     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?"},
+     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"sheet", item:"שעות פעילות ודרכי הגעה", t:"12:52"},
+     {k:"b", t:"12:52", text:"שעות הפעילות שלנו:\n\nירמיהו 46, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nבן יהודה 215, תל אביב\nא׳–ה׳ 10:00–22:00\nו׳ 9:00–15:00 · ש׳ 10:00–20:00\n\nסוקולוב 40, הוד השרון\nא׳–ה׳ 10:00–21:00\nו׳ 9:00–14:00 · ש׳ 10:00–20:00\n\nלפרטים נוספים: www.colorcafe.shop"}
+   ],
+   right:[
+     {k:"g", t:"12:51", text:"היי, אתם פתוחים ביום שישי בבן יהודה?"},
+     {k:"a", t:"12:51", text:"היי 👋 כן! ביום שישי אנחנו פתוחים בבן יהודה 215 מ־9:00 עד 15:00.\nמומלץ להגיע עד 13:30, כדי שיישאר מספיק זמן לצבוע בנחת 🎨"},
+     {k:"a", t:"12:51", rich:"map"},
+     {k:"g", t:"12:52", text:"מעולה, תודה!"},
+     {k:"a", t:"12:52", text:"בכיף! נתראה בשישי 🥰"}
+   ]},
+ { id:"book", tab:"Booking a table", q:"מקום ל־4 מחר ב־17:00 בהוד השרון?",
+   title:"Booking a table",
+   why:"The guest already said who, when and where. Today the bot sends a bare link and they type it all again in Ontopo. The agent checks the details back and sends a link with everything filled in.",
+   taps:6, tapsNote:"2 in the chat, then branch, date, time and party size again inside Ontopo.",
+   staff:["No","No"], staffNote:"Booking stays self-service in both cases. Only the effort changes.",
+   left:[
+     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?"},
+     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"sheet", item:"להזמנת מקום", t:"12:52"},
+     {k:"b", t:"12:52", rich:"ontopoGeneric"}
+   ],
+   right:[
+     {k:"g", t:"12:51", text:"היי, אפשר להזמין מקום ל־4 אנשים מחר ב־17:00 בהוד השרון?"},
+     {k:"a", t:"12:51", text:"היי 👋 בשמחה! רק מוודאת שהבנתי נכון:\n📍 סוקולוב 40, הוד השרון\n📅 מחר, יום חמישי, ב־17:00\n👥 4 אנשים\nהכול נכון?"},
+     {k:"g", t:"12:52", text:"כן, מושלם"},
+     {k:"a", t:"12:52", rich:"ontopoFilled"},
+     {k:"a", t:"12:52", text:"אם יהיה שינוי, פשוט כתבו לי כאן 🙂"}
+   ]},
+ { id:"piece", tab:"Is my piece ready?", q:"הספל שצבענו כבר מוכן?",
+   title:"Is my piece ready?",
+   why:"The most common question after a visit. Today it ends with \"pass to a representative\", and someone at the studio goes to look. The agent finds the piece by phone or code and answers on the spot.",
+   taps:4, tapsNote:"Menu, status topic, then the menu again to reach a representative.",
+   staff:["Yes","No"], staffNote:"Today someone checks the shelf by hand. The agent reads the status the team already logs.",
+   variant:true,
+   left:[
+     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן"},
+     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"sheet", item:"סטטוס כלים מוכנים", t:"12:52"},
+     {k:"b", t:"12:52", text:"הכלים מוכנים לאיסוף כשבועיים אחרי הצביעה ✨\nלבירור לגבי כלי מסוים, בחרו \"מעבר לנציג\" בתפריט.", menu:true},
+     {k:"sheet", item:"מעבר לנציג", t:"12:52"},
+     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏"}
+   ],
+   right:[
+     {k:"g", t:"12:51", text:"היי, רציתי לבדוק אם הספל שצבענו כבר מוכן"},
+     {k:"a", t:"12:51", text:"היי 👋 בשמחה אבדוק! מה מספר הטלפון שאיתו הזמנתם, או הקוד שמופיע על הפתק?"},
+     {k:"g", t:"12:52", text:"Y-4832-2"},
+     {k:"variant"}
+   ],
+   kiln:[
+     {k:"a", t:"12:52", rich:"statusKiln"},
+     {k:"a", t:"12:52", text:"אשלח לכם הודעה כאן ברגע שהוא יוצא מהתנור 🥰"}
+   ],
+   ready:[
+     {k:"a", t:"12:52", rich:"statusReady"},
+     {k:"a", t:"12:52", rich:"photoMug"},
+     {k:"a", t:"12:52", text:"אפשר לאסוף בשעות הפעילות, פשוט אמרו את השם בקופה 🙂"}
+   ]},
+ { id:"party", tab:"Kids' birthday", q:"יום הולדת עם 12 ילדים, אפשר?",
+   title:"Birthday for 12 kids",
+   why:"Events need a person for the quote, but not for the questions. The agent gathers date, branch, age and head count in a few friendly turns, then hands the team a request that is ready to price.",
+   taps:2, tapsNote:"Then the guest types a free-form message and waits.",
+   staff:["Yes","Yes"], staffNote:"Today the team starts from a raw message and calls back to ask. With the agent they start from a complete request.",
+   left:[
+     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?"},
+     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"sheet", item:"אירוע פרטי / חברה", t:"12:52"},
+     {k:"b", t:"12:52", text:"נשמח לארח אתכם! 🎉\nלתיאום אירוע, כתבו לנו שם, טלפון, תאריך ומספר משתתפים, ונציג יחזור אליכם."},
+     {k:"g", t:"12:53", text:"יום הולדת 8, 12 ילדים, שישי 16.10 בבוקר, הוד השרון"},
+     {k:"b", t:"12:53", text:"תודה! נציג יחזור אליכם בהקדם 🙏"}
+   ],
+   right:[
+     {k:"g", t:"12:51", text:"היי! אני רוצה לחגוג לבת שלי יום הולדת בסטודיו, עם 12 ילדים. אפשר?"},
+     {k:"a", t:"12:51", text:"איזה כיף, מזל טוב מראש! 🎉\nבשמחה נארח אתכם. כמה פרטים קטנים, ואעביר לצוות האירועים בקשה מסודרת.\nבאיזה תאריך חשבתם, ובאיזה סניף?"},
+     {k:"g", t:"12:52", text:"יום שישי, 16.10, בהוד השרון"},
+     {k:"a", t:"12:52", text:"מעולה! בת כמה היא חוגגת, ובאיזו שעה נוח לכם להגיע?"},
+     {k:"g", t:"12:53", text:"בת 8, בסביבות 10:00"},
+     {k:"a", t:"12:53", text:"רשמתי הכול ✍️\n🎂 יום הולדת 8\n📅 שישי, 16.10, ב־10:00\n📍 סוקולוב 40, הוד השרון\n👥 12 ילדים\n\nהעברתי את הבקשה לצוות האירועים. הם יחזרו אליכם עם הצעה מסודרת עד מחר ב־12:00 🥰"},
+     {k:"sys", text:"Request sent to the Color Café team"},
+     {k:"ho"}
+   ],
+   handover:{prio:["normal","New event"], title:"Kids' birthday, age 8",
+     rows:[["Date","Fri 16 Oct, around 10:00"],["Branch","Sokolov 40, Hod HaSharon"],["Guests","12 kids"],["Contact","WhatsApp · +972 54-318-2270"],["Guest's words",'<span class="he" dir="rtl">"רוצה לחגוג לבת שלי יום הולדת בסטודיו"</span>'],["Next step","Send a quote and hold the slot"]],
+     reply:"by tomorrow 12:00"}
+ },
+ { id:"complaint", tab:"Complaint", q:"הקערה יצאה סדוקה 😞",
+   title:"A cracked piece",
+   why:"This is exactly where a person should step in. The agent does not argue or promise anything. It apologises, hands over at once and tells the guest when they will hear back.",
+   taps:2, tapsNote:"Menu, then \"pass to a representative\". No reply time is given.",
+   staff:["Yes","Yes"], staffNote:"The team replies either way. With the agent they get the photo, the order and a promised time.",
+   left:[
+     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞"},
+     {k:"b", t:"12:51", text:GREETING, menu:true},
+     {k:"sheet", item:"מעבר לנציג", t:"12:52"},
+     {k:"b", t:"12:52", text:"הפנייה הועברה לנציג, נחזור אליכם בהקדם 🙏"},
+     {k:"g", t:"12:52", rich:"photoBowl"}
+   ],
+   right:[
+     {k:"g", t:"12:51", text:"היי, אספנו אתמול את הקערה מבן יהודה והיא סדוקה לגמרי 😞"},
+     {k:"g", t:"12:51", rich:"photoBowl"},
+     {k:"a", t:"12:51", text:"אוי, ממש מצטערת לשמוע 😔\nאני מעבירה עכשיו את הפנייה לצוות שלנו, יחד עם התמונה וכל הפרטים, כדי שלא תצטרכו להסביר הכול מחדש.\nהם יחזרו אליכם היום עד 14:00."},
+     {k:"sys", text:"Handed over to the Color Café team"},
+     {k:"ho"}
+   ],
+   handover:{prio:["urgent","Urgent"], title:"Damaged piece: cracked bowl",
+     rows:[["Branch","Ben Yehuda 215, Tel Aviv"],["Order","Found by phone · picked up yesterday"],["Attached","1 photo of the crack"],["Guest mood","Upset"],["Contact","WhatsApp · +972 52-488-1190"],["Agent did not","Offer a refund or a remake. That is the team's call."]],
+     reply:"today by 14:00"}
+ }
+];
+
+/* ---------- rich content ---------- */
+function rich(name){
+  const w = document.createElement("div");
+  switch(name){
+    case "map":
+      w.innerHTML = `<div class="card">${ART.map}<div class="ct"><b>Color Café · בן יהודה 215</b><small>בן יהודה 215, תל אביב</small></div></div><a class="cta" href="#">${ICON.pin}פתיחה במפות</a>`;
+      break;
+    case "ontopoGeneric":
+      w.innerHTML = `<div class="tx">להזמנת מקום בסטודיו, היכנסו לקישור ובחרו סניף, תאריך, שעה ומספר משתתפים 👇</div><div class="card" style="margin-top:6px"><div class="ct"><b>Color Café · Ontopo</b><small>ontopo.com</small></div></div><a class="cta" href="#">${ICON.ext}להזמנה</a>`;
+      break;
+    case "ontopoFilled":
+      w.innerHTML = `<div class="tx">הכנתי לכם קישור להזמנה, וכל הפרטים כבר ממולאים. נשאר רק לאשר 👇</div><div class="card" style="margin-top:6px">${ART.ontopo}<div class="ct"><b>Color Café הוד השרון · Ontopo</b><small>4 אנשים · מחר · 17:00</small></div></div><a class="cta" href="#" title="https://ontopo.com/he/il/page/...">${ICON.ext}להשלמת ההזמנה</a>`;
+      break;
+    case "statusKiln":
+      w.innerHTML = `<div class="tx">מצאתי 🙂 הספל שצבעתם ב־24.9 בירמיהו 46 נמצא עכשיו בתנור 🔥</div><div class="status"><code>Y-4832-2</code><div class="steps"><span class="done">נצבע</span><span class="now">בתנור</span><span>מוכן לאיסוף</span></div><div class="eta">צפוי להיות מוכן: <b>יום חמישי, 22.10</b></div></div>`;
+      break;
+    case "statusReady":
+      w.innerHTML = `<div class="tx">חדשות טובות! הספל שלכם מוכן ומחכה לכם בירמיהו 46 ✨</div><div class="status"><code>Y-4832-2</code><div class="steps"><span class="done">נצבע</span><span class="done">נשרף בתנור</span><span class="done">מוכן לאיסוף</span></div></div>`;
+      break;
+    case "photoMug":
+      w.innerHTML = `<div class="photo">${ART.mug}</div><div class="tx">ככה הוא יצא מהתנור 😍</div>`;
+      w.dataset.pic = "1"; break;
+    case "photoBowl":
+      w.innerHTML = `<div class="photo">${ART.bowl}</div>`;
+      w.dataset.pic = "1"; break;
+  }
+  w.querySelectorAll("a.cta").forEach(a => a.addEventListener("click", e => e.preventDefault()));
+  return w;
+}
+
+/* ---------- chat helpers ---------- */
+function scrollDown(chat){ chat.scrollTo({top:chat.scrollHeight, behavior: reduce ? "auto" : "smooth"}); }
+function addBubble(chat, step, dirOut){
+  const row = document.createElement("div");
+  row.className = "row " + (dirOut ? "out" : "in");
+  const b = document.createElement("div");
+  b.className = "b"; b.dir = "rtl";
+  if(step.rich){
+    const r = rich(step.rich);
+    if(r.dataset.pic) b.classList.add("pic");
+    while(r.firstChild) b.appendChild(r.firstChild);
+  } else {
+    const tx = document.createElement("div"); tx.className = "tx"; tx.textContent = step.text; b.appendChild(tx);
+  }
+  const meta = document.createElement("div"); meta.className = "meta";
+  meta.innerHTML = step.t + (dirOut ? ICON.ticks : "");
+  b.appendChild(meta);
+  if(step.menu){
+    const m = document.createElement("span"); m.className = "wa-menu"; m.innerHTML = ICON.list + "<span>הגיבו</span>";
+    b.appendChild(m);
+  }
+  row.appendChild(b); chat.appendChild(row); scrollDown(chat);
+  return b;
+}
+function addSys(chat, text){ const d = document.createElement("div"); d.className = "sys"; d.textContent = text; chat.appendChild(d); scrollDown(chat); }
+function addTyping(chat){
+  const row = document.createElement("div"); row.className = "row in";
+  row.innerHTML = '<div class="b typing" aria-label="typing"><i></i><i></i><i></i></div>';
+  chat.appendChild(row); scrollDown(chat); return row;
+}
+function dayChip(chat){ const d = document.createElement("div"); d.className = "day"; d.textContent = "Today"; chat.appendChild(d); }
+
+/* ---------- runner ---------- */
+let run = 0, current = 0, variant = "kiln", tapsL = 0;
+const wait = (ms, id) => new Promise((res, rej) => { if(reduce) return id === run ? res() : rej(); setTimeout(() => id === run ? res() : rej("stale"), ms); });
+
+function setTaps(n){ tapsL = n; const el = $("tapsL"); el.textContent = n; el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); }
+
+async function runLeft(sc, id){
+  const chat = $("chatL"), sheet = $("sheetL"), list = $("sheetList");
+  for(const st of sc.left){
+    if(st.k === "g"){ await wait(700, id); addBubble(chat, st, true); }
+    else if(st.k === "b"){ await wait(550, id); addBubble(chat, st, false); }
+    else if(st.k === "sheet"){
+      await wait(1000, id);
+      const btns = chat.querySelectorAll(".wa-menu"); const btn = btns[btns.length - 1];
+      if(btn){ btn.classList.remove("tap"); void btn.offsetWidth; btn.classList.add("tap"); }
+      setTaps(tapsL + 1);
+      await wait(250, id);
+      list.innerHTML = MENU.map(m => `<li dir="rtl">${m}</li>`).join("");
+      sheet.classList.add("on");
+      await wait(1100, id);
+      const li = [...list.children].find(x => x.textContent === st.item);
+      if(li) li.classList.add("hit");
+      setTaps(tapsL + 1);
+      await wait(450, id);
+      sheet.classList.remove("on");
+      await wait(250, id);
+      addBubble(chat, {text:st.item, t:st.t}, true);
+    }
+  }
+}
+
+async function runRight(sc, id){
+  const chat = $("chatR"), status = $("statusR");
+  let steps = sc.right.slice();
+  const i = steps.findIndex(s => s.k === "variant");
+  if(i > -1) steps.splice(i, 1, ...(variant === "kiln" ? sc.kiln : sc.ready));
+  for(const st of steps){
+    if(st.k === "g"){ await wait(750, id); addBubble(chat, st, true); }
+    else if(st.k === "a"){
+      await wait(450, id);
+      const typing = addTyping(chat); status.textContent = "typing…"; status.classList.add("typing");
+      const len = st.text ? st.text.length : 90;
+      try { await wait(Math.min(1900, 700 + len * 9), id); }
+      finally { typing.remove(); status.textContent = "online"; status.classList.remove("typing"); }
+      addBubble(chat, st, false);
+    }
+    else if(st.k === "sys"){ await wait(500, id); addSys(chat, st.text); }
+    else if(st.k === "ho"){ await wait(300, id); showHandover(sc); }
+  }
+}
+
+function showHandover(sc){
+  const h = sc.handover;
+  $("inbox").innerHTML = `<article class="handover">
+    <header><span>Handover card · visible to staff only</span><span class="prio ${h.prio[0]}">${h.prio[1]}</span></header>
+    <h4>${h.title}</h4>
+    <dl>${h.rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("")}</dl>
+    <footer><span>Promised to the guest</span><b>Reply ${h.reply}</b></footer>
+  </article>`;
+}
+
+function renderPanel(sc){
+  $("sTitle").textContent = sc.title;
+  $("sWhy").textContent = sc.why;
+  $("stTapsA").textContent = sc.taps;
+  $("stTapsNote").textContent = sc.tapsNote;
+  $("stStaffA").textContent = sc.staff[0];
+  $("stStaffB").textContent = sc.staff[1];
+  $("stStaffNote").textContent = sc.staffNote;
+  $("variant").hidden = !sc.variant;
+  $("inbox").innerHTML = sc.handover
+    ? '<p class="empty">The handover card appears here the moment the agent passes the conversation on.</p>'
+    : '<p class="empty">No handover needed. The agent answered from the studio\'s own information.</p>';
+}
+
+function play(){
+  const id = ++run, sc = S[current];
+  $("chatL").innerHTML = ""; $("chatR").innerHTML = "";
+  dayChip($("chatL")); dayChip($("chatR"));
+  $("sheetL").classList.remove("on");
+  tapsL = 0; $("tapsL").textContent = "0";
+  $("statusR").textContent = "online"; $("statusR").classList.remove("typing");
+  renderPanel(sc);
+  runLeft(sc, id).catch(() => {});
+  runRight(sc, id).catch(() => {});
+}
+
+/* ---------- picker ---------- */
+const picker = $("picker");
+S.forEach((sc, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "pick"; b.id = "tab-" + sc.id; b.setAttribute("role", "tab");
+  b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+  b.innerHTML = `<b>${sc.tab}</b><span dir="rtl">${sc.q}</span>`;
+  b.addEventListener("click", () => select(i));
+  b.addEventListener("keydown", e => {
+    if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
+      const n = (i + (e.key === "ArrowRight" ? 1 : -1) + S.length) % S.length;
+      select(n); picker.children[n].focus();
+    }
+  });
+  picker.appendChild(b);
+});
+function select(i){
+  current = i;
+  [...picker.children].forEach((b, j) => b.setAttribute("aria-selected", j === i ? "true" : "false"));
+  play();
+}
+$("replay").addEventListener("click", play);
+function setVariant(v){ variant = v; $("vKiln").setAttribute("aria-pressed", v === "kiln"); $("vReady").setAttribute("aria-pressed", v === "ready"); play(); }
+$("vKiln").addEventListener("click", () => setVariant("kiln"));
+$("vReady").addEventListener("click", () => setVariant("ready"));
+
+const h = location.hash.slice(1).split("-");
+const hi = S.findIndex(x => x.id === h[0]);
+if(hi > 0){ current = hi; [...picker.children].forEach((b, j) => b.setAttribute("aria-selected", j === hi ? "true" : "false")); }
+if(h[1] === "ready"){ variant = "ready"; $("vKiln").setAttribute("aria-pressed", false); $("vReady").setAttribute("aria-pressed", true); }
+play();
+})();
+</script>
+</body>
+</html>
