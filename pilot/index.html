@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Color Café · Pilot Month Proposal</title>
+<meta name="description" content="Pilot month for Color Café, 5 to 30 October 2026: a WhatsApp AI agent and piece tracking.">
+<meta property="og:title" content="Color Café · Pilot Month Proposal">
+<meta property="og:description" content="5 to 30 October 2026: a WhatsApp AI agent and piece tracking in one branch.">
+<meta property="og:image" content="https://khinkis13-rgb.github.io/colorcafe-os/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --milk:#FAF7F5; --cocoa:#523B2E; --terra:#B77A5C; --rose:#CCA3A3; --blush:#E3D1CF;
+  --taupe:#A69992; --ink-soft:#7d6558; --line:#eadfd9; --white:#fff; --ok:#3f7d6a;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Poppins",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{min-height:100vh}
+body{margin:0;background:var(--milk);color:var(--cocoa);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+main{width:100%;max-width:880px;margin:0 auto;padding:56px 20px 40px;flex:1}
+h1,h2{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(40px,7vw,64px)}
+h2{font-size:clamp(30px,4.6vw,42px);margin:64px 0 18px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:500}
+.meta{color:var(--taupe);font-size:14px;margin-top:14px}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--ink-soft);margin:22px 0 0;max-width:720px}
+p{margin:0 0 14px}
+b,strong{font-weight:500}
+a{color:var(--terra)}
+code{font-family:ui-monospace,Menlo,monospace;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:.92em}
+ol,ul{padding-left:22px;margin:0 0 16px}
+li{margin-bottom:8px}
+.card{background:var(--white);border-radius:22px;padding:24px 26px;box-shadow:0 8px 24px -14px rgba(82,59,46,.35);margin:18px 0}
+.tw{overflow-x:auto;margin:14px 0 18px;border-radius:18px;background:var(--white);box-shadow:0 8px 24px -14px rgba(82,59,46,.35)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:13px 16px;border-bottom:1px solid var(--line)}
+th{font-weight:500;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);background:#fdfbfa}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:400}
+.note{color:var(--ink-soft);font-size:15px}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0 8px}
+.wk{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px}
+.wk.live{border:2px solid var(--terra);background:#fbf1ec}
+.wk h3{font-family:var(--sans);font-weight:500;font-size:16px;margin:0}
+.wk .d{color:var(--taupe);font-size:13px;margin:2px 0 12px}
+.wk ul{list-style:none;padding:0;margin:0;font-size:14px}
+.wk li{margin-bottom:4px}
+.gate{margin-top:14px;padding-top:12px;border-top:1px dashed var(--rose);font-size:12.5px;color:var(--ink-soft)}
+.gate::before{content:"◆ ";color:var(--terra)}
+.checks{list-style:none;padding:0}
+.checks li{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);margin:0}
+.checks li:last-child{border-bottom:0}
+.checks .by{margin-left:auto;white-space:nowrap;font-size:13px;color:var(--terra);font-weight:500}
+.box{width:14px;height:14px;border:1.5px solid var(--taupe);border-radius:4px;flex:0 0 auto;transform:translateY(2px)}
+.price{font-family:var(--serif);font-size:30px;font-weight:600}
+.src{font-size:13px;color:var(--taupe)}
+.author-sign{margin-top:auto;text-align:center;font-size:11px;color:var(--taupe);opacity:.7;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+@media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.tl{grid-template-columns:1fr}.checks li{flex-wrap:wrap}.checks .by{margin-left:26px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Color Café · Pilot month</div>
+  <h1>One month to take the load off WhatsApp and put every piece on the map</h1>
+  <div class="meta">Prepared by Dmitry Khinkis · 30 September 2026</div>
+  <p class="lead">5 to 30 October 2026. We fix the two pains that hurt most today, measure the result, and then decide together how to work after that.</p>
+
+  <h2>Why this month</h2>
+  <p>At our meeting on 30 September we agreed on the two biggest pains:</p>
+  <ol>
+    <li><b>WhatsApp and phone.</b> About 200 messages come in, and two team members answer non-stop. Most questions repeat: hours, directions, booking, home kits, "is my piece ready?". The current menu bot makes guests tap through 8 options, and most give up and wait for a person.</li>
+    <li><b>Pieces and stock.</b> A piece waits 4 to 6 weeks between painting and pickup, and nobody can see where it is. Big bisque shipments arrive in boxes with no inventory control. Management has no single view of what is where.</li>
+  </ol>
+  <p>I checked your three nearby competitors (<a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>). None of them tracks pieces or tells guests where their piece is. Clay Play's FAQ even has "what if I didn't get the pickup message?". Getting this right makes Color Café the studio that always knows where your piece is.</p>
+
+  <h2>What you get by 30 October</h2>
+  <div class="tw"><table>
+    <tr><th>Outcome</th><th>How we measure it</th></tr>
+    <tr><td>An AI agent answers on your WhatsApp number in Hebrew, English and Russian</td><td>At least 50% of conversations on the agreed topics are solved without staff and without a repeat question within 72 hours, over 5 working days. Zero critical mistakes: wrong price, wrong address, a promise you can't keep</td></tr>
+    <tr><td>Staff work in one shared inbox and get only the conversations that need a person</td><td>Every handover arrives with a short summary, so the guest never repeats themselves</td></tr>
+    <tr><td>Piece tracking runs in one branch: drop-off, kiln, ready</td><td>The current shelf queue is in the system; guests get a "your piece is ready" WhatsApp with a photo; the agent answers "is it ready?" from real data</td></tr>
+    <tr><td>The labeling method is tested in your own kiln</td><td>20 real pieces through a full firing; the code must be readable on 100% of them</td></tr>
+    <tr><td>A written design for the bisque warehouse and the management dashboard</td><td>Ready to build in the next stage</td></tr>
+    <tr><td>A report with before and after numbers</td><td>Messages per topic, share solved by the agent, first response time, handovers and why</td></tr>
+  </table></div>
+  <p class="note">Phone calls are not part of the pilot. They should drop once guests get answers and status updates on WhatsApp, but we don't promise a number.</p>
+
+  <h2>How the WhatsApp agent works</h2>
+  <p>The guest just writes, the way they would write to a person. No menus. The agent answers from your own rules and prices, in the guest's language, and stays strictly on studio topics.</p>
+  <div class="tw"><table>
+    <tr><th>Guest asks</th><th>Today</th><th>With the agent</th></tr>
+    <tr><td>"Are you open on Friday in Ben Yehuda?"</td><td>Opens the menu, finds "hours and directions", reads a long text</td><td>Gets the Friday hours for that branch and a map link in one reply</td></tr>
+    <tr><td>"Table for 4 tomorrow at 17:00, Hod HaSharon"</td><td>Menu, then a link, then starts over in Ontopo</td><td>Gets a direct Ontopo link for that branch, date and group size</td></tr>
+    <tr><td>"Is my mug ready?"</td><td>Menu option, then waits for staff to check the shelf</td><td>Gets the real status and the expected date. When ready: a photo of the finished piece</td></tr>
+    <tr><td>"Birthday for 12 kids in November"</td><td>Waits for staff</td><td>The agent asks date, branch, age and number of kids, then hands a ready lead to staff</td></tr>
+    <tr><td>A complaint or refund</td><td>Waits for staff</td><td>Goes straight to a person, with a summary</td></tr>
+  </table></div>
+  <p><b>When a person takes over.</b> Always: complaints, refunds and payment disputes, changes that can't be made by link, a photo of a damaged piece, large corporate events, a guest asking for a person, or two unclear messages in a row. The agent tells the guest honestly: "I'm passing you to our team, they'll reply by 14:00." After that it stays quiet until staff close the chat or hand it back.</p>
+  <p><b>Outside working hours and on Shabbat</b> the agent collects the request and promises a reply at the next opening hour.</p>
+  <p><b>Safe rollout.</b> Week 2: the agent only drafts replies and staff press send. Week 3: it answers by itself only on the safe topics you approve. Everything else stays with staff. One switch turns the agent off, and staff keep answering from the same inbox.</p>
+
+  <h2>Piece tracking and labels</h2>
+  <p>Paper can't go into the kiln, so the piece carries its own short code on the bottom. The rule for the whole process: at most one new action per stage, under 10 seconds.</p>
+  <ol>
+    <li><b>Drop-off.</b> Staff write a short code, like <code>Y483</code>, on the bottom with an underglaze pencil. This replaces the name you write today. In the app: guest phone, code, and a tick "send me a WhatsApp when it's ready".</li>
+    <li><b>Glaze and kiln.</b> The piece goes as usual. No labels, no load sheets.</li>
+    <li><b>Unloading.</b> Staff type or pick the code in the app and tap "ready". One photo of the whole shelf, not piece by piece. The guest gets the message.</li>
+    <li><b>Pickup.</b> Find by phone or code, tap "picked up". A QR sticker on the pickup bag only if it proves useful.</li>
+  </ol>
+  <div class="card">
+    <p><b>The kiln test comes first, in week 1.</b> 20 real pieces through a full firing: 2 to 3 pencils and pens, dipped and sponged bottoms, wax, small pieces, pieces with a painted bottom. If the code does not survive on 100% of them, we switch to a photo grid of each kiln shelf. Only after that do we build the app around the method that works.</p>
+    <p style="margin:0"><b>Bisque boxes</b> get a label per box or per batch, never per piece. A piece gets its code only when a guest paints it. If you have one central kiln, we add an "in transit" step marked per batch.</p>
+  </div>
+
+  <h2>Timeline</h2>
+  <p>The agent goes live in week 3, after a week of shadow mode. Each ◆ is a go or no-go check.</p>
+  <div class="tl">
+    <div class="wk"><h3>Data in</h3><div class="d">Week 1 · 5–9 Oct</div><ul><li>Knowledge base v1</li><li>Number move started</li><li>Kiln test fired</li><li>"Ready" template filed with Meta</li></ul><div class="gate">Data and access in</div></div>
+    <div class="wk"><h3>Shadow mode</h3><div class="d">Week 2 · 12–16 Oct</div><ul><li>Agent drafts replies</li><li>Staff press send</li><li>Shelf queue entered</li></ul><div class="gate">80% of drafts OK, 0 critical errors</div></div>
+    <div class="wk live"><h3>Agent live</h3><div class="d">Week 3 · 19–23 Oct</div><ul><li>Answers safe topics</li><li>Tracking in 1 branch</li><li>First "ready" messages</li></ul><div class="gate">Tracking works</div></div>
+    <div class="wk"><h3>Measure</h3><div class="d">Week 4 · 26–30 Oct</div><ul><li>5 days of numbers</li><li>Warehouse design</li><li>Report and decision</li></ul><div class="gate">Next format chosen</div></div>
+  </div>
+  <p class="note">If a check fails, we stop and fix it before moving on. A late check moves the dates after it, not the scope.</p>
+
+  <h2>What we need from you</h2>
+  <p>The dates matter: the pilot moves by the same number of days if something arrives late.</p>
+  <ul class="checks">
+    <li><span class="box"></span><span>WhatsApp chat export for the last 1 to 2 months. It becomes the agent's knowledge base and the test set</span><span class="by">7 Oct</span></li>
+    <li><span class="box"></span><span>Who runs the current bot, and who owns the Meta Business account</span><span class="by">7 Oct</span></li>
+    <li><span class="box"></span><span>Hours, prices and rules per branch, plus the pickup deadline and express firing price</span><span class="by">7 Oct</span></li>
+    <li><span class="box"></span><span>The 200 messages: per day or per week? How many calls?</span><span class="by">7 Oct</span></li>
+    <li><span class="box"></span><span>Which branch is the pilot branch, its pieces per month, and how kilns are set up</span><span class="by">7 Oct</span></li>
+    <li><span class="box"></span><span>Admin access to Meta Business and your OK to move the number to the new system</span><span class="by">9 Oct</span></li>
+    <li><span class="box"></span><span>20 pieces for the kiln test</span><span class="by">9 Oct</span></li>
+    <li><span class="box"></span><span>A signed data processing agreement (see Privacy)</span><span class="by">9 Oct</span></li>
+  </ul>
+  <p class="note">From your team: no more than 2 hours a week. Reference answers come from their real replies in the export, not from new writing. One Hebrew speaker on your side reviews a sample of the agent's replies each week.</p>
+
+  <h2>Not in the pilot</h2>
+  <p>These are real needs, but they go into the next stage, so the month stays focused:</p>
+  <ul>
+    <li>Tracking in the other three branches</li>
+    <li>A working management dashboard and warehouse system (the pilot delivers their design)</li>
+    <li>Creating bookings inside Ontopo. Ontopo has no public API, so we ask for partner access; until then the agent sends a direct link</li>
+    <li>POS and ValueCard integrations</li>
+    <li>BISQUE B2B automation: account approval, bank-transfer payments, special orders, back-in-stock alerts</li>
+    <li>Loyalty club, website changes, phone calls</li>
+  </ul>
+
+  <h2>Privacy and data</h2>
+  <p>The work follows Israel's Privacy Protection Law, including Amendment 13 (in force since August 2025).</p>
+  <ul>
+    <li>Color Café owns all guest data. We sign a data processing agreement before I receive any export.</li>
+    <li>Phone numbers and names are removed from the export before it is used to train or test the agent.</li>
+    <li>The inbox runs on a server registered to Color Café. Access is limited to your team and me.</li>
+    <li>A guest gets a "ready" message only after ticking the consent box at drop-off. Marketing messages need separate consent and are not part of the pilot.</li>
+  </ul>
+
+  <h2>Price and how we work after the pilot</h2>
+  <div class="card">
+    <div class="eyebrow">Pilot month · one fixed milestone</div>
+    <div class="price">₪ ______</div>
+    <p style="margin:6px 0 0">For everything in "What you get by 30 October". Running costs are paid directly by Color Café, so all accounts stay in your name.</p>
+  </div>
+  <div class="tw"><table>
+    <tr><th>Running cost</th><th>Estimate per month</th></tr>
+    <tr><td>Server for the inbox and the app, database, AI usage</td><td>₪300 to ₪800 in total</td></tr>
+    <tr><td>WhatsApp messages</td><td>Replies to guests are free within 24 hours; each "ready" notification costs about $0.005</td></tr>
+  </table></div>
+  <p>After the pilot there are two ways to continue:</p>
+  <div class="tw"><table>
+    <tr><th></th><th>Milestones</th><th>Monthly retainer</th></tr>
+    <tr><td>How it works</td><td>Fixed scope, date and price per stage</td><td>Fixed monthly fee with a set number of hours, tasks by your priority</td></tr>
+    <tr><td>New requests</td><td>Priced separately, wait for their stage</td><td>Taken in as they come, in parallel with the main plan</td></tr>
+    <tr><td>Best when</td><td>You want to know the price of each result</td><td>New small tasks keep coming up</td></tr>
+    <tr><td>Your risk</td><td>You pay for the whole stage even if needs change on the way</td><td>Some months have less work than others</td></tr>
+  </table></div>
+  <p><b>My recommendation: a monthly retainer after the pilot.</b> You run two businesses, Color Café and BISQUE, and the list after the pilot is already longer than one stage: three more branches, the warehouse, BISQUE B2B, the loyalty club, the website. With milestones, each small improvement becomes a new negotiation. The final choice is yours, based on what the pilot shows.</p>
+
+  <h2>Found along the way</h2>
+  <ul>
+    <li><b>BISQUE wholesale prices are publicly visible.</b> The site hides prices from unapproved visitors, but a standard Shopify data address still shows all 311 products with prices to anyone. It takes about an hour to close, and I can help.</li>
+    <li><b>Clay House is both a competitor and a BISQUE customer.</b> It is on the "our customers" list on bisque.co.il. Worth keeping in mind for B2B pricing.</li>
+    <li><b>Clay Play in Hod HaSharon</b> promises pickup "within 6 weeks at most" and admits in its FAQ that pickup messages get lost. It is the direct rival of the Sokolov 40 branch.</li>
+  </ul>
+  <p class="src">Sources: <a href="https://www.claylatlv.com">Clayla</a>, <a href="https://www.clayhousetlv.com">Clay House</a>, <a href="https://www.clayplay.co.il">Clay Play</a>, <a href="https://bisque.co.il/collections/%D7%91%D7%99%D7%A1%D7%A7%D7%99%D7%9D">BISQUE</a>, <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing">Meta WhatsApp pricing</a>. Checked on 30 September 2026. Concept page: <a href="../">Color Café OS</a>.</p>
+</main>
+<footer class="author-sign">Made by Dmitry Khinkis</footer>
+</body>
+</html>
