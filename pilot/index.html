@@ -66,6 +66,11 @@ td:first-child{font-weight:400}
 .lk-t::after{content:" \2192";color:var(--terra)}
 .lk-d{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;line-height:1.5}
 @media (max-width:600px){.links{grid-template-columns:1fr}}
+.live-embed{margin:18px 0 12px;border-radius:24px;overflow:hidden;background:var(--white);box-shadow:0 8px 24px -14px rgba(82,59,46,.35)}
+.live-embed iframe{display:block;width:100%;height:1560px;border:0}
+@media (min-width:1260px){.live-embed{width:1200px;margin-left:50%;transform:translateX(-50%)}.live-embed iframe{height:900px}}
+.proto-cta{margin:0 0 18px}
+@media (max-width:900px){.live-embed{display:none}}
 .author-sign{margin-top:auto;text-align:center;font-size:11px;color:var(--taupe);opacity:.7;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
 .lang-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:1000;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #eadfd9;font:400 12px/1.4 "Poppins",system-ui,sans-serif;color:#523B2E;cursor:pointer}
 .lang-toggle [data-l]{opacity:.5;font-weight:400}
@@ -117,14 +122,10 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
 
   <h2 data-ru="Как работает агент в WhatsApp">How the WhatsApp agent works</h2>
   <p data-ru="Гость просто пишет, как написал бы человеку. Никаких меню. Агент отвечает по вашим собственным правилам и ценам, на языке гостя, и держится строго студийных тем.">The guest just writes, the way they would write to a person. No menus. The agent answers from your own rules and prices, in the guest's language, and stays strictly on studio topics.</p>
-  <div class="tw"><table>
-    <tr><th data-ru="Гость спрашивает">Guest asks</th><th data-ru="Сегодня">Today</th><th data-ru="С агентом">With the agent</th></tr>
-    <tr><td data-ru="«Вы открыты в пятницу на Бен-Иегуда?»">"Are you open on Friday in Ben Yehuda?"</td><td data-ru="Открывает меню, находит «часы работы и как добраться», читает длинный текст">Opens the menu, finds "hours and directions", reads a long text</td><td data-ru="Одним ответом получает часы работы этого филиала в пятницу и ссылку на карту">Gets the Friday hours for that branch and a map link in one reply</td></tr>
-    <tr><td data-ru="«Столик на 4 завтра в 17:00, Ход-ха-Шарон»">"Table for 4 tomorrow at 17:00, Hod HaSharon"</td><td data-ru="Меню, потом ссылка, потом всё заново в Ontopo">Menu, then a link, then starts over in Ontopo</td><td data-ru="Получает прямую ссылку Ontopo на этот филиал, дату и размер компании">Gets a direct Ontopo link for that branch, date and group size</td></tr>
-    <tr><td data-ru="«Моя кружка готова?»">"Is my mug ready?"</td><td data-ru="Пункт меню, потом ждёт, пока сотрудник проверит полку">Menu option, then waits for staff to check the shelf</td><td data-ru="Получает реальный статус и ожидаемую дату. Когда готово: фото готового изделия">Gets the real status and the expected date. When ready: a photo of the finished piece</td></tr>
-    <tr><td data-ru="«День рождения на 12 детей в ноябре»">"Birthday for 12 kids in November"</td><td data-ru="Ждёт сотрудника">Waits for staff</td><td data-ru="Агент уточняет дату, филиал, возраст и число детей и передаёт сотрудникам готовую заявку">The agent asks date, branch, age and number of kids, then hands a ready lead to staff</td></tr>
-    <tr><td data-ru="Жалоба или возврат">A complaint or refund</td><td data-ru="Ждёт сотрудника">Waits for staff</td><td data-ru="Сразу уходит к человеку, с кратким резюме">Goes straight to a person, with a summary</td></tr>
-  </table></div>
+  <div class="live-embed">
+    <iframe src="../agent/?embed=1" title="WhatsApp agent prototype" loading="lazy"></iframe>
+  </div>
+  <a class="lk proto-cta" href="../agent/"><span class="lk-t" data-ru="Открыть интерактивный прототип на весь экран">Open the interactive prototype full screen</span><span class="lk-d" data-ru="Пять реальных вопросов гостей: как сейчас с меню и как с AI-агентом. Нажмите на вопрос, и разговор проиграется.">Five real guest questions: today with the menu, and with the AI agent. Tap a question and the chat plays out.</span></a>
   <p data-ru="<b>Когда подключается человек.</b> Всегда: жалобы, возвраты и споры об оплате, изменения, которые нельзя сделать по ссылке, фото повреждённого изделия, крупные корпоративные мероприятия, гость просит живого человека, или два непонятных сообщения подряд. Агент честно говорит гостю: «Передаю вас команде Бен-Иегуда, они ответят до 14:00». Чат уходит в тот филиал, о котором идёт речь, с кратким резюме. После этого агент молчит, пока филиал не закроет чат или не вернёт его агенту."><b>When a person takes over.</b> Always: complaints, refunds and payment disputes, changes that can't be made by link, a photo of a damaged piece, large corporate events, a guest asking for a person, or two unclear messages in a row. The agent tells the guest honestly: "I'm passing you to the Ben Yehuda team, they'll reply by 14:00." The chat goes to the branch it is about, with a short summary. After that the agent stays quiet until the branch closes the chat or hands it back.</p>
   <p data-ru='<b>Посмотреть в деле:</b> <a href="../agent/">прототип агента</a>, пять реальных вопросов гостей, сегодня и с агентом.'><b>See it in action:</b> <a href="../agent/">the agent prototype</a>, five real guest questions, today vs. with the agent.</p>
   <p data-ru="<b>В нерабочее время и в шабат</b> агент принимает запрос и обещает ответ в ближайший рабочий час."><b>Outside working hours and on Shabbat</b> the agent collects the request and promises a reply at the next opening hour.</p>
@@ -219,6 +220,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     for (var i = 0; i < els.length; i++) {
       els[i].innerHTML = els[i].getAttribute(lang === "ru" ? "data-ru" : "data-en");
     }
+    var fr=document.querySelector(".live-embed iframe"); if(fr){fr.src="../agent/?embed=1"+(lang==="ru"?"&lang=ru":"");}
     document.title = META[lang].title;
     if (desc) desc.setAttribute("content", META[lang].desc);
   }
