@@ -47,6 +47,9 @@ a{color:var(--terra)}
 .fit{margin-top:auto;padding-top:16px;border-top:1px dashed var(--blush);font-size:14px;color:var(--ink-soft)}
 .note{color:var(--taupe);font-size:13.5px;margin-top:28px}
 .close{font-family:var(--serif);font-size:clamp(24px,3.4vw,30px);line-height:1.25;margin-top:44px}
+.steps .done{font-size:13px;color:var(--terra);margin-top:6px}
+.agree{list-style:none;padding:0;margin:14px 0 0}
+.agree li{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px;font-size:15px}
 .author-sign{margin-top:auto;text-align:center;font-size:11px;color:var(--taupe);opacity:.7;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
 .lang-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:1000;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid #eadfd9;font:400 12px/1.4 "Poppins",system-ui,sans-serif;color:#523B2E;cursor:pointer}
 .lang-toggle [data-l]{opacity:.5;font-weight:400}
@@ -65,10 +68,10 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
 
   <h2 data-ru="Четыре шага">The four steps</h2>
   <ol class="steps">
-    <li><span class="n">1</span><span class="t" data-ru="AI-ассистент для WhatsApp">AI assistant for WhatsApp</span><span class="w"><b data-ru="~4 недели">~4 weeks</b><span data-ru="₪6 000">₪6,000</span></span><span class="d" data-ru="Гости просто пишут, как и сейчас. AI отвечает на частые вопросы по информации Color Café и передаёт разговор в нужный филиал, когда нужен человек.">Guests simply write as they do today. The AI answers common questions, uses Color Café's information, and hands the conversation to the right branch when a person is needed.</span></li>
-    <li><span class="n">2</span><span class="t" data-ru="Учёт изделий в одном филиале">Piece tracking in one branch</span><span class="w"><b data-ru="~4 недели">~4 weeks</b><span data-ru="₪6 000">₪6,000</span></span><span class="d" data-ru="Начинаем с одного филиала и проверяем весь путь вживую: приём, печь, готово, выдача. Когда всё работает гладко, гости автоматически получают сообщение, что изделие готово.">We start with one branch and test the full journey in real life: drop-off, kiln, ready and pickup. Once it works smoothly, guests automatically get a message when their piece is ready.</span></li>
-    <li><span class="n">3</span><span class="t" data-ru="Все филиалы и простой дашборд">All branches and a simple dashboard</span><span class="w"><b data-ru="~3 недели">~3 weeks</b><span data-ru="₪4 500">₪4,500</span></span><span class="d" data-ru="Учёт расширяется на все филиалы, а у вас появляется простой дашборд: где что находится и что требует внимания.">Tracking expands to every branch, and you get one simple dashboard showing where everything is and what needs attention.</span></li>
-    <li><span class="n">4</span><span class="t" data-ru="Склад импортного бизнеса">Warehouse for the importing business</span><span class="w"><b data-ru="~5 недель">~5 weeks</b><span data-ru="₪7 500">₪7,500</span></span><span class="d" data-ru="Видно, что пришло, что ещё на складе и что ушло в филиалы или клиентам B2B.">You can see what came in, what is still in stock, and what was sent to branches or B2B customers.</span></li>
+    <li><span class="n">1</span><span class="t" data-ru="AI-ассистент для WhatsApp">AI assistant for WhatsApp</span><span class="w"><b data-ru="~4 недели">~4 weeks</b><span data-ru="₪8 000">₪8,000</span></span><span class="d" data-ru="Гости просто пишут, как и сейчас. AI отвечает на частые вопросы по информации Color Café и передаёт разговор в нужный филиал, когда нужен человек.">Guests simply write as they do today. The AI answers common questions, uses Color Café's information, and hands the conversation to the right branch when a person is needed.</span><span class="d done" data-ru="Готово, когда: ассистент отвечает на согласованные темы на вашем номере WhatsApp, а разговоры, где нужен человек, приходят в нужный филиал с кратким резюме.">Done means: the assistant answers the agreed topics on your WhatsApp number, and chats that need a person reach the right branch with a short summary.</span></li>
+    <li><span class="n">2</span><span class="t" data-ru="Учёт изделий в одном филиале">Piece tracking in one branch</span><span class="w"><b data-ru="~4 недели">~4 weeks</b><span data-ru="₪8 000">₪8,000</span></span><span class="d" data-ru="Начинаем с одного филиала и проверяем весь путь вживую: приём, печь, готово, выдача. Когда всё работает гладко, гости автоматически получают сообщение, что изделие готово.">We start with one branch and test the full journey in real life: drop-off, kiln, ready and pickup. Once it works smoothly, guests automatically get a message when their piece is ready.</span><span class="d done" data-ru="Готово, когда: в одном филиале каждое новое изделие отслеживается от приёма до выдачи, а гости получают сообщение «готово».">Done means: in one branch every new piece is tracked from drop-off to pickup, and guests get the “ready” message.</span></li>
+    <li><span class="n">3</span><span class="t" data-ru="Все филиалы и простой дашборд">All branches and a simple dashboard</span><span class="w"><b data-ru="~3 недели">~3 weeks</b><span data-ru="₪5 500">₪5,500</span></span><span class="d" data-ru="Учёт расширяется на все филиалы, а у вас появляется простой дашборд: где что находится и что требует внимания.">Tracking expands to every branch, and you get one simple dashboard showing where everything is and what needs attention.</span><span class="d done" data-ru="Готово, когда: все филиалы ведут учёт изделий, а дашборд показывает, что где находится и что требует внимания.">Done means: every branch tracks its pieces, and the dashboard shows what is where and what needs attention.</span></li>
+    <li><span class="n">4</span><span class="t" data-ru="Склад импортного бизнеса">Warehouse for the importing business</span><span class="w"><b data-ru="~5 недель">~5 weeks</b><span data-ru="₪9 000">₪9,000</span></span><span class="d" data-ru="Видно, что пришло, что ещё на складе и что ушло в филиалы или клиентам B2B.">You can see what came in, what is still in stock, and what was sent to branches or B2B customers.</span><span class="d done" data-ru="Готово, когда: приход, остатки и отгрузки в филиалы и клиентам B2B видны в одном месте.">Done means: incoming stock, current stock and what went to branches and B2B customers are visible in one place.</span></li>
   </ol>
   <p class="note" style="margin-top:12px" data-ru="Всего примерно четыре месяца, с середины октября до февраля. Сроки ориентировочные и могут немного сдвигаться в зависимости от доступов, тестов и обратной связи по ходу.">Roughly four months in total, from mid-October to February. Timing is approximate and may shift slightly depending on access, testing and feedback along the way.</p>
 
@@ -77,7 +80,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     <div class="opt">
       <h3 data-ru="По шагам">Step by step</h3>
       <div class="sub" data-ru="Каждый шаг согласуется и оплачивается отдельно.">Each step is agreed and paid for separately.</div>
-      <div class="price" data-ru="₪24 000 <small>за все четыре шага</small>">₪24,000 <small>for all four steps</small></div>
+      <div class="price" data-ru="₪30 500 <small>за все четыре шага</small>">₪30,500 <small>for all four steps</small></div>
       <ul>
         <li data-ru="Половина в начале шага, половина, когда согласованная версия запущена.">Half when we start a step, half when the agreed version is live.</li>
         <li data-ru="Можно остановиться после любого шага.">You can stop after any step.</li>
@@ -88,7 +91,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     <div class="opt">
       <h3 data-ru="Ежемесячно">Monthly</h3>
       <div class="sub" data-ru="Гибкая постоянная работа за одну фиксированную сумму в месяц.">A flexible ongoing way to work together for one fixed amount each month.</div>
-      <div class="price" data-ru="₪6 500 <small>в месяц</small>">₪6,500 <small>a month</small></div>
+      <div class="price" data-ru="₪7 500 <small>в месяц</small>">₪7,500 <small>a month</small></div>
       <ul>
         <li data-ru="Около 10 часов в неделю, выделенных для Color Café.">Around 10 hours a week dedicated to Color Café.</li>
         <li data-ru="Тот же план, с местом для небольших просьб и корректировок по ходу.">The same roadmap, with room for smaller requests and adjustments along the way.</li>
@@ -99,6 +102,18 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
   </div>
 
   <p class="note" data-ru="Цены в ₪, без НДС (עוסק פטור). Серверы, AI и сообщения WhatsApp (сейчас по оценке около ₪300-800 в месяц) оплачиваются Color Café напрямую, так что все сервисы и аккаунты остаются на вас.">Prices in ₪, no VAT (osek patur). Servers, AI usage and WhatsApp messaging costs (currently estimated at around ₪300–800/month) are paid directly by Color Café, so all services and accounts remain in your name.</p>
+
+  <h2 data-ru="Что зафиксируем письменно">What we'll agree in writing</h2>
+  <ul class="agree">
+    <li data-ru="<b>Что значит «готово».</b> У каждого шага короткий список, как выше. Шаг закончен, когда эти пункты работают.">
+<b>What "done" means.</b> Each step has a short list, like the ones above. A step is finished when those points work.</li>
+    <li data-ru="<b>Приёмка.</b> 5 рабочих дней, чтобы посмотреть готовый шаг. Один раунд правок входит в шаг, новые пожелания после этого становятся новой задачей.">
+<b>Review.</b> 5 working days to look at a finished step. One round of fixes is included; new wishes after that become a new request.</li>
+    <li data-ru="<b>Порядок шагов.</b> Шаг 3 опирается на шаг 2. Шаги 1 и 4 можно делать отдельно и в любом порядке.">
+<b>Order of steps.</b> Step 3 builds on step 2. Steps 1 and 4 can be done on their own, in any order.</li>
+    <li data-ru="<b>Если выбираете ежемесячно.</b> Около 10 часов в неделю, неиспользованные часы не переносятся. Приоритеты недели определяете вы, ответ в течение рабочего дня, работа сверх лимита переходит на следующую неделю.">
+<b>If you choose monthly.</b> Around 10 hours a week; unused hours don't carry over. You set the week's priorities, replies come within one working day, and anything beyond the limit moves to the next week.</li>
+  </ul>
 
   <p class="close" data-ru="Скажите, какой вариант вам ближе, и начнём со шага 1.">Tell me which one feels closer, and we'll start with step 1.</p>
   <p data-ru='Полный план первого шага и то, что уже готово посмотреть: <a href="../pilot/?lang=ru">здесь</a>.'>The detailed plan and what's ready to see: <a href="../pilot/">here</a>.</p>
