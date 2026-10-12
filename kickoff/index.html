@@ -146,6 +146,9 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
   <h2><span class="num">5</span><span data-ru="Что мне нужно для старта">What I need to get started</span></h2>
   <ul class="checks" id="need"></ul>
 
+  <h2><span class="num">6</span><span data-ru="Несколько коротких вопросов">A few quick questions</span></h2>
+  <ul class="checks" id="ask"></ul>
+
   <div class="solo" style="margin-top:36px">
     <label for="notes" data-ru="Что-то ещё?">Anything else?</label>
     <textarea class="field" id="notes"></textarea>
@@ -220,8 +223,8 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     [["Naomi Shemer 5", "Наоми Шемер 5"], ["Kiryat Ono", "Кирьят-Оно"]]
   ];
   var NEED = [
-    {t: ["WhatsApp chat export for the last 1–2 months", "Экспорт чатов WhatsApp за последние 1–2 месяца"],
-     h: ["In the chat: More, then Export chat, without media.", "В чате: Ещё, затем Экспорт чата, без медиа."]},
+    {t: ["Conversation history for the last 1–2 months", "История переписки за последние 1–2 месяца"],
+     h: ["Commbox can export the conversation history. Your account manager can send it, or I can request it with your OK.", "Историю переписки может выгрузить Commbox. Её пришлёт ваш менеджер, или я запрошу сам с вашего согласия."]},
     {t: ["Contact of your Commbox account manager", "Контакт вашего менеджера в Commbox"],
      h: ["A name and a phone or email is enough.", "Достаточно имени и телефона или почты."]},
     {t: ["Who owns the Meta Business account behind the number, and admin access for me", "Кто владелец аккаунта Meta Business, к которому привязан номер, и админ-доступ для меня"],
@@ -232,6 +235,14 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
      h: ["A rough guess is enough, it helps plan WhatsApp costs.", "Хватит примерной оценки, это нужно, чтобы посчитать расходы на WhatsApp."]},
     {t: ["A short data processing agreement, so guest data stays yours", "Короткое соглашение об обработке данных, чтобы данные гостей оставались вашими"],
      h: ["I'll bring a draft, you just read it and sign.", "Черновик принесу я, вам останется прочитать и подписать."]}
+  ];
+  var ASK = [
+    {t: ["Is your business verified in Meta?", "Пройдена ли проверка бизнеса в Meta?"],
+     h: ["Meta Business Suite, then Settings, then Security Center (Business verification).", "Meta Business Suite → Settings → Security Center (Business verification)."]},
+    {t: ["Do you send broadcasts or template notifications from this number (for example about home kits)?", "Отправляете ли вы с этого номера рассылки или шаблонные уведомления (например, про наборы для дома)?"],
+     h: ["So we keep them working after the switch.", "Чтобы они продолжили работать после перехода."]},
+    {t: ["If convenient: what you pay Commbox per month, and when the contract ends (how much notice it needs).", "Если удобно: сколько вы платите Commbox в месяц и до какой даты договор (за сколько нужно предупредить)"],
+     h: ["Helps us plan the switch without paying twice.", "Поможет спланировать переход без двойной оплаты."]}
   ];
 
   /* ---------- state ---------- */
@@ -245,6 +256,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
       branches: BRANCHES.map(function(){ return ""; }),
       reviewer: "",
       need: NEED.map(function(){ return false; }),
+      ask: ASK.map(function(){ return false; }),
       notes: ""
     };
   }
@@ -254,7 +266,7 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     if (raw) {
       var saved = JSON.parse(raw);
       if (saved && typeof saved === "object") {
-        ["agree", "branches", "need"].forEach(function(k){
+        ["agree", "branches", "need", "ask"].forEach(function(k){
           if (Array.isArray(saved[k])) S[k] = S[k].map(function(v, i){ return saved[k][i] !== undefined ? saved[k][i] : v; });
         });
         if (saved.topics && typeof saved.topics === "object") {
@@ -310,13 +322,17 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
       return checkItem("need", i, L(n.t), '<span class="how">' + esc(L(n.h)) + '</span>');
     }).join("");
 
+    $("ask").innerHTML = ASK.map(function(n, i){
+      return checkItem("ask", i, L(n.t), '<span class="how">' + esc(L(n.h)) + '</span>');
+    }).join("");
+
     $("copy").textContent = t("Copy as a message", "Скопировать сообщением");
     $("reset").textContent = t("Reset", "Сбросить");
     progress();
   }
   function progress(){
-    var total = AGREE.length + 1 + NEED.length;
-    var n = S.agree.filter(Boolean).length + (S.handoff ? 1 : 0) + S.need.filter(Boolean).length;
+    var total = AGREE.length + 1 + NEED.length + ASK.length;
+    var n = S.agree.filter(Boolean).length + (S.handoff ? 1 : 0) + S.need.filter(Boolean).length + S.ask.filter(Boolean).length;
     $("progText").innerHTML = t("<b>" + n + "</b> of " + total + " ticked", "Отмечено <b>" + n + "</b> из " + total);
     $("progFill").style.width = Math.round(n / total * 100) + "%";
   }
@@ -380,6 +396,9 @@ html[data-lang="en"] .lang-toggle [data-l="en"],html[data-lang="ru"] .lang-toggl
     out.push("");
     out.push(t("What I need to get started:", "Что мне нужно для старта:"));
     NEED.forEach(function(n, i){ out.push(mark(S.need[i]) + L(n.t)); });
+    out.push("");
+    out.push(t("A few quick questions:", "Несколько коротких вопросов:"));
+    ASK.forEach(function(n, i){ out.push(mark(S.ask[i]) + L(n.t)); });
     if (S.notes.trim()) {
       out.push("");
       out.push(t("Notes:", "Заметки:"));
